@@ -1,0 +1,48 @@
+
+digraph R {
+
+  graph [splines=ortho]
+
+  node [shape    = box,
+        fontsize = 14,
+        margin   = 0.1 ]
+  
+  data7  [ label = " 70% of Static Data 
+ WRF data ", color=blue4, fontcolor=blue4 ];
+  data3  [ label = " 30% of Static Data 
+ WRF data ", color=blue4, fontcolor=blue4 ];
+
+  nd_1   [label = " create SVM ", color=darkmagenta, fontcolor=darkmagenta];
+  nd_2   [label = "   use SVM  ", color=darkmagenta, fontcolor=darkmagenta];
+  nd_3   [label = " Forecast 
+ for 30% of data"];
+  
+  nd_4   [label = "Validation
+stats" shape = diamond];
+  nd_5   [label = " keep SVM model! ", color=darkmagenta, fontcolor=darkmagenta];
+ 
+  data7 -> nd_1;
+
+ {rank=same data7 nd_1 }
+
+//  data3 -> nd_2;
+// {rank=same data3 nd_5  }
+
+data3 -> nd_4  [weight = 100];
+
+
+  nd_1 -> nd_2 -> nd_3 -> nd_4 [ color = darkgreen, penwidth=3 ];
+ {rank=same nd_3 nd_4 nd_5 }
+ 
+
+ nd_4 -> nd_1 [ taillabel="        bad stats " color = darkgreen penwidth=3  ];
+ nd_4 -> nd_5 [ label="  good enough stats" ];
+
+
+  //
+  nd_1 -> nd_2 -> nd_3 -> data3 [ style = invis, weight= 10 ];
+  //  data7 -> data3       [ style = invis, weight= 10 ];
+  //    
+
+}
+

@@ -1,0 +1,29 @@
+
+digraph trackercon {
+
+  # Intialization of graph attributes
+  graph [align   = center,
+         layout  = dot,
+         rankdir = LR,
+         dpi     = 300]
+
+  node [shape    = box,
+        fontsize = 10,
+        margin   = 0.001 ]
+
+  svm2  [label = " SVM Model ",color=darkmagenta, fontcolor=darkmagenta];
+  data2 [label = " Static data 
+ 250 x 250 m "];
+  wrf2  [label = " WRF 2 x 2 km "];
+ 
+   subgraph cluster_gc_2 {
+        label = "Forecast";
+        
+        wrf2  -> svm2;
+        data2 -> svm2;
+        svm2  -> " Forecast 
+ 250 x 250 m ";
+      }
+
+}
+

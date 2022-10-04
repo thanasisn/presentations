@@ -1,0 +1,39 @@
+
+digraph trackercon {
+
+  # Intialization of graph attributes
+  graph [align   = center,
+         layout  = dot,
+         rankdir = LR,
+         dpi     = 300]
+
+  node [shape    = box,
+        fontsize = 10,
+        margin   = 0.001 ]
+
+  wrf0  [label = " WRF 2 x 2 km "];
+
+  svm1  [label = " SVM Model " color=darkmagenta, fontcolor=darkmagenta];
+  wrf1  [label = " Re-grid 
+ 250 x 250 m "];
+  data1 [label = " Static data 
+ 250 x 250 m "];
+  train [label = " training " shape = diamond];
+
+    subgraph cluster_gc_1 {
+
+        label = "Training";
+
+        wrf0                     -> wrf1;
+
+        wrf1                     -> train;
+        data1                    -> train;
+        train                    -> svm1;
+        " Satellite data "       -> data1;
+        " Weather 
+ observations " -> data1;
+
+    }
+
+}
+
