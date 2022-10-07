@@ -83,8 +83,8 @@ if(!interactive()) {
 
 
 library(data.table)
-library(RAerosols)
-library(R.utils)
+# library(RAerosols)
+# library(R.utils)
 
 source("~/FUNCTIONS/R/data.R")
 source("~/FUNCTIONS/R/trig_deg.R")
@@ -96,6 +96,8 @@ load("./data/Combinations_results_2022-06-14_153313.Rds")
 
 
 #' ## Introduction
+#'
+#' Radiation clouds trends
 
 
 #' ## Data description
@@ -145,10 +147,12 @@ rm.cols.DT(CSdt, "TSIextEARTH_comb.y")
 CSdt <- CSdt[ Elevat > 10 ]
 
 ## exclude some low lever measurements
-CSdt[ wattGLB < 15 , wattGLB := NA ]
-CSdt[ wattHOR < 15 , wattHOR := NA ]
+# CSdt[ wattGLB < 15 , wattGLB := NA ]
+# CSdt[ wattHOR < 15 , wattHOR := NA ]
 
-
+## Quality Control
+CSdt[ QCF_DIR != "good", wattDIR := NA ]
+CSdt[ QCF_GLB != "good", wattGLB := NA ]
 
 
 
@@ -192,9 +196,9 @@ kcols <- brewer.pal(7, "Dark2")
 for ( aday in daylist[1:20] ) {
     temp <- CSdt[ Day == aday ]
 
-    par(mar=c(1,2,1,1))
+    par(mar=c(2,2,1,1))
 
-    layout(matrix(c(1,1,1), 1, 1, byrow = TRUE))
+    layout(matrix(c(1,1,1), 3, 1, byrow = TRUE))
     ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA) )
 
     plot(temp$Date, temp$wattGLB, "l", col = "green", ylim = ylim)
