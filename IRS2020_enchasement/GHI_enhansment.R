@@ -179,10 +179,8 @@ for ( aday in daylist[1:20] ) {
 
     # plot(temp$Date, temp$DiffuseFraction_Kd)
 
-
     # plot(temp$Date, temp$GLB_ench)
     plot(temp$Date, temp$GLB_diff)
-
 
 }
 
