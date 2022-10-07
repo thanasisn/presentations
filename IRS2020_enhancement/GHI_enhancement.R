@@ -3,11 +3,10 @@
 #' ---
 #' title: "Study of Global radiation enhancement over Thessaloniki"
 #' author:
-#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics,AUTH, natsisthanasis@gmail.com]
-#'   - Jane Doe^[Institution Two, jane@example.org]
+#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
+#'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
+#'   - Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
 #' date: "`r format(Sys.time(), '%F')`"
-#' abstract:  "Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun as derived by the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle and the magnitude of the enhancement events. Simulations of GHI and DNI are derived by LibRadtran based on aerosol and water vapor measurements of a collocated Cimel sun-photometer. Moreover, we investigate the seasonal and long-term behavior of these events in relation to the above factors. \newline \newline In addition, the time series of GHI and DNI for the period 2016 – 2019 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events which may have been affected by changes in climate.
-#'
 #'
 #' documentclass: article
 #' classoption:   a4paper,oneside
@@ -60,11 +59,13 @@ knitr::opts_chunk$set(fig.align  = "center" )
 #'
 #' ## Abstract
 #'
+#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun as derived by the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle and the magnitude of the enhancement events. Simulations of GHI and DNI are derived by LibRadtran based on aerosol and water vapor measurements of a collocated Cimel sun-photometer. Moreover, we investigate the seasonal and long-term behavior of these events in relation to the above factors.
+#'
+#' In addition, the time series of GHI and DNI for the period 2016-2019 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events which may have been affected by changes in climate.
+#'
+#'
 
 
-#
-# Just preliminary tests.
-#
 
 #+ include=F, echo=F
 ####  Set environment  ####
@@ -75,9 +76,9 @@ Script.Name <- tryCatch({ funr::sys.script() },
                         error = function(e) { cat(paste("\nUnresolved script name: ", e),"\n\n")
                             return("Climatological_") })
 if(!interactive()) {
-    pdf(  file = paste0("~/MANUSCRIPTS/2022_sdr_trends/runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink( file = paste0("~/MANUSCRIPTS/2022_sdr_trends/runtime/",  basename(sub("\\.R$",".out", Script.Name))), split=TRUE)
-    filelock::lock(paste0("~/MANUSCRIPTS/2022_sdr_trends/runtime/",basename(sub("\\.R$",".lock",Script.Name))),timeout = 0)
+    pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
+    sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".out", Script.Name))), split=TRUE)
+    filelock::lock(paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",basename(sub("\\.R$",".lock",Script.Name))),timeout = 0)
 }
 
 
@@ -94,6 +95,10 @@ source("~/FUNCTIONS/R/trig_deg.R")
 load("./data/Combinations_results_2022-06-14_153313.Rds")
 
 
+#' ## Introduction
+
+
+#' ## Data description
 
 #'
 #' A radiation data quality assurance procedure was applied adjusted for the site,
@@ -159,8 +164,8 @@ CSdt[ , HAU := HAU(SZA) * ampl ]
 
 
 ## some metrics
-CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhansemnet
-CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhansemnet
+CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhancement
+CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
 CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
 ## select some days
