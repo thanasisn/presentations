@@ -1,13 +1,13 @@
 # /*  #!/usr/bin/env Rscript */
-# /* Copyright (C) 2016 Athanasios Natsis <natsisthanasis@gmail.com> */
+# /* Copyright (C) 2022 Athanasios Natsis <natsisthanasis@gmail.com> */
 #' ---
 #' title: "Study of Global radiation enhancement over Thessaloniki"
-#' author: "Natsis Athanasios"
-#' institute: "AUTH"
-#' affiliation: "Laboratory of Atmospheric Physics"
+#' author:
+#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics,AUTH, natsisthanasis@gmail.com]
+#'   - Jane Doe^[Institution Two, jane@example.org]
 #' date: "`r format(Sys.time(), '%F')`"
-#' abstract: "Based on Evaluation of enhancement events of global horizontal
-#' irradiance due to clouds at Patras, South-West Greece. Vamvakas Ioannis"
+#' abstract:  "Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun as derived by the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle and the magnitude of the enhancement events. Simulations of GHI and DNI are derived by LibRadtran based on aerosol and water vapor measurements of a collocated Cimel sun-photometer. Moreover, we investigate the seasonal and long-term behavior of these events in relation to the above factors. \newline \newline In addition, the time series of GHI and DNI for the period 2016 – 2019 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events which may have been affected by changes in climate.
+#'
 #'
 #' documentclass: article
 #' classoption:   a4paper,oneside
@@ -60,9 +60,6 @@ knitr::opts_chunk$set(fig.align  = "center" )
 #'
 #' ## Abstract
 #'
-#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun as derived by the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle and the magnitude of the enhancement events. Simulations of GHI and DNI are derived by LibRadtran based on aerosol and water vapor measurements of a collocated Cimel sun-photometer. Moreover, we investigate the seasonal and long-term behavior of these events in relation to the above factors.
-#'
-#' In addition, the time series of GHI and DNI for the period 2016 – 2019 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events which may have been affected by changes in climate.
 
 
 #
@@ -96,6 +93,13 @@ source("~/FUNCTIONS/R/trig_deg.R")
 # load("/home/athan/Aerosols/source_R/Global_models.Rda")
 load("./data/Combinations_results_2022-06-14_153313.Rds")
 
+
+
+#'
+#' A radiation data quality assurance procedure was applied adjusted for the site,
+#' based on methods of Long and Shi\ [-@long_automated_2008; -@Long2006].
+#' Only data characterized with acceptable quality was used.
+#'
 #'
 #' By the GHI and DNI for the period 2016 – 2021 and using the iterative
 #' method of optimizing the 'Clear sky' identification method, as proposed
@@ -104,6 +108,12 @@ load("./data/Combinations_results_2022-06-14_153313.Rds")
 #' the best result with the Haurwitz model, using as the main criteria the
 #' RMSE.
 #'
+#' We u
+#' To establish some criteria for the GHI enhancement cases we use similar
+#' criteria to ...........[@Vamvakas2020]
+#'
+
+
 
 
 #'
@@ -139,25 +149,32 @@ CSdt[ wattHOR < 15 , wattHOR := NA ]
 
 ## use cs model
 ##  i) the GHI_MEASURED - MODELED to be higher than 5% (GHI_MEASURED-MODELED >= 5%)
-ampl = 1.15
+ampl = 1.05
 CSdt[ , HAU := HAU(SZA) * ampl ]
+
 
 ##  i) clearness index to be lower or higher than 1 for the detection of non-extreme (Kt <= 1 ) and extreme enhancements cases (Kt > 1).
 
 
+
+
 ## some metrics
-CSdt[ , GLB_diff :=   wattGLB - HAU ]
-CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ]
+CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhansemnet
+CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhansemnet
 CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
+## select some days
 enh_days <- CSdt[ GLB_diff > 15 & wattHOR > 15 & GLB_diff > 0,
-                  .( Enh_sum = sum(GLB_ench, na.rm = T),
-                     Enh_max = max(GLB_ench, na.rm = T),
+                  .( Enh_sum      = sum(GLB_ench, na.rm = T),
+                     Enh_max      = max(GLB_ench, na.rm = T),
                      Enh_diff_sum = sum(GLB_diff, na.rm = T),
                      Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
 
 setorder( enh_days, -Enh_sum )
 setorder( enh_days, -Enh_max )
+
+setorder( enh_days, -Enh_diff_sum )
+
 
 # setorder( enh_days, -Enh_diff_max )
 # setorder( enh_days, -Enh_diff_sum )
@@ -169,18 +186,25 @@ kcols <- brewer.pal(7, "Dark2")
 
 for ( aday in daylist[1:20] ) {
     temp <- CSdt[ Day == aday ]
-stop()
+
     par(mar=c(1,2,1,1))
 
-    layout(matrix(c(1,1,2,3), 4, 1, byrow = TRUE))
+    layout(matrix(c(1,1,1), 1, 1, byrow = TRUE))
     ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA) )
 
     plot(temp$Date, temp$wattGLB, "l", col = "green", ylim = ylim)
 
     lines(temp$Date, temp$wattHOR, col = "blue")
-    # lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
+
+    lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
     lines(temp$Date, temp$HAU,    col = "red" )
-    lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
+    # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
+
+    points(temp[ GLB_ench > 0, Date ], temp[ GLB_ench > 0, wattGLB ], col = "red")
+    points(temp[ Clearness_Kt > .8, Date ], temp[ Clearness_Kt > .8 , wattGLB ], col = "yellow")
+
+    points(temp[ GLB_ench > 0 & Clearness_Kt > .8, Date ], temp[ GLB_ench > 0 & Clearness_Kt > .8, wattGLB ], col = "cyan")
+
 
     # points(temp$Date[temp$CSflag!=0], temp$wattGLB[temp$CSflag!=0], col = kcols[ temp$CSflag[temp$CSflag!=0] ], pch =19,cex=0.4)
 
@@ -189,12 +213,11 @@ stop()
     # plot(temp$Date, temp$GLB_ench, col = kcols[ temp$CSflag ])
     # plot(temp$Date, temp$GLB_diff, col = kcols[ temp$CSflag ])
 
-    plot(temp$Date, temp$Clearness_Kt)
-    abline(h=.8,col="red")
+    # plot(temp$Date, temp$Clearness_Kt)
+    # abline(h=.8,col="red")
 
     # plot(temp$Date, temp$DiffuseFraction_Kd)
-
-    plot(temp$Date, temp$GLB_ench)
+    # plot(temp$Date, temp$GLB_ench)
     # plot(temp$Date, temp$GLB_diff)
 
 }
@@ -205,7 +228,7 @@ stop()
 ## keep enhanced cases
 
 
-Enh <- CSdt[ GLB_diff > 0 ]
+Enh <- CSdt[ GLB_ench > 0 & Clearness_Kt > .8 ]
 
 length(unique(Enh$Day))
 
@@ -219,30 +242,31 @@ length(unique(Enh$Day))
 #'
 
 
-## get indexes of continues cases
-
-## get time diffs
-coo <- diff(Enh$Date)
-## get indexes of sucesive cases
-suc <- which(coo == 1)
-## get the range of each sequence
-iv  <- seqToIntervals(suc)
-
-## stats on each event
-Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
-                      End_date = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
-                      Duration = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } )
-)
-
-hist(Events$Duration, breaks = 100)
 
 
-ivv <- seqToIntervals(coo)
-
-coo[ivv[1,1]:ivv[1,2]]
-
-# gives the indices of the 'jumps'.
-which(diff(coo) != 1)
+##TODO get indexes of continues cases
+##
+## ## get time diffs
+## coo <- diff(Enh$Date)
+## ## get indexes of successive cases
+## suc <- which(coo == 1)
+## ## get the range of each sequence
+## iv  <- seqToIntervals(suc)
+##
+## ## stats on each event
+## Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
+##                       End_date   = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
+##                       Duration   = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } )
+## )
+##
+## hist(Events$Duration, breaks = 100)
+##
+## ivv <- seqToIntervals(coo)
+##
+## coo[ivv[1,1]:ivv[1,2]]
+##
+## # gives the indices of the 'jumps'.
+## which(diff(coo) != 1)
 
 
 
