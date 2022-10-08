@@ -95,11 +95,13 @@ source("~/FUNCTIONS/R/trig_deg.R")
 load("./data/Combinations_results_2022-06-14_153313.Rds")
 
 
-GLB_ench_THRES     <- 0
-Clearness_Kt_THRES <- 0.8
-wattGLB_THRES      <- 20
-wattDIR_THRES      <- 20
-min_elevation      <- 15
+GLB_ench_THRES     <- 0    ## enchantment % relative to HAU
+GLB_diff_THRES     <- 10   ## enchantment absolute diff to HAU
+Clearness_Kt_THRES <- 0.8  ## enchantment threshold
+wattGLB_THRES      <- 20   ## minimum value to consider
+wattDIR_THRES      <- 20   ## minimum value to consider
+min_elevation      <- 10   ## minimum sun elevation to use
+ampl               <- 1.05 ## adjusted HAU amplified threshold
 
 
 #' ## Introduction
@@ -118,15 +120,31 @@ min_elevation      <- 15
 #' method of optimizing the 'Clear sky' identification method, as proposed
 #' by @Long2000 and @Reno2016. We were able to calibrate the above method
 #' for our site. Among the eight simple models tested by @Reno2016, we found
-#' the best result with the Haurwitz model, using as the main criteria the
+#' the best result with an adjusted Haurwitz model (A-HAU), using as the main selector the
 #' RMSE.
 #'
-#' We u
+#'
+#'
+
+
+
+#'
+#' As enhancement cases of GHI we have chosen the following criteria.
+#'
+#' - Sun elevation angle above $`r min_elevation`^\circ$.
+#' - GHI values above $``$
+#'
 #' To establish some criteria for the GHI enhancement cases we use similar
 #' criteria to ...........[@Vamvakas2020]
 #'
 
-
+#'
+#' Also see Equation \@ref(eq:mean).
+#'
+#' \begin{equation}
+#' \text{GHI} = \alpha * 1098 \times \cos( z ) \times \exp \left( \frac{ - 0.057}{\cos(z)} \right)
+#' \end{equation}
+#'
 
 
 #'
@@ -164,7 +182,6 @@ CSdt[ QCF_GLB != "good", wattGLB := NA ]
 
 ## use cs model
 ##  i) the GHI_MEASURED - MODELED to be higher than 5% (GHI_MEASURED-MODELED >= 5%)
-ampl = 1.05
 CSdt[ , HAU := HAU(SZA) * ampl ]
 
 
@@ -187,7 +204,8 @@ CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
 enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
                   Clearness_Kt > Clearness_Kt_THRES  &
-                  wattGLB      > wattGLB_THRES,
+                  wattGLB      > wattGLB_THRES       &
+                  GLB_diff     > GLB_diff_THRES,
                   .( Enh_sum      = sum(GLB_ench, na.rm = T),
                      Enh_max      = max(GLB_ench, na.rm = T),
                      Enh_diff_sum = sum(GLB_diff, na.rm = T),
@@ -234,8 +252,14 @@ for ( aday in daylist ) {
     # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
     # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
-    points(temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES, Date ],
-           temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES, wattGLB ], col = "red")
+    points(temp[ GLB_ench     > GLB_ench_THRES     &
+                 Clearness_Kt > Clearness_Kt_THRES &
+                 wattGLB      > wattGLB_THRES      &
+                 GLB_diff     > GLB_diff_THRES, Date ],
+           temp[ GLB_ench     > GLB_ench_THRES     &
+                 Clearness_Kt > Clearness_Kt_THRES &
+                 wattGLB      > wattGLB_THRES      &
+                 GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
 
     # points(temp$Date[temp$CSflag!=0], temp$wattGLB[temp$CSflag!=0], col = kcols[ temp$CSflag[temp$CSflag!=0] ], pch =19,cex=0.4)
@@ -258,7 +282,10 @@ for ( aday in daylist ) {
 
 
 ## keep enhanced cases
-Enh <- CSdt[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES ]
+Enh <- CSdt[ GLB_ench     > GLB_ench_THRES &
+             Clearness_Kt > Clearness_Kt_THRES &
+             wattGLB      > wattGLB_THRES      &
+             wattGLB      > wattGLB_THRES    ]
 
 length(unique(Enh$Day))
 
