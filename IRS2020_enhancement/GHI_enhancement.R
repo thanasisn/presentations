@@ -97,15 +97,17 @@ load("./data/Combinations_results_2022-06-14_153313.Rds")
 
 GLB_ench_THRES     <- 0
 Clearness_Kt_THRES <- 0.8
+wattGLB_THRES      <- 20
+wattDIR_THRES      <- 20
+min_elevation      <- 15
 
 
 #' ## Introduction
 #'
 #' Radiation clouds trends
-
-
+#'
 #' ## Data description
-
+#'
 #'
 #' A radiation data quality assurance procedure was applied adjusted for the site,
 #' based on methods of Long and Shi\ [-@long_automated_2008; -@Long2006].
@@ -148,7 +150,7 @@ CSdt <- readRDS("./data/Clear_Sky.Rds")
 rm.cols.DT(CSdt, "TSIextEARTH_comb.y")
 
 ## only when sun is up
-CSdt <- CSdt[ Elevat > 10 ]
+CSdt <- CSdt[ Elevat > min_elevation ]
 
 ## exclude some low lever measurements
 # CSdt[ wattGLB < 15 , wattGLB := NA ]
@@ -176,12 +178,22 @@ CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhancement
 CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
 CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
-## select some days
-enh_days <- CSdt[ GLB_diff > 15 & wattHOR > 15 & GLB_diff > 0,
+## select some days for display
+# enh_days <- CSdt[ GLB_diff > 15 & wattHOR > 15 & GLB_diff > 0,
+#                   .( Enh_sum      = sum(GLB_ench, na.rm = T),
+#                      Enh_max      = max(GLB_ench, na.rm = T),
+#                      Enh_diff_sum = sum(GLB_diff, na.rm = T),
+#                      Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
+
+enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
+                  Clearness_Kt > Clearness_Kt_THRES  &
+                  wattGLB      > wattGLB_THRES,
                   .( Enh_sum      = sum(GLB_ench, na.rm = T),
                      Enh_max      = max(GLB_ench, na.rm = T),
                      Enh_diff_sum = sum(GLB_diff, na.rm = T),
                      Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
+
+
 
 setorder( enh_days, -Enh_sum )
 setorder( enh_days, -Enh_max )
@@ -193,11 +205,17 @@ setorder( enh_days, -Enh_diff_sum )
 # setorder( enh_days, -Enh_diff_sum )
 
 daylist <- enh_days$Day
+daylist <- daylist[1:30]
+
+
+# daylist <- as.Date(c("2017-04-08"))
+
+
 
 library(RColorBrewer)
 kcols <- brewer.pal(7, "Dark2")
 
-for ( aday in daylist[1:30] ) {
+for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
 
     par(mar=c(2,2,1,1))
@@ -213,10 +231,11 @@ for ( aday in daylist[1:30] ) {
     lines(temp$Date, temp$HAU,    col = "red" )
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
 
-    points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "red")
-    points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
+    # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
+    # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
-    points(temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES, wattGLB ], col = "cyan")
+    points(temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES, Date ],
+           temp[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES, wattGLB ], col = "red")
 
 
     # points(temp$Date[temp$CSflag!=0], temp$wattGLB[temp$CSflag!=0], col = kcols[ temp$CSflag[temp$CSflag!=0] ], pch =19,cex=0.4)
@@ -239,7 +258,7 @@ for ( aday in daylist[1:30] ) {
 
 
 ## keep enhanced cases
-Enh <- CSdt[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES ]
+Enh <- CSdt[ GLB_ench > GLB_ench_THRES & Clearness_Kt > Clearness_Kt_THRES & wattGLB > wattGLB_THRES ]
 
 length(unique(Enh$Day))
 
