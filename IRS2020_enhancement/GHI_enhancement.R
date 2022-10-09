@@ -195,12 +195,6 @@ CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
 CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
 ## select some days for display
-# enh_days <- CSdt[ GLB_diff > 15 & wattHOR > 15 & GLB_diff > 0,
-#                   .( Enh_sum      = sum(GLB_ench, na.rm = T),
-#                      Enh_max      = max(GLB_ench, na.rm = T),
-#                      Enh_diff_sum = sum(GLB_diff, na.rm = T),
-#                      Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
-
 enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
                   Clearness_Kt > Clearness_Kt_THRES  &
                   wattGLB      > wattGLB_THRES       &
@@ -211,26 +205,20 @@ enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
                      Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
 
 
-
+## interesting days first
 setorder( enh_days, -Enh_sum )
 setorder( enh_days, -Enh_max )
-
 setorder( enh_days, -Enh_diff_sum )
 
-
-# setorder( enh_days, -Enh_diff_max )
-# setorder( enh_days, -Enh_diff_sum )
-
+## plot some interestin days
 daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
-## plot selected day
+## plot one selected day
 daylist <- as.Date(c("2017-04-08"))
 
 
 
-library(RColorBrewer)
-kcols <- brewer.pal(7, "Dark2")
 
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
@@ -258,16 +246,13 @@ for ( aday in daylist ) {
     # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
     points(temp[ GLB_ench     > GLB_ench_THRES     &
-                 Clearness_Kt > Clearness_Kt_THRES &
-                 wattGLB      > wattGLB_THRES      &
-                 GLB_diff     > GLB_diff_THRES, Date ],
+                     Clearness_Kt > Clearness_Kt_THRES &
+                     wattGLB      > wattGLB_THRES      &
+                     GLB_diff     > GLB_diff_THRES, Date ],
            temp[ GLB_ench     > GLB_ench_THRES     &
-                 Clearness_Kt > Clearness_Kt_THRES &
-                 wattGLB      > wattGLB_THRES      &
-                 GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
-
-
-    # points(temp$Date[temp$CSflag!=0], temp$wattGLB[temp$CSflag!=0], col = kcols[ temp$CSflag[temp$CSflag!=0] ], pch =19,cex=0.4)
+                     Clearness_Kt > Clearness_Kt_THRES &
+                     wattGLB      > wattGLB_THRES      &
+                     GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
@@ -275,10 +260,7 @@ for ( aday in daylist ) {
            pch = c(     NA,       NA,    NA,      NA,    1 ),
            lty = c(      1,        1,     1,       1,   NA ),
            bty = "n"
-)
-
-    # plot(temp$Date, temp$GLB_ench, col = kcols[ temp$CSflag ])
-    # plot(temp$Date, temp$GLB_diff, col = kcols[ temp$CSflag ])
+    )
 
     # plot(temp$Date, temp$Clearness_Kt)
     # abline(h=.8,col="red")
@@ -293,9 +275,9 @@ for ( aday in daylist ) {
 
 ## keep only enhanced cases
 Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
-             Clearness_Kt > Clearness_Kt_THRES &
-             wattGLB      > wattGLB_THRES      &
-             GLB_diff     > GLB_diff_THRES    ]
+                 Clearness_Kt > Clearness_Kt_THRES &
+                 wattGLB      > wattGLB_THRES      &
+                 GLB_diff     > GLB_diff_THRES    ]
 
 
 
