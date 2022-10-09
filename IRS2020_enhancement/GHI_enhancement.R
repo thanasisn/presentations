@@ -163,14 +163,10 @@ HAU <- function( sza,
 
 
 CSdt <- readRDS("./data/Clear_Sky.Rds")
-rm.cols.DT(CSdt, "CSflag_*")
-range( CSdt$Date )
-
+suppressMessages( rm.cols.DT(CSdt, "CSflag_*") )
 
 ## keep only whole years
 CSdt <- CSdt[ year(Date) >= 1994 & year(Date) <= 2021 ]
-
-
 
 ## only when sun is up
 CSdt <- CSdt[ Elevat > min_elevation ]
@@ -227,8 +223,8 @@ setorder( enh_days, -Enh_diff_sum )
 daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
-
-# daylist <- as.Date(c("2017-04-08"))
+## plot selected day
+daylist <- as.Date(c("2017-04-08"))
 
 
 
@@ -326,13 +322,13 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 ## # gives the indices of the 'jumps'.
 ## which(diff(coo) != 1)
 
-
-hist(Enh$GLB_diff)
-hist(Enh$GLB_ench)
+#
+# hist(Enh$GLB_diff)
+# hist(Enh$GLB_ench)
 
 
 Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
-                      N_ex     = sum( wattGLB > TSIextEARTH_comb),
+                      N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                       sum_Ench = sum( GLB_ench),
                       avg_Ench = mean(GLB_ench),
                       sd_Ench  = sd(GLB_ench),
@@ -340,17 +336,24 @@ Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                  by = "Day"  ]
 
 Enh_yearly <- Enh[, .( N        = sum(!is.na(GLB_ench)),
-                       N_ex     = sum( wattGLB > TSIextEARTH_comb),
+                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                        sum_Ench = sum( GLB_ench),
                        avg_Ench = mean(GLB_ench),
                        sd_Ench  = sd(GLB_ench),
                        sum_Diff = sum( GLB_diff)),
                   by = year(Date)  ]
 
+Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
+                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                       sum_Ench = sum( GLB_ench),
+                       avg_Ench = mean(GLB_ench),
+                       sd_Ench  = sd(GLB_ench),
+                       sum_Diff = sum( GLB_diff))   ]
+
 
 
 Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
-                      N_ex     = sum( wattGLB > TSIextEARTH_comb),
+                      N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                       sum_Ench = sum( GLB_ench),
                       avg_Ench = mean(GLB_ench),
                       sd_Ench  = sd(GLB_ench),
@@ -362,16 +365,48 @@ conf_param  <- 1-(1-CONF_INTERV)/2
 Enh_sza[,   Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_daily[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_yearly[,Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
+Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
+
+
+#'
+#' Mean diff per case
+#' $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`$
+#'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # plot(Enh_daily$Day, Enh_daily$N)
-# plot(Enh_daily$Day, Enh_daily$N_ex)
+plot(Enh_daily$Day, Enh_daily$N_ex)
 # plot(Enh_daily$Day, Enh_daily$sum_Ench)
 # plot(Enh_daily$Day, Enh_daily$avg_Ench)
 
+
+#' We will dispay some findings of our analysis.
+#'
+#' The total number of cases we detect increase steadily the last decades.
 plot(Enh_yearly$year, Enh_yearly$N)
+
+plot(Enh_yearly$year, Enh_yearly$N_ex)
+
+
+#' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
 plot(Enh_yearly$year, Enh_yearly$sum_Ench)
 
+#' Although the mean difference in radiation per event seems to be constant.
 plot(  Enh_yearly$year, Enh_yearly$avg_Ench, pch = 19, cex = 0.7)
 # points(Enh_yearly$year, Enh_yearly$avg_Ench + Enh_yearly$Ench_EM, col = "blue",pch="-")
 # points(Enh_yearly$year, Enh_yearly$avg_Ench - Enh_yearly$Ench_EM, col = "blue",pch="-")
@@ -381,23 +416,32 @@ arrows(Enh_yearly$year, Enh_yearly$avg_Ench-Enh_yearly$Ench_EM,
 
 # plot(Enh_daily$Day, Enh_daily$sum_Diff)
 
+#' The number of case characterization is skewed by the SZA angle of the case, although this connection is indicative to the complexity of factor we have to take into account.
 plot(Enh_sza$SZA, Enh_sza$N)
-# plot(Enh_sza$SZA, Enh_sza$N_ex)
-plot(Enh_sza$SZA, Enh_sza$sum_Ench)
 
+plot(Enh_sza$SZA, Enh_sza$N_ex)
+
+#' Interestingly, when we examine the total energy contribution by SZA we found a maximum at
+#' $`r Enh_sza[ which.max(sum_Ench), SZA]`^\circ$.
+plot(Enh_sza$SZA, Enh_sza$sum_Ench)
+# Enh_sza[ which.max(sum_Ench), SZA ]
+
+#' And of course there is a dependency of the magnitude of the enhancement with the
+#' SZA.
 plot(Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7)
 arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
 
 
-# plot(x, avg,
-#      ylim=range(c(avg-sdev, avg+sdev)),
-#      pch=19, xlab="Measurements", ylab="Mean +/- SD",
-#      main="Scatter plot with std.dev error bars"
-# )
-# # hack: we draw arrows but with very special "arrowheads"
-# arrows(x, avg-sdev, x, avg+sdev, length=0.05, angle=90, code=3)
 
+#'
+#' Some aspects we have to study is the seasonality of the above finds
+#' remove the sza dependence in order to see some local phenomena of the site
+#'
+#'
+
+
+#'
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
-cat(sprintf("%s %s@%s %s %f mins\n\n",Sys.time(),Sys.info()["login"],Sys.info()["nodename"],Script.Name,difftime(tac,tic,units="mins")))
+cat(sprintf("\n%s %s@%s %s %f mins\n\n\n",Sys.time(),Sys.info()["login"],Sys.info()["nodename"],Script.Name,difftime(tac,tic,units="mins")))
