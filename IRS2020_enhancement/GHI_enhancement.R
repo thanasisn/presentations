@@ -278,7 +278,7 @@ for ( aday in daylist ) {
 
 
 
-## keep enhanced cases
+## keep only enhanced cases
 Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
              Clearness_Kt > Clearness_Kt_THRES &
              wattGLB      > wattGLB_THRES      &
@@ -323,7 +323,8 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 ## which(diff(coo) != 1)
 
 
-
+Enh[, .(N = !is.na(GLB_ench)),
+    by = as]
 
 
 
