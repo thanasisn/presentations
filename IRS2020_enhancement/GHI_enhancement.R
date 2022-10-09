@@ -102,7 +102,7 @@ wattGLB_THRES      <- 20   ## minimum value to consider
 wattDIR_THRES      <- 20   ## minimum value to consider
 min_elevation      <- 10   ## minimum sun elevation to use
 ampl               <- 1.05 ## adjusted HAU amplified threshold
-
+SZA_BIN            <- 1
 
 #' ## Introduction
 #'
@@ -163,19 +163,16 @@ HAU <- function( sza,
 
 
 CSdt <- readRDS("./data/Clear_Sky.Rds")
-
+rm.cols.DT(CSdt, "CSflag_*")
 
 ## only when sun is up
 CSdt <- CSdt[ Elevat > min_elevation ]
 
-## exclude some low lever measurements
-# CSdt[ wattGLB < 15 , wattGLB := NA ]
-# CSdt[ wattHOR < 15 , wattHOR := NA ]
-
-## Quality Control
+## Quality Control data only
 CSdt[ QCF_DIR != "good", wattDIR := NA ]
 CSdt[ QCF_GLB != "good", wattGLB := NA ]
-
+CSdt$QCF_DIR <- NULL
+CSdt$QCF_GLB <- NULL
 
 
 ## use cs model
@@ -323,12 +320,46 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 ## which(diff(coo) != 1)
 
 
-Enh[, .(N = !is.na(GLB_ench)),
-    by = as]
+hist(Enh$GLB_diff)
+hist(Enh$GLB_ench)
 
 
+Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
+                      N_ex     = sum( wattGLB > TSIextEARTH_comb),
+                      sum_Ench = sum( GLB_ench),
+                      avg_Ench = mean(GLB_ench),
+                      sum_Diff = sum( GLB_diff)),
+                 by = "Day"  ]
 
 
+Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
+                      N_ex     = sum( wattGLB > TSIextEARTH_comb),
+                      sum_Ench = sum( GLB_ench),
+                      avg_Ench = mean(GLB_ench),
+                      sd_Ench  = sd(GLB_ench),
+                      sum_Diff = sum( GLB_diff)),
+                  by = .(SZA     = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+
+CONF_INTERV <- .95
+conf_param  <- 1-(1-CONF_INTERV)/2
+Enh_sza[,   Ench_EM:= qt(conf_param,df=N -1) * sd_Ench / sqrt(N)]
+
+
+plot(Enh_daily$Day, Enh_daily$N)
+plot(Enh_daily$Day, Enh_daily$N_ex)
+plot(Enh_daily$Day, Enh_daily$sum_Ench)
+plot(  Enh_daily$Day, Enh_daily$avg_Ench)
+
+
+# plot(Enh_daily$Day, Enh_daily$sum_Diff)
+
+plot(Enh_sza$SZA, Enh_sza$N)
+plot(Enh_sza$SZA, Enh_sza$N_ex)
+plot(Enh_sza$SZA, Enh_sza$sum_Ench)
+
+plot(Enh_sza$SZA, Enh_sza$avg_Ench)
+points(Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, col = "blue",pch="-")
+points(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, col = "blue",pch="-")
 
 
 
