@@ -285,8 +285,7 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 #' We select a simple clear sky model for Thessaloniki, and use it to determine
 #' cases of GHI enhancement based on a threshold of `r ampl` the modeled value.
 #'
-#' There are `r length(unique(CSdt$Day))` days in the timeseries of GHI
-#' concurrent with DNI. Of which `r length(unique(Enh$Day))` have at list of one
+#' There are `r length(unique(CSdt$Day))` days in the timeseries of GHI. Of which `r length(unique(Enh$Day))` have at least one
 #' minute of enhanced GHI.
 #'
 
@@ -357,40 +356,21 @@ Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
 
 CONF_INTERV <- .95
 conf_param  <- 1-(1-CONF_INTERV)/2
+suppressWarnings({
 Enh_sza[,   Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_daily[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_yearly[,Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
-
-
-#'
-#' Mean diff per case
-#' $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`$
-#'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})
 
 
 # plot(Enh_daily$Day, Enh_daily$N)
-plot(Enh_daily$Day, Enh_daily$N_ex)
+# plot(Enh_daily$Day, Enh_daily$N_ex)
 # plot(Enh_daily$Day, Enh_daily$sum_Ench)
 # plot(Enh_daily$Day, Enh_daily$avg_Ench)
 
 
-#' We will dispay some findings of our analysis.
+#' We will display some findings of our analysis.
 #'
 #' The total number of cases we detect increase steadily the last decades.
 plot(Enh_yearly$year, Enh_yearly$N)
@@ -399,15 +379,13 @@ plot(Enh_yearly$year, Enh_yearly$N_ex)
 
 
 #' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
-plot(Enh_yearly$year, Enh_yearly$sum_Ench)
+plot(  Enh_yearly$year, Enh_yearly$sum_Ench)
 
-#' Although the mean difference in radiation per event seems to be constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`$.
 
-# plot(  Enh_yearly$year, Enh_yearly$avg_Ench, pch = 19, cex = 0.7)
-# points(Enh_yearly$year, Enh_yearly$avg_Ench + Enh_yearly$Ench_EM, col = "blue",pch="-")
-# points(Enh_yearly$year, Enh_yearly$avg_Ench - Enh_yearly$Ench_EM, col = "blue",pch="-")
-arrows(Enh_yearly$year, Enh_yearly$avg_Ench-Enh_yearly$Ench_EM,
-       Enh_yearly$year, Enh_yearly$avg_Ench+Enh_yearly$Ench_EM, length=0.03, angle=90, code=3)
+
+#' Although the mean difference in radiation per event seems to be almost
+#' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
+
 
 
 # plot(Enh_daily$Day, Enh_daily$sum_Diff)
@@ -424,7 +402,9 @@ plot(Enh_sza$SZA, Enh_sza$sum_Ench)
 
 #' And of course there is a dependency of the magnitude of the enhancement with the
 #' SZA.
-plot(Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7)
+
+ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Ench_EM, na.rm = T)
+plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
 arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
 
 
