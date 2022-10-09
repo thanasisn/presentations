@@ -133,7 +133,7 @@ SZA_BIN            <- 1
 #' conditions musth be met.
 #'
 #' - Sun elevation angle above $`r min_elevation`^\circ$.
-#' - GHI values above $`r ampl` \times \text{A-HAU}$
+#' - GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$
 #' - Clearness index $k_t > `r Clearness_Kt_THRES`$
 #'
 #' To establish some criteria for the GHI enhancement cases we use similar
@@ -180,7 +180,8 @@ CSdt$QCF_GLB <- NULL
 
 ## use cs model
 ##  i) the GHI_MEASURED - MODELED to be higher than 5% (GHI_MEASURED-MODELED >= 5%)
-CSdt[ , HAU := HAU(SZA) * ampl ]
+CSdt[ , HAU    := HAU(SZA) * ampl ]
+CSdt[ , defHAU := HAU(SZA) ]
 
 
 ##  i) clearness index to be lower or higher than 1 for the detection of non-extreme (Kt <= 1 ) and extreme enhancements cases (Kt > 1).
@@ -234,17 +235,23 @@ kcols <- brewer.pal(7, "Dark2")
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
 
-    par(mar=c(2,2,1,1))
+    par(mar=c(4,4,1,1))
 
-    layout(matrix(c(1,1,1), 3, 1, byrow = TRUE))
-    ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA) )
+    ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
 
-    plot(temp$Date, temp$wattGLB, "l", col = "green", ylim = ylim)
+    plot(temp$Date, temp$wattGLB, "l", col = "green",
+         ylim = ylim,
+         ylab = expression(Watt/m^2), xlab = "UTC")
 
     lines(temp$Date, temp$wattHOR, col = "blue")
 
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
-    lines(temp$Date, temp$HAU,    col = "red" )
+
+
+    lines(temp$Date, temp$defHAU, col = "red" )
+
+    # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
+
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
 
     # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
@@ -263,6 +270,12 @@ for ( aday in daylist ) {
     # points(temp$Date[temp$CSflag!=0], temp$wattGLB[temp$CSflag!=0], col = kcols[ temp$CSflag[temp$CSflag!=0] ], pch =19,cex=0.4)
 
     title(main = as.Date(aday, origin = "1970-01-01"))
+    legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
+           col = c("green",   "blue", "red", "black", "red"),
+           pch = c(     NA,       NA,    NA,      NA,    1 ),
+           lty = c(      1,        1,     1,       1,   NA ),
+           bty = "n"
+)
 
     # plot(temp$Date, temp$GLB_ench, col = kcols[ temp$CSflag ])
     # plot(temp$Date, temp$GLB_diff, col = kcols[ temp$CSflag ])
@@ -406,8 +419,9 @@ plot(Enh_yearly$year, Enh_yearly$N_ex)
 #' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
 plot(Enh_yearly$year, Enh_yearly$sum_Ench)
 
-#' Although the mean difference in radiation per event seems to be constant.
-plot(  Enh_yearly$year, Enh_yearly$avg_Ench, pch = 19, cex = 0.7)
+#' Although the mean difference in radiation per event seems to be constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`$.
+
+# plot(  Enh_yearly$year, Enh_yearly$avg_Ench, pch = 19, cex = 0.7)
 # points(Enh_yearly$year, Enh_yearly$avg_Ench + Enh_yearly$Ench_EM, col = "blue",pch="-")
 # points(Enh_yearly$year, Enh_yearly$avg_Ench - Enh_yearly$Ench_EM, col = "blue",pch="-")
 arrows(Enh_yearly$year, Enh_yearly$avg_Ench-Enh_yearly$Ench_EM,
