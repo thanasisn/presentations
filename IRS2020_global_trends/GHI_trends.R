@@ -72,9 +72,9 @@ Script.Name <- tryCatch({ funr::sys.script() },
                         error = function(e) { cat(paste("\nUnresolved script name: ", e),"\n\n")
                             return("Climatological_") })
 if(!interactive()) {
-    pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".out", Script.Name))), split=TRUE)
-    filelock::lock(paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",basename(sub("\\.R$",".lock",Script.Name))),timeout = 0)
+    pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_global_trends/runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
+    sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_global_trends/runtime/",  basename(sub("\\.R$",".out", Script.Name))), split=TRUE)
+    filelock::lock(paste0("~/MANUSCRIPTS/presentations/IRS2020_global_trends/runtime/",basename(sub("\\.R$",".lock",Script.Name))),timeout = 0)
 }
 
 
@@ -94,21 +94,6 @@ source("~/FUNCTIONS/R/trig_deg.R")
 #'
 
 
-
-CSdt <- readRDS("./data/Clear_Sky.Rds")
-suppressMessages( rm.cols.DT(CSdt, "CSflag_*") )
-
-## keep only whole years
-CSdt <- CSdt[ year(Date) >= 1994 & year(Date) <= 2021 ]
-
-## only when sun is up
-CSdt <- CSdt[ Elevat > min_elevation ]
-
-## Quality Control data only
-CSdt[ QCF_DIR != "good", wattDIR := NA ]
-CSdt[ QCF_GLB != "good", wattGLB := NA ]
-CSdt$QCF_DIR <- NULL
-CSdt$QCF_GLB <- NULL
 
 
 
