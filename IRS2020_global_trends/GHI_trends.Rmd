@@ -85,6 +85,11 @@ Some aspects we have to study is the seasonality of the above finds
 remove the sza dependence in order to see some local phenomena of the site
 
 
+```{r trackercomm, echo=F, fig.cap="tracker"}
+knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
+```
+
+
 
 
 \ 
