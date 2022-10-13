@@ -63,7 +63,7 @@ source("~/MANUSCRIPTS/2022_sdr_trends/DHI_GHI_0_variables.R")
 
 ## Abstract
 
-Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The 26-year long time series is analysed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993–2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated for the last decade of the data series.
+Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series is analysed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993–2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated for the last decade of the data series.
 
 An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases. A few simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values.
 
@@ -89,7 +89,10 @@ Moreover, due to some obstructions around the site (hills and buildings), we rem
 $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at 
 those cases the Sun, were not visible by the instruments.
 
-We aggregate the 1-minute values of GHI, as the daily mean, for all the days in the data set. And similar for all the days with the same day of year number (doy), in order to create the mean annual cycle. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated series by doy we calculate the relative difference!!!!!!!!!!!!!1!!!!!!!!!!!!!!!!!1
+We aggregate the 1-minute values of GHI, as the daily mean, for all the days in the data set. And similar, for all the days with the same day of year number (doy), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated series by doy, we calculate the relative seasonal anomaly,  as the relative difference from the climatological mean for each matching date.
+
+
+
 
 
 
@@ -97,9 +100,25 @@ Some aspects we have to study is the seasonality of the above finds
 remove the sza dependence in order to see some local phenomena of the site
 
 
-```{r trackercomm, echo=F, fig.cap="tracker"}
+```{r alltrend, echo=F, fig.cap="tracker"}
 knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
 ```
+
+```{r cleartrend, echo=F, fig.cap="tracker"}
+knitr::include_graphics("./figures/longtermtrendsCS-4.pdf")
+```
+
+
+
+```{r}
+## table o trends by season
+library(data.table)
+pp <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends_season.dat")
+pp <- pp[var=="GLB_att"]
+
+load
+```
+
 
 
 
