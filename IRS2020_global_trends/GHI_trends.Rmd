@@ -28,7 +28,7 @@ output:
     fig_caption:      no
     keep_tex:         no
     latex_engine:     xelatex
-    toc:              yes
+    toc:              no
   html_document:
     keep_md:          yes
   odt_document:  default
@@ -46,13 +46,11 @@ knitr::opts_chunk$set(include    = TRUE    )
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
 knitr::opts_chunk$set(dev        = "png"   )
-
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
-
 knitr::opts_chunk$set(out.width  = "60%"    )
 knitr::opts_chunk$set(fig.align  = "center" )
-# knitr::opts_chunk$set(fig.pos    = '!h'     )
+knitr::opts_chunk$set(fig.pos    = '!h'     )
 ```
 
 ```{r echo=F, include=T}
@@ -129,8 +127,11 @@ names(clear) <- clear["Season",]
 pprint <- rbind( all["slope",], clear["slope",])
 row.names(pprint) <- c("All Sky","Clear Sky")
 
-signif(pprint)
-pander(pprint)
+for( sn in names(pprint)){
+    pprint[[sn]] <- as.numeric(pprint[[sn]])
+}
+panderOptions('round',3)
+pander(pprint, caption = "Trens by season of the year, for clear and all sky conditions.")
 
 ```
 
