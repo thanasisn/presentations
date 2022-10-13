@@ -113,10 +113,25 @@ knitr::include_graphics("./figures/longtermtrendsCS-4.pdf")
 ```{r}
 ## table o trends by season
 library(data.table)
+library(pander)
 pp <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends_season.dat")
 pp <- pp[var=="GLB_att"]
+pp[,N:=NULL]
+pp[,var:=NULL]
 
-load
+pp<-pp[,.(Season,slope,DATA)]
+
+all  <-data.frame(t(pp[DATA=="ALL"]))
+clear<-data.frame(t(pp[DATA=="CLEAR"]))
+names(all)   <- all["Season",]
+names(clear) <- clear["Season",]
+
+pprint <- rbind( all["slope",], clear["slope",])
+row.names(pprint) <- c("All Sky","Clear Sky")
+
+signif(pprint)
+pander(pprint)
+
 ```
 
 
