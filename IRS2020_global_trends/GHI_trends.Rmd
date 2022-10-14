@@ -1,32 +1,35 @@
 ---
-title: "Long-term Changes Surface Solar Shortwave Irradiance at Thessaloniki, Greece under clear- and all-sky conditions"
+title: "Long-term Changes Surface Solar Shortwave Irradiance at Thessaloniki, Greece
+  under clear- and all-sky conditions"
 author:
-  - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
-  - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
-  - Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
-  - Kleareti Tourpali^[Laboratory of Atmospheric Physics, AUTH.]
+- Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
+- Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
+- Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
+- Kleareti Tourpali^[Laboratory of Atmospheric Physics, AUTH.]
 date: "`r format(Sys.time(), '%F')`"
-documentclass: article
-classoption:   a4paper,oneside
-fontsize:      11pt
-geometry:      "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
-bibliography:  [references.bib]
-biblio-style:  apalike
-fig_caption:   yes
+output:
+  pdf_document:
+    toc: no
+  bookdown::pdf_document2:
+    number_sections: no
+    keep_tex: no
+    fig_caption: yes
+    latex_engine: xelatex
+    toc: no
+  word_document: default
+classoption: a4paper,oneside
+fontsize: 11pt
+geometry: left=0.5in,right=0.5in,top=0.5in,bottom=0.5in
+bibliography: references.bib
+biblio-style: apalike
+fig_caption: yes
 header-includes:
 - \usepackage{caption}
 - \usepackage{placeins}
 - \captionsetup{font=small}
 - \usepackage{multicol}
 - \setlength{\columnsep}{1cm}
-output:
-  word_document: default
-  bookdown::pdf_document2:
-    number_sections:  no
-    keep_tex:         no
-    fig_caption:     yes
-    latex_engine:     xelatex
-    toc:              no
+documentclass: article
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -62,13 +65,8 @@ Linear trends have been calculated for the entire period and different seasons f
 
 ## Introduction
 
-The monitoring of GHI has multiple importance for diferent fields. It can provide information for 
+The monitoring of GHI has multiple importance for different fields. It can provide information for the energy balance of the atmosphere and world climate, the agricultural production, energy production and usage, among other. Already there are observation describing positive trends of GHI for the last decades, with the major mechanisms this drive changes in Aerosols consecration and clouds interaction.
 
-the actual values of GHI for energy ballance in the atmosphere, agrocaltural procudciton and energy production and usage.
-
-mechanisms that drive those changes Aerosols and clounds interaction.
-
-Radiation clouds trends
 
 ## Methodology
 
