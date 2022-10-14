@@ -129,7 +129,7 @@ SZA_BIN            <- 1
 
 #'
 #' As enhancement cases of GHI we have chosen the following criteria, were all
-#' conditions musth be met.
+#' conditions must be met.
 #'
 #' - Sun elevation angle above $`r min_elevation`^\circ$.
 #' - GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$
@@ -363,6 +363,12 @@ Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 })
 
 
+## Make values realative ####
+Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
+Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+Enh_yearly[ , Ench_intesit := sum_Ench / N ]
+
+
 # plot(Enh_daily$Day, Enh_daily$N)
 # plot(Enh_daily$Day, Enh_daily$N_ex)
 # plot(Enh_daily$Day, Enh_daily$sum_Ench)
@@ -372,13 +378,51 @@ Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 #' We will display some findings of our analysis.
 #'
 #' The total number of cases we detect increase steadily the last decades.
-plot(Enh_yearly$year, Enh_yearly$N)
+plot( Enh_yearly$year, Enh_yearly$N_att ,
+      xlab = "Year",
+      ylab = bquote("Difference from mean [%]" )
+      )
+title("Number of enchansemnet insidences", cex = 0.7)
+lm1        <- lm( Enh_yearly$N_att ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 
-plot(Enh_yearly$year, Enh_yearly$N_ex)
 
 
 #' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
-plot(  Enh_yearly$year, Enh_yearly$sum_Ench)
+plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
+      xlab = "Year",
+      ylab = bquote("Difference from mean [%]")
+     )
+title("Sum of radiation above enchasement threshold", cex = 0.7)
+lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+
+
+#' Mean radiation enhancement per case.
+plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
+      xlab = "Year",
+      ylab = bquote("Mean enchansment intesity ["~ Watt~m^-2~N^-1~"]")
+)
+lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+
+
+
+plot( Enh_yearly$year, Enh_yearly$avg_Ench,
+      xlab = "Year",
+      ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
+)
+
+
 
 
 
@@ -392,7 +436,9 @@ plot(  Enh_yearly$year, Enh_yearly$sum_Ench)
 #' The number of case characterization is skewed by the SZA angle of the case, although this connection is indicative to the complexity of factor we have to take into account.
 plot(Enh_sza$SZA, Enh_sza$N)
 
-plot(Enh_sza$SZA, Enh_sza$N_ex)
+## ignore extreme cases for now
+# plot(Enh_sza$SZA, Enh_sza$N_ex)
+
 
 #' Interestingly, when we examine the total energy contribution by SZA we found a maximum at
 #' $`r Enh_sza[ which.max(sum_Ench), SZA]`^\circ$.
