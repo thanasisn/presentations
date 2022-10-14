@@ -187,7 +187,6 @@ CSdt[ , defHAU := HAU(SZA) ]
 
 
 
-
 ## some metrics
 CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhancement
 CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
@@ -215,15 +214,9 @@ daylist <- daylist[1:30]
 
 ## plot one selected day
 daylist <- as.Date(c("2017-04-08"))
-
-
-
-
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
-
     par(mar=c(4,4,1,1))
-
     ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
 
     plot(temp$Date, temp$wattGLB, "l", col = "green",
@@ -234,24 +227,21 @@ for ( aday in daylist ) {
 
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
-
     lines(temp$Date, temp$defHAU, col = "red" )
 
     # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
-
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
-
     # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
     # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
     points(temp[ GLB_ench     > GLB_ench_THRES     &
-                     Clearness_Kt > Clearness_Kt_THRES &
-                     wattGLB      > wattGLB_THRES      &
-                     GLB_diff     > GLB_diff_THRES, Date ],
+                 Clearness_Kt > Clearness_Kt_THRES &
+                 wattGLB      > wattGLB_THRES      &
+                 GLB_diff     > GLB_diff_THRES, Date ],
            temp[ GLB_ench     > GLB_ench_THRES     &
-                     Clearness_Kt > Clearness_Kt_THRES &
-                     wattGLB      > wattGLB_THRES      &
-                     GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
+                 Clearness_Kt > Clearness_Kt_THRES &
+                 wattGLB      > wattGLB_THRES      &
+                 GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
@@ -260,10 +250,8 @@ for ( aday in daylist ) {
            lty = c(      1,        1,     1,       1,   NA ),
            bty = "n"
     )
-
     # plot(temp$Date, temp$Clearness_Kt)
     # abline(h=.8,col="red")
-
     # plot(temp$Date, temp$DiffuseFraction_Kd)
     # plot(temp$Date, temp$GLB_ench)
     # plot(temp$Date, temp$GLB_diff)
@@ -274,9 +262,9 @@ for ( aday in daylist ) {
 
 ## keep only enhanced cases
 Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
-                 Clearness_Kt > Clearness_Kt_THRES &
-                 wattGLB      > wattGLB_THRES      &
-                 GLB_diff     > GLB_diff_THRES    ]
+             Clearness_Kt > Clearness_Kt_THRES &
+             wattGLB      > wattGLB_THRES      &
+             GLB_diff     > GLB_diff_THRES    ]
 
 
 
@@ -322,7 +310,7 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 
 Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                      sum_Ench = sum( GLB_ench),
+                      sum_Ench = sum( GLB_diff),
                       avg_Ench = mean(GLB_ench),
                       sd_Ench  = sd(GLB_ench),
                       sum_Diff = sum( GLB_diff)),
@@ -330,7 +318,7 @@ Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
 
 Enh_yearly <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                       sum_Ench = sum( GLB_ench),
+                       sum_Ench = sum( GLB_diff),
                        avg_Ench = mean(GLB_ench),
                        sd_Ench  = sd(GLB_ench),
                        sum_Diff = sum( GLB_diff)),
@@ -338,7 +326,7 @@ Enh_yearly <- Enh[, .( N        = sum(!is.na(GLB_ench)),
 
 Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                       sum_Ench = sum( GLB_ench),
+                       sum_Ench = sum( GLB_diff),
                        avg_Ench = mean(GLB_ench),
                        sd_Ench  = sd(GLB_ench),
                        sum_Diff = sum( GLB_diff))   ]
@@ -347,7 +335,7 @@ Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
 
 Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                      sum_Ench = sum( GLB_ench),
+                      sum_Ench = sum( GLB_diff),
                       avg_Ench = mean(GLB_ench),
                       sd_Ench  = sd(GLB_ench),
                       sum_Diff = sum( GLB_diff)),
@@ -367,6 +355,8 @@ Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
 Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
 Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
 Enh_yearly[ , Ench_intesit := sum_Ench / N ]
+
+
 
 
 # plot(Enh_daily$Day, Enh_daily$N)
