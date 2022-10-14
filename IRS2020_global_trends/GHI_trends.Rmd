@@ -88,9 +88,7 @@ We aggregate the 1-minute values of GHI, to daily mean, for all the days in the 
 
 ## Results and discussion
 
-For both conditions there is positive increasing trend in the GHI over the last decades. For all sky condition we observe an an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)) .
-
-Those results indicate that there occurring some long-term changes on the conditions over Thessaloniki.
+For both conditions there is positive increasing trend in the GHI over the last decades. For all sky condition we observe an an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)) Those results indicate that there is some long-term changes on the conditions over Thessaloniki.
 
 Some aspects we have to study is the seasonality of the above finds remove the sza dependence in order to see some local phenomena of the site
 
@@ -110,7 +108,6 @@ aa <- aa[,DATA,slope]
 
 pp <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends_season.dat")
 pp <- pp[var=="GLB_att"]
-pp[,N:=NULL]
 pp[,var:=NULL]
 
 pp<-pp[,.(Season,slope,DATA)]
@@ -143,5 +140,7 @@ infer lower Aerosols
 more clouds or the type of clouds the may increase the enhancement phenomena
 
 .........
+
+[@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007]
 
   <!-- \vfill -->  
