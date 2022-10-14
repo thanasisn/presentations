@@ -14,6 +14,8 @@ geometry:      "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
 
 bibliography:    [references.bib]
 biblio-style:    apalike
+fig_caption:     yes
+
 
 header-includes:
 - \usepackage{caption}
@@ -22,24 +24,26 @@ header-includes:
 - \usepackage{multicol}
 - \setlength{\columnsep}{1cm}
 
+
+
 output:
   bookdown::pdf_document2:
     number_sections:  no
-    fig_caption:      no
     keep_tex:         no
+    fig_caption:     yes
     latex_engine:     xelatex
     toc:              no
   html_document:
     keep_md:          yes
   odt_document:  default
   word_document: default
-
 ---
 
-```{r include=FALSE, echo=FALSE}
+```{r setup, include=FALSE, echo=FALSE}
+library(data.table)
+library(pander)
 
 ####_  Document options _####
-
 knitr::opts_chunk$set(echo       = FALSE   )
 knitr::opts_chunk$set(cache      = FALSE   )
 knitr::opts_chunk$set(include    = TRUE    )
@@ -48,7 +52,7 @@ knitr::opts_chunk$set(comment    = ""      )
 knitr::opts_chunk$set(dev        = "png"   )
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
-knitr::opts_chunk$set(out.width  = "60%"    )
+knitr::opts_chunk$set(out.width  = "70%"    )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(fig.pos    = '!h'     )
 ```
@@ -58,60 +62,52 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 source("~/MANUSCRIPTS/2022_sdr_trends/DHI_GHI_0_variables.R")
 ```
 
-
 ## Abstract
 
-Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series is analysed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993–2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated for the last decade of the data series.
+Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series is analysed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993--2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated for the last decade of the data series.
 
 An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases. A few simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values.
 
-Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapour and aerosols. Ancillary information from a collocated Cimel sun-photometer (since 2004), and a pyrheliometer (since 2016) are used to verify the effects of water vapor and aerosols on clear-sky irradiance. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
-References
-
-
-
-
-
+Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Ancillary information from a collocated Cimel sun-photometer (since 2004), and a pyrheliometer (since 2016) are used to verify the effects of water vapor and aerosols on clear-sky irradiance. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record. References
 
 ## Introduction
+
+Importance of
+
+the actual values of GHI for energy ballance in the atmosphre, agrocaltural procudciton and enegy production and usage.
+
+mechanisms that drive those changes Aerosols and clounds interaction.
 
 Radiation clouds trends
 
 ## Methodology
 
+Due to larger measurement uncertainty near the horizon, we exclude all measurements with SZA greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we remove data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
 
+We aggregate the 1-minute values of GHI, to daily mean, for all the days in the data set. Similar, for all the days, with the same day of year number (doy), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated data series by doy, we calculate the relative seasonal anomaly, as the difference from the climatological mean of each matching day. The same process was applied for the the whole data, that represents the all sky conditions and for a subset of data characterized as clear sky conditions. We calculate the trends of GHI, for those data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
 
-Due to larger measurement uncertainty near the horizon, we exclude
-all measurements with SZA greater than $`r 90-MIN_ELEVA`^\circ$. 
-Moreover, due to some obstructions around the site (hills and buildings), we remove data with Azimuth angle between 
-$35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at 
-those cases the Sun, were not visible by the instruments.
+## Results and discussion
 
-We aggregate the 1-minute values of GHI, as the daily mean, for all the days in the data set. And similar, for all the days with the same day of year number (doy), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated series by doy, we calculate the relative seasonal anomaly,  as the relative difference from the climatological mean for each matching date.
+For both conditions there is positive increasing trend in the GHI over the last decades. For all sky condition we observe an an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)) .
 
+Those results indicate that there occurring some long-term changes on the conditions over Thessaloniki.
 
+Some aspects we have to study is the seasonality of the above finds remove the sza dependence in order to see some local phenomena of the site
 
-
-
-
-Some aspects we have to study is the seasonality of the above finds
-remove the sza dependence in order to see some local phenomena of the site
-
-
-```{r alltrend, echo=F, fig.cap="tracker"}
+```{r alltrend, echo=F, fig.cap="Difference from the anual climatological cycle of GHI for all sky conditions. The black line denotes the long term trend of the data"}
 knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
 ```
 
-```{r cleartrend, echo=F, fig.cap="tracker"}
+```{r cleartrend, echo=F, fig.cap="Difference from the anual climatological cycle of GHI for clear sky conditions. The black line denotes the long term trend of the data"}
 knitr::include_graphics("./figures/longtermtrendsCS-4.pdf")
 ```
 
-
-
 ```{r}
 ## table o trends by season
-library(data.table)
-library(pander)
+aa <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends.dat")
+aa <- aa[var=="GLB_att"]
+aa <- aa[,DATA,slope]
+
 pp <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends_season.dat")
 pp <- pp[var=="GLB_att"]
 pp[,N:=NULL]
@@ -127,18 +123,25 @@ names(clear) <- clear["Season",]
 pprint <- rbind( all["slope",], clear["slope",])
 row.names(pprint) <- c("All Sky","Clear Sky")
 
+pprint$Overall <- aa[,slope] 
+
 for( sn in names(pprint)){
     pprint[[sn]] <- as.numeric(pprint[[sn]])
 }
+emphasize.strong.cols(which(names(pprint)=="Overall"))
 panderOptions('round',3)
 pander(pprint, caption = "Trens by season of the year, for clear and all sky conditions.")
 
 ```
 
+..........
 
+Some aspects we have to study is the seasonality of the above finds remove the sza dependence in order to see some local phenomena of the site
 
+infer lower Aerosols
 
+more clouds or the type of clouds the may increase the enhancement phenomena
 
-\ 
-<!-- \vfill -->
-\ 
+.........
+
+  <!-- \vfill -->  
