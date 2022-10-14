@@ -6,37 +6,30 @@ author:
   - Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
   - Kleareti Tourpali^[Laboratory of Atmospheric Physics, AUTH.]
 date: "`r format(Sys.time(), '%F')`"
-
 documentclass: article
 classoption:   a4paper,oneside
 fontsize:      11pt
 geometry:      "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
-
 bibliography:    [references.bib]
 biblio-style:    apalike
 fig_caption:     yes
-
-
 header-includes:
 - \usepackage{caption}
 - \usepackage{placeins}
 - \captionsetup{font=small}
 - \usepackage{multicol}
 - \setlength{\columnsep}{1cm}
-
-
-
 output:
+  word_document: default
+  html_document:
+    keep_md:          yes
   bookdown::pdf_document2:
     number_sections:  no
     keep_tex:         no
     fig_caption:     yes
     latex_engine:     xelatex
     toc:              no
-  html_document:
-    keep_md:          yes
   odt_document:  default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
@@ -88,9 +81,7 @@ We aggregate the 1-minute values of GHI, to daily mean, for all the days in the 
 
 ## Results and discussion
 
-For both conditions there is positive increasing trend in the GHI over the last decades. For all sky condition we observe an an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)) Those results indicate that there is some long-term changes on the conditions over Thessaloniki.
-
-Some aspects we have to study is the seasonality of the above finds remove the sza dependence in order to see some local phenomena of the site
+For both conditions there is positive trend in the GHI over the last three decades. For all sky condition we observe an an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)). This trend is slightly stronger, comparing to a previous analysis [@Bais2013] for the site, indicating that the long-term changes on the conditions over Thessaloniki are still occurring. The seasonal trends (Table \@ref(tab:table)), suggest that there may be a correlation with some seasonal factors, that attenuate the phenomenon.
 
 ```{r alltrend, echo=F, fig.cap="Difference from the anual climatological cycle of GHI for all sky conditions. The black line denotes the long term trend of the data"}
 knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
@@ -100,7 +91,7 @@ knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
 knitr::include_graphics("./figures/longtermtrendsCS-4.pdf")
 ```
 
-```{r}
+```{r table, include=T}
 ## table o trends by season
 aa <- fread("~/MANUSCRIPTS/2022_sdr_trends/figures/tbl_longterm_trends.dat")
 aa <- aa[var=="GLB_att"]
@@ -127,13 +118,17 @@ for( sn in names(pprint)){
 }
 emphasize.strong.cols(which(names(pprint)=="Overall"))
 panderOptions('round',3)
-pander(pprint, caption = "Trens by season of the year, for clear and all sky conditions.")
+pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for clear and all sky conditions.")
 
 ```
 
-..........
+## Conclutions
 
-Some aspects we have to study is the seasonality of the above finds remove the sza dependence in order to see some local phenomena of the site
+Those results are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and the encasement of the GHI by the clouds.......cite.......
+
+Some interesting questions resulting from this work, is how strong is the effect of the Aerosols cleaning and the attenuation by the clouds. And, the dependency on the annual cycle and the solar zenith angel. Also if we will be able to discern long term changes on a diurnal level over Thessaloniki.
+
+..........
 
 infer lower Aerosols
 
@@ -141,6 +136,6 @@ more clouds or the type of clouds the may increase the enhancement phenomena
 
 .........
 
-[@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007]
+<!-- \vfill -->
 
-  <!-- \vfill -->  
+ 
