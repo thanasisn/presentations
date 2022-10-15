@@ -65,8 +65,7 @@ Linear trends have been calculated for the entire period and different seasons f
 
 ## Introduction
 
-The monitoring of GHI has multiple importance for different fields. It can provide information for the energy balance of the atmosphere and world climate, the agricultural production, energy production and usage, among other. Already there are observation describing positive trends of GHI for the last decades, with the major mechanisms this drive changes in Aerosols consecration and clouds interaction.
-
+The monitoring of GHI have multiple importance for different fields. It can provide information for the energy balance of the atmosphere and world climate, the agricultural production, energy production and usage, among others. Already there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive, changes in Aerosols consecration and clouds interaction. In this study we use the time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
 
 ## Methodology
 
@@ -119,17 +118,17 @@ pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for cl
 
 ## Conclusions
 
-These results are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and the encasement of the GHI by the clouds.......cite.......
+These results are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and a possible increase on the enhancement cases of the GHI by the clouds[@Vamvakas2020].
 
-Some interesting questions resulting from this work, is how strong is the effect of the Aerosols cleaning and the attenuation by the clouds. And, the dependency on the annual cycle and the solar zenith angel. Also, if we will be able to discern long term changes on a diurnal level over Thessaloniki.
+Some interesting questions arising from this work, is how strong is the effect of the cleaning of Aerosols, and if the attenuation by the clouds has significant changes over this period.
+
+Also, a more fine analysis on the annual cycle and the solar zenith angle dependency
+
+. Also, if we will be able to discern long term changes on a diurnal level over Thessaloniki.
 
 ..........
 
-infer lower Aerosols
-
 more clouds or the type of clouds the may increase the enhancement phenomena
-
-.........
 
 <!-- \vfill -->
 
