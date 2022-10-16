@@ -37,12 +37,22 @@ library(data.table)
 library(pander)
 
 ####_  Document options _####
-knitr::opts_chunk$set(echo       = FALSE   )
+knitr::opts_chunk$set(
+	echo = FALSE,
+	fig.align = "center",
+	fig.height = 6,
+	fig.width = 8,
+	cache = FALSE,
+	comment = "",
+	dev = "png",
+	include = TRUE,
+	out.width = "70%"
+)
 knitr::opts_chunk$set(cache      = FALSE   )
 knitr::opts_chunk$set(include    = TRUE    )
 knitr::opts_chunk$set(comment    = ""      )
-# knitr::opts_chunk$set(dev        = "pdf"   )
-knitr::opts_chunk$set(dev        = "png"   )
+knitr::opts_chunk$set(dev        = "pdf"   )
+# knitr::opts_chunk$set(dev        = "png"   )
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
 knitr::opts_chunk$set(out.width  = "70%"    )
@@ -61,27 +71,27 @@ Measurements of downward shortwave solar irradiance (GHI) are performed at Thess
 
 An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases. A few simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values.
 
-Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Ancillary information from a collocated Cimel sun-photometer (since 2004), and a pyrheliometer (since 2016) are used to verify the effects of water vapor and aerosols on clear-sky irradiance. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record. References
+Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Ancillary information from a collocated Cimel sun-photometer (since 2004), and a pyrheliometer (since 2016) are used to verify the effects of water vapor and aerosols on clear-sky irradiance. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
 
 ## Introduction
 
-The monitoring of GHI have multiple importance for different fields. It can provide information for the energy balance of the atmosphere and world climate, the agricultural production, energy production and usage, among others. Already there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive, changes in Aerosols consecration and clouds interaction. In this study we use the time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
+Monitoring downward shortwave solar irradiance or Global Horizontal Irradiance (GHI) has multiple importance for different fields. It can provide information for the energy balance of the atmosphere and the world climate, the agricultural production, and energy production and usage, among others. Already, there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive, changes in Aerosols consecration and clouds interaction. In this study we use time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
 
 ## Methodology
 
-Due to larger measurement uncertainty near the horizon, we exclude all measurements with SZA greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we remove data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
+First we apply some restriction to the initial data we are using. Due to larger measurement uncertainty near the horizon, we excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we removed data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
 
-We aggregate the 1-minute values of GHI, to daily mean, for all the days in the data set. Similar, for all the days, with the same day of year number (doy), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated data series by doy, we calculate the relative seasonal anomaly, as the difference from the climatological mean of each matching day. The same process was applied for the whole data, that represents the all sky conditions and for a subset of data characterized as clear sky conditions. We calculate the trends of GHI, for those data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
+In order to compute the trends of GHI, we aggregated the 1-minute measurements, to daily mean values, for all the days in the data set. Similar we aggregate the data, for all the days, with the same day of year number (DOY), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data point were rejected. By matching the aggregated data series by DOY, we calculated the relative seasonal anomaly, as the difference from the climatological mean for each matching day. This process was repeated, for the whole data, that represents the all sky conditions and for a subset of data characterized as clear sky conditions. We calculated the trends of GHI, for both data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
 
 ## Results and discussion
 
-For both conditions there is positive trend in the GHI over the last three decades. For all sky condition we observe an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)). This trend is slightly stronger, comparing to a previous analysis [@Bais2013] for the site, indicating that the long-term changes on the conditions over Thessaloniki are still occurring. The seasonal trends (Table \@ref(tab:table)), suggest that there may be a correlation with some seasonal factors, that attenuate the phenomenon.
+For both categories of sky conditions there is positive trend in the GHI over the last three decades. At all sky condition we observed an increase of $+0.44\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+0.38\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)). This trend is slightly stronger, comparing to a previous analysis [@Bais2013] for this site, indicating that the long-term changes of the conditions over Thessaloniki are still occurring. The seasonal trends (Table \@ref(tab:table)), suggest that there may be a correlation with some seasonal factors, that attenuate the phenomenon.
 
-```{r alltrend, echo=F, fig.cap="Difference from the anual climatological cycle of GHI for all sky conditions. The black line denotes the long term trend of the data"}
+```{r alltrend, echo=F, fig.cap="Difference from the annual climatological cycle of GHI for all sky conditions. The black line denotes the long term trend of the data."}
 knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
 ```
 
-```{r cleartrend, echo=F, fig.cap="Difference from the anual climatological cycle of GHI for clear sky conditions. The black line denotes the long term trend of the data"}
+```{r cleartrend, echo=F, fig.cap="Difference from the annual climatological cycle of GHI for clear sky conditions. The black line denotes the long term trend of the data."}
 knitr::include_graphics("./figures/longtermtrendsCS-4.pdf")
 ```
 
@@ -118,18 +128,8 @@ pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for cl
 
 ## Conclusions
 
-These results are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and a possible increase on the enhancement cases of the GHI by the clouds[@Vamvakas2020].
+These findings are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and a possible increase on the enhancement cases of the GHI by the clouds[@Vamvakas2020], so in a subsequent study we are going to include such observations.
 
-Some interesting questions arising from this work, is how strong is the effect of the cleaning of Aerosols, and if the attenuation by the clouds has significant changes over this period.
+Some interesting questions arising from this work, is how strong is the effect of the cleaning of Aerosols, and if the attenuation by the clouds has significant changes over this period, especially compared to other urban sites. Also, a more fine analysis of the trends for each season of the year and by solar zenith angle, may provide us with more info about long term changes on a diurnal and a seasonal level over Thessaloniki.
 
-Also, a more fine analysis on the annual cycle and the solar zenith angle dependency
-
-. Also, if we will be able to discern long term changes on a diurnal level over Thessaloniki.
-
-..........
-
-more clouds or the type of clouds the may increase the enhancement phenomena
-
-<!-- \vfill -->
-
- 
+\vfill
