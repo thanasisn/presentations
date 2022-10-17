@@ -8,15 +8,15 @@ author:
 - Kleareti Tourpali^[Laboratory of Atmospheric Physics, AUTH.]
 date: "`r format(Sys.time(), '%F')`"
 output:
-  pdf_document:
-    toc: no
+  word_document: default
   bookdown::pdf_document2:
     number_sections: no
     keep_tex: no
     fig_caption: yes
     latex_engine: xelatex
     toc: no
-  word_document: default
+  pdf_document:
+    toc: no
 classoption: a4paper,oneside
 fontsize: 11pt
 geometry: left=0.5in,right=0.5in,top=0.5in,bottom=0.5in
@@ -122,9 +122,11 @@ for( sn in names(pprint)){
 }
 emphasize.strong.cols(which(names(pprint)=="Overall"))
 panderOptions('round',3)
-pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for clear and all sky conditions.")
+pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for clear and all sky conditions. The statistical significance of all trends is greater than $99\\%$.")
 
 ```
+
+
 
 ## Conclusions
 
