@@ -42,7 +42,7 @@
 ####_  Document options _####
 
 knitr::opts_chunk$set(echo       = FALSE   )
-knitr::opts_chunk$set(cache      = TRUE    )
+knitr::opts_chunk$set(cache      = FALSE    )
 knitr::opts_chunk$set(include    = TRUE    )
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
