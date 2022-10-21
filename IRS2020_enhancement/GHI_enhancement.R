@@ -12,8 +12,8 @@
 #' fontsize:      11pt
 #' geometry:      "left=1in,right=1in,top=1in,bottom=1in"
 #'
-#' bibliography:    [references.bib]
-#' biblio-style:    apalike
+#' bibliography:  [references.bib]
+#' biblio-style:  apalike
 #'
 #' header-includes:
 #' - \usepackage{caption}
@@ -42,7 +42,7 @@
 ####_  Document options _####
 
 knitr::opts_chunk$set(echo       = FALSE   )
-knitr::opts_chunk$set(cache      = FALSE    )
+knitr::opts_chunk$set(cache      = FALSE   )
 knitr::opts_chunk$set(include    = TRUE    )
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
@@ -113,13 +113,12 @@ SZA_BIN            <- 1
 #' A radiation data quality assurance procedure was applied adjusted for the site,
 #' based on methods of Long and Shi\ [-@long_automated_2008; -@Long2006].
 #' Only data characterized with acceptable quality was used.
-#'
-#'
-#' By the GHI and DNI for the period 2016 – 2021 and using the iterative
+#' We are using, for the global radiation reference, the Haurwitz's model. The
+#' selection was done with data of GHI and DNI for the period 2016 – 2021 and using the iterative
 #' method of optimizing the 'Clear sky' identification method, as proposed
-#' by @Long2000 and @Reno2016. We were able to calibrate the above method
+#' by @Long2000 and @Reno2016. We have calibrated the above method
 #' for our site. Among the eight simple models tested by @Reno2016, we found
-#' the best result with an adjusted Haurwitz model (A-HAU), using as the main selector the
+#' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selector the
 #' RMSE.
 #'
 #'
