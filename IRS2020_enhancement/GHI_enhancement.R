@@ -118,28 +118,17 @@ SZA_BIN            <- 1
 #' method of optimizing the 'Clear sky' identification method, as proposed
 #' by @Long2000 and @Reno2016. We have calibrated the above method
 #' for our site. Among the eight simple models tested by @Reno2016, we found
-#' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selector the
+#' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selection criteria the
 #' RMSE.
 #'
-#'
-#'
-
-
-
-#'
-#' As enhancement cases of GHI we have chosen the following criteria, were all
-#' conditions must be met.
+#' Our definition of enhancement cases for GHI for the 1-minute measurements are the all of the following conditions.
 #'
 #' - Sun elevation angle above $`r min_elevation`^\circ$.
 #' - GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$
 #' - Clearness index $k_t > `r Clearness_Kt_THRES`$
 #'
-#' To establish some criteria for the GHI enhancement cases we use similar
-#' criteria to ...........[@Vamvakas2020]
+#' Those criteria was already used in a similar study in Greece [@Vamvakas2020]. An example of this process is given for the 2017-04-08 at Figure (\@ref(fig:dayexampe)).
 #'
-
-#'
-#' Also see Equation \@ref(eq:ahau).
 #'
 #' \begin{equation}
 #' \text{GHI} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
@@ -207,11 +196,12 @@ setorder( enh_days, -Enh_sum )
 setorder( enh_days, -Enh_max )
 setorder( enh_days, -Enh_diff_sum )
 
-## plot some interestin days
+## plot some interesting days
 daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
-## plot one selected day
+## plot one selected day ####
+#+ dayexampe, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enchancement case we identify. With green line is the GHI, blue the DHI, red the reference model and black TSI at TOA."
 daylist <- as.Date(c("2017-04-08"))
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
@@ -256,6 +246,7 @@ for ( aday in daylist ) {
     # plot(temp$Date, temp$GLB_diff)
 
 }
+#'
 
 
 
