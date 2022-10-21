@@ -107,7 +107,7 @@ SZA_BIN            <- 1
 #'
 #' Radiation clouds trends
 #'
-#' ## Data description
+#' ## Methodology
 #'
 #'
 #' A radiation data quality assurance procedure was applied adjusted for the site,
@@ -201,7 +201,7 @@ daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
 ## plot one selected day ####
-#+ dayexampe, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enchancement case we identify. With green line is the GHI, blue the DHI, red the reference model and black TSI at TOA."
+#+ dayexampe, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identify for the day. With green line is the GHI, blue the DHI, red the reference model and black TSI at TOA."
 daylist <- as.Date(c("2017-04-08"))
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
@@ -259,8 +259,7 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 
 
 #'
-#' We select a simple clear sky model for Thessaloniki, and use it to determine
-#' cases of GHI enhancement based on a threshold of `r ampl` the modeled value.
+#' ## Results
 #'
 #' There are `r length(unique(CSdt$Day))` days in the timeseries of GHI. Of which `r length(unique(Enh$Day))` have at least one
 #' minute of enhanced GHI.
