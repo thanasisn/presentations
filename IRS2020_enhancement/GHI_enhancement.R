@@ -338,23 +338,18 @@ Enh_yearly[ , Ench_intesit := sum_Ench / N ]
 fit1 <- lm( Enh_yearly$N_att ~ Enh_yearly$year )[[1]]
 fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 
-
 ## results ####
 
 #'
 #' ## Results
 #'
-#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements, for
+#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements (\@ref(fig:enchtrend)), for
 #' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$ of the days in the data set.
 #' The total number of cases we identified, is increasing steadily the last decades,
 #' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year.
-#' Although the yearly mean excess radiation per enchancemnt event seems to be almost
-#' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
-
-
-
-
-
+#' Although the yearly mean excess radiation per enhancement event seems to be almost
+#' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$ with a marginal trend of $`r signif((fit2[2]*1),3)`Wm^{-2}$ per year.
+#'
 
 
 
@@ -386,16 +381,16 @@ legend('topleft', lty = 1, bty = "n",
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 
 
-#+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
-plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
-      xlab = "Year",
-      ylab = bquote("Mean enhancement intesity ["~ Watt~m^-2~N^-1~"]")
-)
-lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
-abline(lm1)
-fit <- lm1[[1]]
-legend('topleft', lty = 1, bty = "n",
-       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+# #+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
+# plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
+#       xlab = "Year",
+#       ylab = bquote("Mean enhancement intesity ["~ Watt~m^-2~N^-1~"]")
+# )
+# lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
+# abline(lm1)
+# fit <- lm1[[1]]
+# legend('topleft', lty = 1, bty = "n",
+#        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 
 
 
@@ -408,8 +403,8 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-#' Although the mean difference in radiation per event seems to be almost
-#' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
+# #' Although the mean difference in radiation per event seems to be almost
+# #' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
 
 
 
@@ -444,7 +439,6 @@ arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg
 
 
 #'
-#' **END**
-#+ include=T, echo=F
+#+ include=F, echo=F
 tac <- Sys.time()
 cat(sprintf("\n%s %s@%s %s %f mins\n\n\n",Sys.time(),Sys.info()["login"],Sys.info()["nodename"],Script.Name,difftime(tac,tic,units="mins")))
