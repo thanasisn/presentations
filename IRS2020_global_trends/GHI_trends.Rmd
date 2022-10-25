@@ -118,8 +118,6 @@ pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for cl
 
 ```
 
-
-
 ## Conclusions
 
 These findings are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and a possible increase on the enhancement cases of the GHI by the clouds[@Vamvakas2020], so in a subsequent study we are going to include such observations.
