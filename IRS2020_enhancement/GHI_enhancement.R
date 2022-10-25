@@ -51,7 +51,7 @@ knitr::opts_chunk$set(dev        = "png"   )
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
 
-knitr::opts_chunk$set(out.width  = "60%"    )
+knitr::opts_chunk$set(out.width  = "49%"    )
 knitr::opts_chunk$set(fig.align  = "center" )
 # knitr::opts_chunk$set(fig.pos    = '!h'     )
 
@@ -122,12 +122,10 @@ SZA_BIN            <- 1
 #' RMSE.
 #'
 #' Our definition of enhancement cases for GHI for the 1-minute measurements are the all of the following conditions.
-#'
-#' - Sun elevation angle above $`r min_elevation`^\circ$.
-#' - GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$
-#' - Clearness index $k_t > `r Clearness_Kt_THRES`$
-#'
-#' Those criteria was already used in a similar study in Greece [@Vamvakas2020]. An example of this process is given for the 2017-04-08 at Figure (\@ref(fig:dayexampe)).
+#' a) Sun elevation angle above $`r min_elevation`^\circ$,
+#' b) GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$,
+#' c) Clearness index $k_t > `r Clearness_Kt_THRES`$.
+#' Those criteria have been used in previous studies [@Vamvakas2020]. An example of this process is given for the 2017-04-08 in the Figure (\@ref(fig:dayexample)), where we visualize the enhancement cases and the role of the other physical quantities.
 #'
 #'
 #' \begin{equation}
@@ -201,7 +199,7 @@ daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
 ## plot one selected day ####
-#+ dayexampe, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identify for the day. With green line is the GHI, blue the DHI, red the reference model and black TSI at TOA."
+#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identify for the day. With green line is the GHI, blue the DHI, red the reference model (Eq. 1) and black the TSI at TOA."
 daylist <- as.Date(c("2017-04-08"))
 for ( aday in daylist ) {
     temp <- CSdt[ Day == aday ]
@@ -258,43 +256,26 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
 
 
 
-#'
-#' ## Results
-#'
-#' There are `r length(unique(CSdt$Day))` days in the timeseries of GHI. Of which `r length(unique(Enh$Day))` have at least one
-#' minute of enhanced GHI.
-#'
-
 
 
 
 ##TODO get indexes of continues cases
-##
 ## ## get time diffs
 ## coo <- diff(Enh$Date)
 ## ## get indexes of successive cases
 ## suc <- which(coo == 1)
 ## ## get the range of each sequence
 ## iv  <- seqToIntervals(suc)
-##
 ## ## stats on each event
 ## Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
 ##                       End_date   = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
 ##                       Duration   = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } )
 ## )
-##
 ## hist(Events$Duration, breaks = 100)
-##
 ## ivv <- seqToIntervals(coo)
-##
 ## coo[ivv[1,1]:ivv[1,2]]
-##
 ## # gives the indices of the 'jumps'.
 ## which(diff(coo) != 1)
-
-#
-# hist(Enh$GLB_diff)
-# hist(Enh$GLB_ench)
 
 
 Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
@@ -345,48 +326,70 @@ Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
 Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
 Enh_yearly[ , Ench_intesit := sum_Ench / N ]
 
-
-
-
 # plot(Enh_daily$Day, Enh_daily$N)
 # plot(Enh_daily$Day, Enh_daily$N_ex)
 # plot(Enh_daily$Day, Enh_daily$sum_Ench)
 # plot(Enh_daily$Day, Enh_daily$avg_Ench)
 
 
-#' We will display some findings of our analysis.
+
+
+
+fit1 <- lm( Enh_yearly$N_att ~ Enh_yearly$year )[[1]]
+fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
+
+
+## results ####
+
 #'
-#' The total number of cases we detect increase steadily the last decades.
+#' ## Results
+#'
+#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements, for
+#' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$ of the days in the data set.
+#' The total number of cases we identified, is increasing steadily the last decades,
+#' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year.
+#' Although the yearly mean excess radiation per enchancemnt event seems to be almost
+#' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
+
+
+
+
+
+
+
+
+#+ enchtrend, include=T, echo=F, fig.cap="Trend of the total occurrences per year."
 plot( Enh_yearly$year, Enh_yearly$N_att ,
-      xlab = "Year",
+      xlab = "",
       ylab = bquote("Difference from mean [%]" )
       )
-title("Number of enchansemnet insidences", cex = 0.7)
+# title("Number of enchantments incidences", cex = 0.7)
 lm1        <- lm( Enh_yearly$N_att ~ Enh_yearly$year )
 abline(lm1)
 fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
 
 
 
-#' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
-plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
-      xlab = "Year",
-      ylab = bquote("Difference from mean [%]")
-     )
-title("Sum of radiation above enchasement threshold", cex = 0.7)
-lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
-abline(lm1)
-fit <- lm1[[1]]
-legend('topleft', lty = 1, bty = "n",
-       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+# #' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
+# plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
+#       xlab = "Year",
+#       ylab = bquote("Difference from mean [%]")
+#      )
+# title("Sum of radiation above enchasement threshold", cex = 0.7)
+# lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
+# abline(lm1)
+# fit <- lm1[[1]]
+# legend('topleft', lty = 1, bty = "n",
+#        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 
 
-#' Mean radiation enhancement per case.
+#+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
 plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
       xlab = "Year",
-      ylab = bquote("Mean enchansment intesity ["~ Watt~m^-2~N^-1~"]")
+      ylab = bquote("Mean enhancement intesity ["~ Watt~m^-2~N^-1~"]")
 )
 lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
 abline(lm1)
@@ -396,10 +399,10 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-plot( Enh_yearly$year, Enh_yearly$avg_Ench,
-      xlab = "Year",
-      ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
-)
+# plot( Enh_yearly$year, Enh_yearly$avg_Ench,
+#       xlab = "Year",
+#       ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
+# )
 
 
 
