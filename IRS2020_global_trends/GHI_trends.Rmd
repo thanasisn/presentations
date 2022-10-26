@@ -9,13 +9,13 @@ author:
 date: "`r format(Sys.time(), '%F')`"
 output:
   word_document: default
-  pdf_document:
-    toc: no
   bookdown::pdf_document2:
     number_sections: no
     keep_tex: no
     fig_caption: yes
     latex_engine: xelatex
+    toc: no
+  pdf_document:
     toc: no
 classoption: a4paper,oneside
 fontsize: 11pt
