@@ -1,6 +1,5 @@
 ---
-title: "Long-term Changes Surface Solar Shortwave Irradiance at Thessaloniki, Greece
-  under clear- and all-sky conditions"
+title: "Long-term Changes Surface Solar Shortwave Irradiance at Thessaloniki, Greece under Clear- and All-sky Conditions"
 author:
 - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
 - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
@@ -59,17 +58,22 @@ source("~/MANUSCRIPTS/2022_sdr_trends/DHI_GHI_0_variables.R")
 
 ## Abstract
 
-Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series is analysed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993--2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated for the last decade of the data series.
+Measurements of (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series (1993-2021) of downward shortwave solar irradiance in Thessaloniki, Greece is analyzed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993–2012 
+[@Bais2013] is reconfirmed, although a stronger trend is calculated by the additional decade in the data series. Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
 
-An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases. A few simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values.
 
-Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Ancillary information from a collocated Cimel sun-photometer (since 2004), and a pyrheliometer (since 2016) are used to verify the effects of water vapor and aerosols on clear-sky irradiance. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
+
+
 
 ## Introduction
 
-Monitoring downward shortwave solar irradiance or Global Horizontal Irradiance (GHI) has multiple importance for different fields. It can provide information for the energy balance of the atmosphere and the world climate, the agricultural production, and energy production and usage, among others. Already, there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive, changes in Aerosols consecration and clouds interaction. In this study we use time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
+Monitoring of downward shortwave solar irradiance or Global Horizontal Irradiance (GHI) is important since it has applications in different fields. It can provide information for the energy balance of the atmosphere and the climate, the agricultural production, and energy production and usage, among others. Already, there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive being changes in aerosols’ consecration and effects of clouds. In this study we use time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
 
-## Methodology
+
+## Data and Methodology
+
+<!-- todo -->
+
 
 First we apply some restriction to the initial data we are using. Due to larger measurement uncertainty near the horizon, we excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we removed data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
 
