@@ -7,15 +7,13 @@ author:
 - Kleareti Tourpali^[Laboratory of Atmospheric Physics, AUTH.]
 date: "`r format(Sys.time(), '%F')`"
 output:
-  pdf_document:
-    toc: no
+  word_document: default
   bookdown::pdf_document2:
     number_sections: no
     keep_tex: no
     fig_caption: yes
     latex_engine: xelatex
     toc: no
-  word_document: default
 classoption: a4paper,oneside
 fontsize: 11pt
 geometry: left=1in,right=1in,top=1in,bottom=1in
@@ -66,38 +64,22 @@ pp[,var:=NULL]
 
 ## Abstract
 
-Measurements of (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series (1993-2021) of downward shortwave solar irradiance in Thessaloniki, Greece is analyzed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993–2012 
-[@Bais2013] is reconfirmed, although a stronger trend is calculated by the additional decade in the data series. Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
-
-
-
-
+Measurements of (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. The long time series (1993-2021) of downward shortwave solar irradiance in Thessaloniki, Greece is analyzed in order to investigate long- and short-term changes caused by changes in atmospheric composition over the site. The overall increasing trend in daily solar irradiation under all-sky conditions of 0.33% per year reported for the period 1993--2012 [@Bais2013] is reconfirmed, although a stronger trend is calculated by the additional decade in the data series. Linear trends have been calculated for the entire period and different seasons for both clear- and all-sky conditions, in an attempt to attribute the long-term variability to variations in atmospheric water vapor and aerosols. Finally, data under cloudy conditions are analysed to uncover potential effects from changes in cloudiness that have occurred over the period or record.
 
 ## Introduction
 
-Monitoring of downward shortwave solar irradiance or Global Horizontal Irradiance (GHI) is important since it has applications in different fields. It can provide information for the energy balance of the atmosphere and the climate, the agricultural production, and energy production and usage, among others. Already, there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive being changes in aerosols’ consecration and effects of clouds. In this study we use time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
-
+Monitoring of downward shortwave solar irradiance or Global Horizontal Irradiance (GHI) is important since it has applications in different fields. It can provide information for the energy balance of the atmosphere and the climate, the agricultural production, and energy production and usage, among others. Already, there are observations describing the positive trends of GHI for the last decades, with the major mechanisms of this drive being changes in aerosols' consecration and effects of clouds. In this study we use time series of GHI measurements by a CM21 pyranometer of the Laboratory of Atmospheric Physics in Thessaloniki, to investigate the trends for the period 1993-2021.
 
 ## Data and Methodology
 
-
 Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. First we apply some restrictions to the initial data we are using. Due to larger measurement uncertainty near the horizon and effects of obstacles, we excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we removed data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
 
-<!-- todo -->
-
-In order to compute the trends of GHI, we aggregated the 1-minute measurements, to daily mean values, for all the days in the data set. Similarly, we aggregate the data, for all the days, with the same day of year number (DOY), in order to create the mean annual cycle of the whole data set. Days with less than
-`r Daily_aggregation_N_lim`
-data points (minutes of recording) were rejected.
-By matching the aggregated data series by DOY, we calculated the relative seasonal anomaly, as the difference from the climatological mean for each matching day. This process was repeated, for the whole dataset, that represents the all-sky conditions and for a subset of data characterized as clear-sky conditions. An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases.
-
-
-A few ....... simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values. We calculated the trends of GHI, for both data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
+In order to compute the trends of GHI, we aggregated the 1-minute measurements, to daily mean values, for all the days in the data set. Similarly, we aggregate the data, for all the days, with the same day of year number (DOY), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data points (minutes of recording) were rejected. By matching the aggregated data series by DOY, we calculated the relative seasonal anomaly, as the difference from the climatological mean for each matching day. This process was repeated, for the whole dataset, that represents the all-sky conditions and for a subset of data characterized as clear-sky conditions. An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases. A few simple global radiation models (Daneshyar--Paltridge--Proctor, Kasten--Czeplak, Haurwitz, Berger--Duffie, Adnot--Bourges--Campana--Gicquel, Robledo-Soler, Kasten and Ineichen-Perez), as describes in @Reno2012, have been tested and adjustment factors for each model have been determined which match best the measured values. We calculated the trends of GHI, for both data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
 
 
 ## Results and discussion
 
-
-For both categories of sky conditions there is positive trend in the GHI over the last three decades. At all sky condition we observed an increase of $+`r signif(aa[DATA=="ALL", slope], 2)`\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+`r signif(aa[DATA=="CLEAR", slope], 2)`\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)). This trend is slightly stronger, comparing to a previous analysis [@Bais2013] for this site, indicating that the long-term changes of the conditions over Thessaloniki are still occurring. The seasonal trends (Table \@ref(tab:table)), suggest that there may be a correlation with some seasonal factors, that attenuate the phenomenon.
+For both categories of sky conditions there is positive trend in the GHI over the last three decades. At all sky condition we observed an increase of $+`r signif(aa[DATA=="ALL", slope], 2)`\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:alltrend)) and for clear sky conditions increase of $+`r signif(aa[DATA=="CLEAR", slope], 2)`\%\cdot\text{year}^{-1}$ (Figure \@ref(fig:cleartrend)). This trend is slightly stronger, comparing to a previous analysis [@Bais2013] for this site, indicating that the long-term changes of the conditions over Thessaloniki are still occurring. The seasonal trends (Table \@ref(tab:table)), suggest that different factors are responsible for the changes in GHI in different seasons. For example, the small trends in summer, when cloud occurrence is very small, suggest that long-term changes in aerosols might dominate the changes in GHI. Conversely, in winter, the changes in GHI are likely caused by the combined effect of changes in clouds and aerosols.
 
 ```{r alltrend, echo=F, fig.cap="Difference from the annual climatological cycle of GHI for all sky conditions. The black line denotes the long term trend of the data."}
 knitr::include_graphics("./figures/longtermtrendsALL-4.pdf")
@@ -133,8 +115,10 @@ pander(pprint, caption = "\\label{tab:table}Trends by season of the year, for cl
 
 ## Conclusions
 
-These findings are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007], that have linked the increasing of the observed downward shortwave solar irradiance. The two main factors that may affect the brightening over the site is the reduction of the Aerosols in the atmosphere, and a possible increase on the enhancement cases of the GHI by the clouds[@Vamvakas2020], so in a subsequent study we are going to include such observations.
+In this study we are reporting increasing trends in downward shortwave solar irradiance from measurements at Thessaloniki, Greece for the period 1993-2021. Our findings are in accordance with other studies [@Wild2012; @Wild2009; @Philipona2009; @Kazadzis2007]
 
-Some interesting questions arising from this work, is how strong is the effect of the cleaning of Aerosols, and if the attenuation by the clouds has significant changes over this period, especially compared to other urban sites. Also, a more fine analysis of the trends for each season of the year and by solar zenith angle, may provide us with more info about long term changes on a diurnal and a seasonal level over Thessaloniki.
+that have also reported increases in GHI in other locations.. The two main factors that may have caused the observed brightening over Thessaloniki are the reduction of the aerosols in the atmosphere, changes in cloud cover and optical depth. Another factor could be a possible increase in the enhancement cases of the GHI by the clouds [@Vamvakas2020], which will be investigated in a subsequent study.
 
-\vfill
+Some interesting questions arising from this study, is how strong is the effect of the cleaning of aerosols, and if the attenuation by the clouds depicts significant changes over this period, especially compared to other urban sites. Also, a finer analysis of the trends for each season of the year and by solar zenith angle may provide more information about long term changes on a diurnal and a seasonal level over Thessaloniki.
+
+\newpage
