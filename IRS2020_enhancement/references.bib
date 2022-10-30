@@ -11,6 +11,25 @@
   keywords = {Data quality, QCrad implementation},
 }
 
+@Report{Reno2012,
+  author           = {Reno, Matthew J. and Hansen, Clifford W. and Stein, Joshua S.},
+  date             = {2012-03-01},
+  title            = {Global horizontal irradiance clear sky models: implementation and analysis},
+  doi              = {10/gq5npv},
+  number           = {SAND2012-2389, 1039404},
+  pages            = {SAND2012--2389, 1039404},
+  url              = {https://www.osti.gov/servlets/purl/1039404/},
+  urldate          = {2022-10-30},
+  abstract         = {Clear sky models estimate the terrestrial solar radiation under a cloudless sky as a function of the solar elevation angle, site altitude, aerosol concentration, water vapor, and various atmospheric conditions. This report provides an overview of a number of global horizontal irradiance (GHI) clear sky models from very simple to complex. Validation of clear-sky models requires comparison of model results to measured irradiance during clear-sky periods. To facilitate validation, we present a new algorithm for automatically identifying clear-sky periods in a time series of GHI measurements. We evaluate the performance of selected clear-sky models using measured data from 30 different sites, totaling about 300 site-years of data. We analyze the variation of these errors across time and location. In terms of error averaged over all locations and times, we found that complex models that correctly account for all the atmospheric parameters are slightly more accurate than other models, but, primarily at low elevations, comparable accuracy can be obtained from some simpler models. However, simpler models often exhibit errors that vary with time of day and season, whereas the errors for complex models vary less over time.},
+  file             = {Stein et al. - 2012 - Global horizontal irradiance clear sky models  im.pdf:Clear Sky Models/Global Horizontal Irradiance Clear Sky Models_ Implementation and Analysis_Reno2012.pdf:},
+  groups           = {Clear Sky Models},
+  langid           = {english},
+  modificationdate = {2022-10-30T11:32:10},
+  shorttitle       = {Global horizontal irradiance clear sky models},
+}
+
+
+
 @TechReport{Long2006,
   author      = {C. N. Long and Y. Shi},
   title       = {The QCRad Value Added Product: Surface Radiation Measurement Quality Control Testing, Including Climatology Configurable Limits},
@@ -42,13 +61,13 @@ Estimate Flux VAP (Shi and Long 2002).
   number    = {D12},
   pages     = {15609--15626},
   issn      = {01480227},
-  abstract  = {We present an automated method to identify periods of clear skies for a 160° field of view using only 1-min measurements of surface downwelling total and diffuse shortwave irradiance. The clear-sky detection method is verified using Whole Sky Imager and lidar data, observer reports, and model comparisons. Identified clear-sky irradiance measurements are then used to empirically fit clear-sky irradiance functions using the cosine of the solar zenith angle as the independent variable. These fitted functions produce continuous estimates of clear-sky total, diffuse, and direct component shortwave irradiances. While this method ignores diurnal changes in such variables as column water vapor and aerosol amounts and changes between clear-sky days, it is shown that the resultant clear-sky irradiance estimates have RMS uncertainty comparable to the uncertainty of the measuring instruments themselves. The estimated clear-sky irradiances are used to estimate the effect of clouds on the downwelling shortwave irradiance as a difference between the measured and clear-sky amounts. We show that the cloud effect calculations from this method appear to decrease the uncertainty due to systematic pyranometer offsets and cosine response errors. Thus any data set that includes downwelling diffuse and total shortwave measurements can be processed to identify clear-sky periods and produce estimates of clear-sky irradiance and cloud effects.},
   doi       = {10.1029/2000JD900077},
+  url       = {http://doi.wiley.com/10.1029/2000JD900077},
+  abstract  = {We present an automated method to identify periods of clear skies for a 160° field of view using only 1-min measurements of surface downwelling total and diffuse shortwave irradiance. The clear-sky detection method is verified using Whole Sky Imager and lidar data, observer reports, and model comparisons. Identified clear-sky irradiance measurements are then used to empirically fit clear-sky irradiance functions using the cosine of the solar zenith angle as the independent variable. These fitted functions produce continuous estimates of clear-sky total, diffuse, and direct component shortwave irradiances. While this method ignores diurnal changes in such variables as column water vapor and aerosol amounts and changes between clear-sky days, it is shown that the resultant clear-sky irradiance estimates have RMS uncertainty comparable to the uncertainty of the measuring instruments themselves. The estimated clear-sky irradiances are used to estimate the effect of clouds on the downwelling shortwave irradiance as a difference between the measured and clear-sky amounts. We show that the cloud effect calculations from this method appear to decrease the uncertainty due to systematic pyranometer offsets and cosine response errors. Thus any data set that includes downwelling diffuse and total shortwave measurements can be processed to identify clear-sky periods and produce estimates of clear-sky irradiance and cloud effects.},
   file      = {Identification of clear skies from broadband pyranometer measurements and calculation of downwelling shortwave cloud effects_Long2000.pdf:/home/athan/LIBRARY/Atmospheric_Environmental_Physics/Articles/Clear sky detection/Identification of clear skies from broadband pyranometer measurements and calculation of downwelling shortwave cloud effects_Long2000.pdf:PDF},
   isbn      = {0148-0227},
   keywords  = {Clear sky detection,Global model,Global radiation},
   publisher = {Wiley Online Library},
-  url       = {http://doi.wiley.com/10.1029/2000JD900077},
 }
 
 @Article{Reno2016,
@@ -59,12 +78,12 @@ Estimate Flux VAP (Shi and Long 2002).
   volume    = {90},
   pages     = {520--531},
   issn      = {18790682},
-  abstract  = {We present a simple algorithm for identifying periods of time with broadband global horizontal irradiance (GHI) similar to that occurring during clear sky conditions from a time series of GHI measurements. Other available methods to identify these periods do so by identifying periods with clear sky conditions using additional measurements, such as direct or diffuse irradiance. Our algorithm compares characteristics of the time series of measured GHI with the output of a clear sky model without requiring additional measurements. We validate our algorithm using data from several locations by comparing our results with those obtained from a clear sky detection algorithm, and with satellite and ground-based sky imagery.},
   doi       = {10.1016/j.renene.2015.12.031},
+  url       = {http://dx.doi.org/10.1016/j.renene.2015.12.031},
+  abstract  = {We present a simple algorithm for identifying periods of time with broadband global horizontal irradiance (GHI) similar to that occurring during clear sky conditions from a time series of GHI measurements. Other available methods to identify these periods do so by identifying periods with clear sky conditions using additional measurements, such as direct or diffuse irradiance. Our algorithm compares characteristics of the time series of measured GHI with the output of a clear sky model without requiring additional measurements. We validate our algorithm using data from several locations by comparing our results with those obtained from a clear sky detection algorithm, and with satellite and ground-based sky imagery.},
   file      = {Identification of periods of clear sky irradiance in time series of GHI measurements_Reno22.pdf:/home/athan/LIBRARY/Atmospheric_Environmental_Physics/Articles/Clear sky detection/Identification of periods of clear sky irradiance in time series of GHI measurements_Reno22.pdf:PDF},
   keywords  = {Clear sky,Clear sky detection,Global horizontal irradiance,Global model,Global radiation,Solar resource},
   publisher = {Elsevier},
-  url       = {http://dx.doi.org/10.1016/j.renene.2015.12.031},
 }
 
 @Article{Inman2016,
@@ -104,22 +123,21 @@ Estimate Flux VAP (Shi and Long 2002).
 }
 
 @Article{Vamvakas2020,
-  author       = {Ioannis Vamvakas and Vasileios Salamalikis and Andreas Kazantzidis},
-  title        = {{Evaluation of enhancement events of global horizontal irradiance due to clouds at Patras, South-West Greece}},
-  volume       = {151},
-  number       = {xxxx},
-  pages        = {764--771},
-  issn         = {1879-0682},
-  abstract     = {Cloudiness is the dominant factor that affects the transfer of solar irradiance through the atmosphere. Especially the type of clouds, their high spatial and temporal variability, velocity and position relatively to the Sun, could cause events ranging from total reduction to substantial enhancements of surface solar irradiance. In study, the enhancements of Global Horizontal Irradiance (GHI) at South Greece for 2 years are examined. We use 1–min averages of GHI, sunshine duration and synchronized estimations of cloud coverage and type from a digital imaging system. A radiative transfer model is used to estimate GHI under clear skies. For solar zenith angles lower than 80°, 4% of total GHI measurements are considered as enhancements. It is shown that the effect of thick clouds on the GHI enhancements is significantly higher when compared to the thin ones. We also examine cases that correspond to instantaneous clearness index values higher than 1 (Kt > 1): 228 extreme enhancement events are found including 5 cases with GHI values higher than 1367 W/m2 and a maximum value of 1420 W/m2. These results suggest that such events are common and should be included in the design and simulation of the performance of solar energy systems.},
-  date         = {2020},
-  doi          = {10.1016/j.renene.2019.11.069},
-  file         = {Evaluation of enhancement events of global horizontal irradiance due to clouds at Patras South West Greece_Vamvakas2020.pdf:Evaluation of enhancement events of global horizontal irradiance due to clouds at Patras South West Greece_Vamvakas2020.pdf:PDF},
-  groups       = {Clound Enhancment},
-  journaltitle = {Renewable Energy},
-  keywords     = {Clearness index,Clouds,Enhancement,Global horizontal irradiance,Sunshine duration},
-  owner        = {AN},
-  publisher    = {Elsevier Ltd},
-  timestamp    = {2022-10-16},
+  author    = {Vamvakas, Ioannis and Salamalikis, Vasileios and Kazantzidis, Andreas},
+  title     = {{Evaluation of enhancement events of global horizontal irradiance due to clouds at Patras, South-West Greece}},
+  journal   = {Renewable Energy},
+  year      = {2020},
+  volume    = {151},
+  number    = {xxxx},
+  pages     = {764--771},
+  issn      = {18790682},
+  doi       = {10.1016/j.renene.2019.11.069},
+  url       = {https://doi.org/10.1016/j.renene.2019.11.069},
+  abstract  = {Cloudiness is the dominant factor that affects the transfer of solar irradiance through the atmosphere. Especially the type of clouds, their high spatial and temporal variability, velocity and position relatively to the Sun, could cause events ranging from total reduction to substantial enhancements of surface solar irradiance. In study, the enhancements of Global Horizontal Irradiance (GHI) at South Greece for 2 years are examined. We use 1–min averages of GHI, sunshine duration and synchronized estimations of cloud coverage and type from a digital imaging system. A radiative transfer model is used to estimate GHI under clear skies. For solar zenith angles lower than 80°, 4% of total GHI measurements are considered as enhancements. It is shown that the effect of thick clouds on the GHI enhancements is significantly higher when compared to the thin ones. We also examine cases that correspond to instantaneous clearness index values higher than 1 (Kt > 1): 228 extreme enhancement events are found including 5 cases with GHI values higher than 1367 W/m2 and a maximum value of 1420 W/m2. These results suggest that such events are common and should be included in the design and simulation of the performance of solar energy systems.},
+  file      = {:/home/athan/LIBRARY/Atmospheric_Environmental_Physics/Didaktoriko/Vamvakas 2019 - Evaluation of enhancement events of global horizontal irradiance due to clouds at Patras South-West Greece.pdf:PDF},
+  keywords  = {Clearness index,Clouds,Enhancement,Global horizontal irradiance,Sunshine duration},
+  publisher = {Elsevier Ltd},
+  timestamp = {2022-10-07},
 }
 
-@Comment{jabref-meta: databaseType:bibtex;}
+@Comment{jabref-meta: databaseType:biblatex;}

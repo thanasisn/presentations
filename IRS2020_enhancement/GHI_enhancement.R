@@ -58,11 +58,9 @@ knitr::opts_chunk$set(fig.align  = "center" )
 #'
 #' ## Abstract
 #'
-#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun as derived by the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle and the magnitude of the enhancement events. Simulations of GHI and DNI are derived by libRadtran based on aerosol and water vapor measurements of a collocated Cimel sun-photometer. Moreover, we investigate the seasonal and long-term behavior of these events in relation to the above factors.
+#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun, as derived by an algorithm that use of the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle. Moreover, we investigate the long-term behavior of these events in relation to the above factors. The time series of GHI and DNI for the period 2016-2021 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events.
 #'
-#' In addition, the time series of GHI and DNI for the period 2016-2019 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events which may have been affected by changes in climate.
-#'
-#'
+
 
 
 
@@ -105,9 +103,19 @@ SZA_BIN            <- 1
 
 #' ## Introduction
 #'
-#' Radiation clouds trends
+#' There is an increasing interest on accurate prediction of the Global Horizontal
+#' Irradiance (GHI), on a fine temporal resolution. A major concern is the
+#' attenuation of the radiation by the clouds, which can create an positive or negative
+#' feedback, depending on the current conditions. The phenomenon, depends on multiple
+#' factors, like the clouds structure and consistency the geometry between the observer,
+#' the clouds and the Sun. The accurate knowledge of the enhancement events
+#' characteristic is useful to discern long term changes of the principal factors,
+#' and provide valuable info for the designing of energy production and distribution systems.
+#' Here we provide a statistical analysis that identify
+#' some cases of radiation enhancement of GHI for the city of Thessaloniki.
 #'
-#' ## Methodology
+#'
+#' ## Data and Methodology
 #'
 #'
 #' A radiation data quality assurance procedure was applied adjusted for the site,
@@ -117,7 +125,7 @@ SZA_BIN            <- 1
 #' selection was done with data of GHI and DNI for the period 2016 – 2021 and using the iterative
 #' method of optimizing the 'Clear sky' identification method, as proposed
 #' by @Long2000 and @Reno2016. We have calibrated the above method
-#' for our site. Among the eight simple models tested by @Reno2016, we found
+#' for our site. Among the eight simple models (Daneshyar--Paltridge--Proctor, Kasten--Czeplak, Haurwitz, Berger--Duffie, Adnot--Bourges--Campana--Gicquel, Robledo-Soler, Kasten and Ineichen-Perez), as describes in @Reno2012 and tested by @Reno2016, we found
 #' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selection criteria the
 #' RMSE.
 #'
@@ -343,17 +351,17 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 #'
 #' ## Results
 #'
-#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements (\@ref(fig:enchtrend)), for
+#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements, for
 #' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$ of the days in the data set.
 #' The total number of cases we identified, is increasing steadily the last decades,
-#' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year.
-#' Although the yearly mean excess radiation per enhancement event seems to be almost
-#' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$ with a marginal trend of $`r signif((fit2[2]*1),3)`Wm^{-2}$ per year.
+#' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year (Figure \@ref(fig:enchtrend)).
+#' Although the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
+#' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$, with a marginal trend of $`r signif((fit2[2]*1),2)`Wm^{-2}$ per year.
 #'
 
 
 
-#+ enchtrend, include=T, echo=F, fig.cap="Trend of the total occurrences per year."
+#+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancemnte cases per year."
 plot( Enh_yearly$year, Enh_yearly$N_att ,
       xlab = "",
       ylab = bquote("Difference from mean [%]" )
@@ -379,8 +387,8 @@ legend('topleft', lty = 1, bty = "n",
 # fit <- lm1[[1]]
 # legend('topleft', lty = 1, bty = "n",
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-
-
+#
+#
 # #+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
 # plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
 #       xlab = "Year",
@@ -391,9 +399,9 @@ legend('topleft', lty = 1, bty = "n",
 # fit <- lm1[[1]]
 # legend('topleft', lty = 1, bty = "n",
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-
-
-
+#
+#
+#
 # plot( Enh_yearly$year, Enh_yearly$avg_Ench,
 #       xlab = "Year",
 #       ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
@@ -417,10 +425,10 @@ plot(Enh_sza$SZA, Enh_sza$N)
 # plot(Enh_sza$SZA, Enh_sza$N_ex)
 
 
-#' Interestingly, when we examine the total energy contribution by SZA we found a maximum at
-#' $`r Enh_sza[ which.max(sum_Ench), SZA]`^\circ$.
-plot(Enh_sza$SZA, Enh_sza$sum_Ench)
-# Enh_sza[ which.max(sum_Ench), SZA ]
+# #' Interestingly, when we examine the total energy contribution by SZA we found a maximum at
+# #' $`r Enh_sza[ which.max(sum_Ench), SZA]`^\circ$.
+# plot(Enh_sza$SZA, Enh_sza$sum_Ench)
+# # Enh_sza[ which.max(sum_Ench), SZA ]
 
 #' And of course there is a dependency of the magnitude of the enhancement with the
 #' SZA.
