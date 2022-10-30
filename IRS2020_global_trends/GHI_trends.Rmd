@@ -80,12 +80,19 @@ Monitoring of downward shortwave solar irradiance or Global Horizontal Irradianc
 
 ## Data and Methodology
 
+
+Measurements of downward shortwave solar irradiance (GHI) are performed at Thessaloniki since 1993 with a Kipp & Zonen CM-21 pyranometer. Data are recorded as 1 min means and are quality controlled by adopting the procedure proposed by @long_automated_2008. First we apply some restrictions to the initial data we are using. Due to larger measurement uncertainty near the horizon and effects of obstacles, we excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we removed data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
+
 <!-- todo -->
 
+In order to compute the trends of GHI, we aggregated the 1-minute measurements, to daily mean values, for all the days in the data set. Similarly, we aggregate the data, for all the days, with the same day of year number (DOY), in order to create the mean annual cycle of the whole data set. Days with less than
+`r Daily_aggregation_N_lim`
+data points (minutes of recording) were rejected.
+By matching the aggregated data series by DOY, we calculated the relative seasonal anomaly, as the difference from the climatological mean for each matching day. This process was repeated, for the whole dataset, that represents the all-sky conditions and for a subset of data characterized as clear-sky conditions. An iterative optimization method has been employed to tune the clear-sky detection algorithm of @Reno2016 to the local conditions, in order to identify the cloud-free cases.
 
-First we apply some restriction to the initial data we are using. Due to larger measurement uncertainty near the horizon, we excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$. Moreover, due to some obstructions around the site (hills and buildings), we removed data with Azimuth angle between $35^\circ$ and $120^\circ$ and SZA greater than $80^\circ$. As, at those cases the Sun, was not visible by the instruments.
 
-In order to compute the trends of GHI, we aggregated the 1-minute measurements, to daily mean values, for all the days in the data set. Similar we aggregate the data, for all the days, with the same day of year number (DOY), in order to create the mean annual cycle of the whole data set. Days with less than `r Daily_aggregation_N_lim` data points (minutes of recording) were rejected. By matching the aggregated data series by DOY, we calculated the relative seasonal anomaly, as the difference from the climatological mean for each matching day. This process was repeated, for the whole data, that represents the all sky conditions and for a subset of data characterized as clear sky conditions. We calculated the trends of GHI, for both data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
+A few ....... simple global radiation models have been tested and adjustment factors for each model have been determined which match best the measured values. We calculated the trends of GHI, for both data-sets, by implemented a linear fit regression, for the whole period and for the four seasons of the year.
+
 
 ## Results and discussion
 
