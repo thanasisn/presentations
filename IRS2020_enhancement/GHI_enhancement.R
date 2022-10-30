@@ -28,10 +28,7 @@
 #'     fig_caption:      no
 #'     keep_tex:         no
 #'     latex_engine:     xelatex
-#'     toc:              yes
-#'   html_document:
-#'     keep_md:          yes
-#'   odt_document:  default
+#'     toc:              no
 #'   word_document: default
 #'
 #' ---
@@ -191,10 +188,10 @@ enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
                   Clearness_Kt > Clearness_Kt_THRES  &
                   wattGLB      > wattGLB_THRES       &
                   GLB_diff     > GLB_diff_THRES,
-                  .( Enh_sum      = sum(GLB_ench, na.rm = T),
-                     Enh_max      = max(GLB_ench, na.rm = T),
-                     Enh_diff_sum = sum(GLB_diff, na.rm = T),
-                     Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
+                  .(Enh_sum      = sum(GLB_ench, na.rm = T),
+                    Enh_max      = max(GLB_ench, na.rm = T),
+                    Enh_diff_sum = sum(GLB_diff, na.rm = T),
+                    Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
 
 
 ## interesting days first
@@ -361,7 +358,7 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 
 
 
-#+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancemnte cases per year."
+#+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 plot( Enh_yearly$year, Enh_yearly$N_att ,
       xlab = "",
       ylab = bquote("Difference from mean [%]" )
@@ -381,7 +378,7 @@ legend('topleft', lty = 1, bty = "n",
 #       xlab = "Year",
 #       ylab = bquote("Difference from mean [%]")
 #      )
-# title("Sum of radiation above enchasement threshold", cex = 0.7)
+# title("Sum of radiation above enhancement threshold", cex = 0.7)
 # lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
 # abline(lm1)
 # fit <- lm1[[1]]
@@ -392,7 +389,7 @@ legend('topleft', lty = 1, bty = "n",
 # #+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
 # plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
 #       xlab = "Year",
-#       ylab = bquote("Mean enhancement intesity ["~ Watt~m^-2~N^-1~"]")
+#       ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
 # )
 # lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
 # abline(lm1)
@@ -418,8 +415,14 @@ legend('topleft', lty = 1, bty = "n",
 
 # plot(Enh_daily$Day, Enh_daily$sum_Diff)
 
+
+#'
+#' \newpage
 #' The number of case characterization is skewed by the SZA angle of the case, although this connection is indicative to the complexity of factor we have to take into account.
+#'
+#+ include=T, echo=F, fig.cap="Number of cases by SZA."
 plot(Enh_sza$SZA, Enh_sza$N)
+#'
 
 ## ignore extreme cases for now
 # plot(Enh_sza$SZA, Enh_sza$N_ex)
@@ -430,19 +433,23 @@ plot(Enh_sza$SZA, Enh_sza$N)
 # plot(Enh_sza$SZA, Enh_sza$sum_Ench)
 # # Enh_sza[ which.max(sum_Ench), SZA ]
 
-#' And of course there is a dependency of the magnitude of the enhancement with the
+#' \newpage
+#' there is a dependency of the magnitude of the enhancement with the
 #' SZA.
 
+#+ include=T, echo=F, fig.cap="Mean enhancement intensity relative to reference (A-HAU) by SZA."
 ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Ench_EM, na.rm = T)
 plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
 arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
-
+#'
 
 
 #'
 #' Some aspects we have to study is the seasonality of the above finds
-#' remove the sza dependence in order to see some local phenomena of the site
+#' remove the SZA dependence in order to see some local phenomena of the site
 #'
+#'
+#' \vfill
 #'
 
 
