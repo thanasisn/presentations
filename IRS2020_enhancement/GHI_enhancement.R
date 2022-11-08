@@ -74,7 +74,7 @@ Sys.setenv(TZ = "UTC")
 tic <- Sys.time()
 Script.Name <- tryCatch({ funr::sys.script() },
                         error = function(e) { cat(paste("\nUnresolved script name: ", e),"\n\n")
-                            return("Climatological_") })
+                            return("Enhancement_") })
 if(!interactive()) {
     pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",   basename(sub("\\.R$",".pdf",  Script.Name))))
     sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",   basename(sub("\\.R$",".out",  Script.Name))), split = TRUE)
@@ -395,7 +395,7 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-#+ enchtrendN, include=T, echo=F, fig.cap="Trend of yearly number of enhancement cases."
+#+ enchtrendN, include=F, echo=F, fig.cap="Trend of yearly number of enhancement cases."
 plot( Enh_yearly$year, Enh_yearly$N ,
       xlab = "",
       ylab = bquote("Number of yearly cases" )
@@ -412,7 +412,7 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-#+ excessenergy, include=T, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
+#+ excessenergy, include=F, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
 plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
       xlab = "Year",
       ylab = bquote("Difference from mean [%]")
@@ -426,7 +426,7 @@ legend('topleft', lty = 1, bty = "n",
 #'
 
 
-#+ excess, include=T,echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
+#+ excess, include=F,echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
 plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
       xlab = "Year",
       ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
@@ -458,10 +458,10 @@ legend('topleft', lty = 1, bty = "n",
 
 
 #'
-#' \newpage
 #' The number of case characterization is skewed by the SZA angle of the case, although this connection is indicative to the complexity of factor we have to take into account.
 #'
-#+ include=T, echo=F, fig.cap="Number of cases by SZA."
+
+#+ include=F, echo=F, fig.cap="Number of cases by SZA."
 plot(Enh_sza$SZA, Enh_sza$N)
 #'
 
@@ -474,11 +474,12 @@ plot(Enh_sza$SZA, Enh_sza$N)
 # plot(Enh_sza$SZA, Enh_sza$sum_Ench)
 # # Enh_sza[ which.max(sum_Ench), SZA ]
 
-#' \newpage
+#'
 #' there is a dependency of the magnitude of the enhancement with the
 #' SZA.
+#'
 
-#+ include=T, echo=F, fig.cap="Mean enhancement intensity relative to reference (A-HAU) by SZA."
+#+ include=F, echo=F, fig.cap="Mean enhancement intensity relative to reference (A-HAU) by SZA."
 ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Ench_EM, na.rm = T)
 plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
 arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
@@ -487,7 +488,7 @@ arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg
 
 #+ include=T, echo=F, fig.cap="Enhancement cases percentage in total data per SZA."
 plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
-      xlab = "Year",
+      xlab = "Solar zenith angle",
       ylab = bquote("Enhancement cases [%] of total data")
       )
 #'
