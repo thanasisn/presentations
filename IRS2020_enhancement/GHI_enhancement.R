@@ -2,7 +2,8 @@
 #' ---
 #' title: "Study of Global radiation enhancement over Thessaloniki"
 #' author:
-#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
+#'   - Natsis Athanasios^
+#'         [Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
 #'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
 #'   - Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
 #' date: "`r format(Sys.time(), '%F')`"
@@ -70,9 +71,9 @@ Script.Name <- tryCatch({ funr::sys.script() },
                         error = function(e) { cat(paste("\nUnresolved script name: ", e),"\n\n")
                             return("Climatological_") })
 if(!interactive()) {
-    pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",  basename(sub("\\.R$",".out", Script.Name))), split=TRUE)
-    filelock::lock(paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",basename(sub("\\.R$",".lock",Script.Name))),timeout = 0)
+    pdf(  file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",   basename(sub("\\.R$",".pdf",  Script.Name))))
+    sink( file = paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/",   basename(sub("\\.R$",".out",  Script.Name))), split = TRUE)
+    filelock::lock(paste0("~/MANUSCRIPTS/presentations/IRS2020_enhancement/runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 }
 
 
@@ -143,11 +144,11 @@ SZA_BIN            <- 1
 
 
 
-HAU <- function( sza,
-                 a = 1098,
-                 b = 0.057 ) {
+HAU <- function(sza,
+                a = 1098,
+                b = 0.057 ) {
     GHI <- a * cosde( sza ) * exp( - b / cosde(sza) )
-    GHI <- gather_results$alpha[gather_results$CS_models=="HAU"] * GHI
+    GHI <- gather_results$alpha[gather_results$CS_models == "HAU"] * GHI
     return(GHI)
 }
 
@@ -162,19 +163,17 @@ CSdt <- CSdt[ year(Date) >= 1994 & year(Date) <= 2021 ]
 CSdt <- CSdt[ Elevat > min_elevation ]
 
 ## Quality Control data only
-CSdt[ QCF_DIR != "good", wattDIR := NA ]
-CSdt[ QCF_GLB != "good", wattGLB := NA ]
+## FIXME this will change in the future
+CSdt[QCF_DIR != "good", wattDIR := NA]
+CSdt[QCF_GLB != "good", wattGLB := NA]
 CSdt$QCF_DIR <- NULL
 CSdt$QCF_GLB <- NULL
 
 
-## use cs model
-##  i) the GHI_MEASURED - MODELED to be higher than 5% (GHI_MEASURED-MODELED >= 5%)
+## Use cs model
+## i) the GHI_MEASURED - MODELED higher than 5% (GHI_MEASURED-MODELED >= 5%)
 CSdt[ , HAU    := HAU(SZA) * ampl ]
 CSdt[ , defHAU := HAU(SZA) ]
-
-
-##  i) clearness index to be lower or higher than 1 for the detection of non-extreme (Kt <= 1 ) and extreme enhancements cases (Kt > 1).
 
 
 
@@ -184,31 +183,31 @@ CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
 CSdt[ , GLB_rati :=   wattGLB / HAU   ]
 
 ## select some days for display
-enh_days <- CSdt[ GLB_ench     > GLB_ench_THRES      &
-                  Clearness_Kt > Clearness_Kt_THRES  &
-                  wattGLB      > wattGLB_THRES       &
-                  GLB_diff     > GLB_diff_THRES,
-                  .(Enh_sum      = sum(GLB_ench, na.rm = T),
-                    Enh_max      = max(GLB_ench, na.rm = T),
-                    Enh_diff_sum = sum(GLB_diff, na.rm = T),
-                    Enh_diff_max = sum(GLB_diff, na.rm = T)) , Day ]
+enh_days <- CSdt[GLB_ench     > GLB_ench_THRES      &
+                 Clearness_Kt > Clearness_Kt_THRES  &
+                 wattGLB      > wattGLB_THRES       &
+                 GLB_diff     > GLB_diff_THRES,
+                 .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
+                   Enh_max      = max(GLB_ench, na.rm = TRUE),
+                   Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
+                   Enh_diff_max = sum(GLB_diff, na.rm = TRUE)) , Day]
 
 
 ## interesting days first
-setorder( enh_days, -Enh_sum )
-setorder( enh_days, -Enh_max )
-setorder( enh_days, -Enh_diff_sum )
+setorder(enh_days, -Enh_sum )
+setorder(enh_days, -Enh_max )
+setorder(enh_days, -Enh_diff_sum )
 
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
 ## plot one selected day ####
-#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identify for the day. With green line is the GHI, blue the DHI, red the reference model (Eq. 1) and black the TSI at TOA."
+#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identified for the day. With green line is the GHI, blue the DHI, red the threshold from clear sky GHI reference model (Eq. 1) and black the TSI at TOA."
 daylist <- as.Date(c("2017-04-08"))
-for ( aday in daylist ) {
+for (aday in daylist) {
     temp <- CSdt[ Day == aday ]
-    par(mar=c(4,4,1,1))
+    par(mar = c(4,4,1,1))
     ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
 
     plot(temp$Date, temp$wattGLB, "l", col = "green",
@@ -219,7 +218,8 @@ for ( aday in daylist ) {
 
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
-    lines(temp$Date, temp$defHAU, col = "red" )
+    # lines(temp$Date, temp$defHAU, col = "red", lty = 2 )
+    lines(temp$Date, temp$HAU,    col = "red" )
 
     # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
@@ -236,12 +236,21 @@ for ( aday in daylist ) {
                  GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
-    legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
+    # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
+    #        col = c("green",   "blue", "red", "black", "red"),
+    #        pch = c(     NA,       NA,    NA,      NA,    1 ),
+    #        lty = c(      1,        1,     1,       1,   NA ),
+    #        bty = "n"
+    # )
+
+    legend("topleft", c("GHI","DNI",  "GHI thresshold", "TSI on horizontal level","GHI Enhancement event"),
            col = c("green",   "blue", "red", "black", "red"),
            pch = c(     NA,       NA,    NA,      NA,    1 ),
            lty = c(      1,        1,     1,       1,   NA ),
            bty = "n"
     )
+
+
     # plot(temp$Date, temp$Clearness_Kt)
     # abline(h=.8,col="red")
     # plot(temp$Date, temp$DiffuseFraction_Kd)
