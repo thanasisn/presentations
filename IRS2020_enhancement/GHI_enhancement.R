@@ -23,13 +23,13 @@
 #' - \setlength{\columnsep}{1cm}
 #'
 #' output:
-#'   bookdown::pdf_document2:
 #'     number_sections:  no
 #'     fig_caption:      no
 #'     keep_tex:         no
 #'     latex_engine:     xelatex
 #'     toc:              no
 #'   word_document: default
+#'   bookdown::pdf_document2:
 #'
 #' ---
 
@@ -55,7 +55,11 @@ knitr::opts_chunk$set(fig.align  = "center" )
 #'
 #' ## Abstract
 #'
-#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun, as derived by an algorithm that use of the DNI measurements, the clearness index ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$), the solar zenith angle. Moreover, we investigate the long-term behavior of these events in relation to the above factors. The time series of GHI and DNI for the period 2016-2021 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of Reno et al. (2016) to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events.
+#' Here we identify and investigate the occurrence of enhancement events of GHI in relation to the visibility of the Sun, as derived by an algorithm that use of the DNI measurements, the clearness index
+#' ($K_t = {GHI}_{MEASURED}/GHI_{MODEL}$),
+#'  the solar zenith angle. Moreover, we investigate the long-term behavior of these events in relation to the above factors. The time series of GHI and DNI for the period 2016-2021 is analyzed by an iterative optimization method, in order to tune the clear-sky detection algorithm of
+#'  Reno et al.(2016)
+#'  to the local conditions and to test a few simple global radiation models for obtaining a better match with the measurements conducted under cloud-free conditions. Based on these results the detection of enhancement events can be extended back to the start of the GHI record of Thessaloniki in the early 1990s. This backward extension will allow investigation of the long-term behavior of the enhancement events.
 #'
 
 
@@ -100,17 +104,13 @@ SZA_BIN            <- 1
 
 #' ## Introduction
 #'
-#' There is an increasing interest on accurate prediction of the Global Horizontal
-#' Irradiance (GHI), on a fine temporal resolution. A major concern is the
-#' attenuation of the radiation by the clouds, which can create a positive or negative
-#' feedback, depending on the current conditions. The phenomenon, depends on multiple
-#' factors, like the clouds structure and consistency the geometry between the observer,
-#' the clouds and the Sun. The accurate knowledge of the enhancement events
-#' characteristic is useful to discern long term changes of the principal factors,
-#' and provide valuable info for the designing of energy production and distribution systems.
-#' Here we provide a statistical analysis that identify
-#' some cases of radiation enhancement of GHI for the city of Thessaloniki.
+#' For many applications, and especially for those related to renewable energy, there is an increasing interest on accurate prediction of the Global Horizontal Irradiance (GHI), on a fine temporal resolution. A major concern is the attenuation of radiation by the clouds, which can have a positive or negative feedback on radiation, depending on the actual conditions. The effects depend on multiple factors, such as the structure and consistency of clouds and the geometry between the observer, the clouds and the Sun. Accurate knowledge of the enhancement events characteristics is useful for discerning long term changes of the principal factors, and for providing valuable information for the design of energy production and distribution systems. Here we provide a statistical analysis that identifies cases of enhancement of GHI from measurements at the city of Thessaloniki.
 #'
+#'
+#'
+
+## TODO docx
+
 #'
 #' ## Data and Methodology
 #'
