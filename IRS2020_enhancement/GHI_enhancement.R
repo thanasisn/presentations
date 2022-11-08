@@ -2,8 +2,7 @@
 #' ---
 #' title: "Study of Global radiation enhancement over Thessaloniki"
 #' author:
-#'   - Natsis Athanasios^
-#'         [Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
+#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisthanasis@gmail.com]
 #'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH.]
 #'   - Charikleia Meleti^[Laboratory of Atmospheric Physics, AUTH.]
 #' date: "`r format(Sys.time(), '%F')`"
@@ -43,8 +42,8 @@ knitr::opts_chunk$set(echo       = FALSE   )
 knitr::opts_chunk$set(cache      = FALSE   )
 knitr::opts_chunk$set(include    = TRUE    )
 knitr::opts_chunk$set(comment    = ""      )
-# knitr::opts_chunk$set(dev        = "pdf"   )
-knitr::opts_chunk$set(dev        = "png"   )
+knitr::opts_chunk$set(dev        = "pdf"   )
+# knitr::opts_chunk$set(dev        = "png"   )
 
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
@@ -103,7 +102,7 @@ SZA_BIN            <- 1
 #'
 #' There is an increasing interest on accurate prediction of the Global Horizontal
 #' Irradiance (GHI), on a fine temporal resolution. A major concern is the
-#' attenuation of the radiation by the clouds, which can create an positive or negative
+#' attenuation of the radiation by the clouds, which can create a positive or negative
 #' feedback, depending on the current conditions. The phenomenon, depends on multiple
 #' factors, like the clouds structure and consistency the geometry between the observer,
 #' the clouds and the Sun. The accurate knowledge of the enhancement events
@@ -127,9 +126,9 @@ SZA_BIN            <- 1
 #' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selection criteria the
 #' RMSE.
 #'
-#' Our definition of enhancement cases for GHI for the 1-minute measurements are the all of the following conditions.
+#' Our definition of enhancement cases for GHI for the 1-minute measurements are the all the following conditions.
 #' a) Sun elevation angle above $`r min_elevation`^\circ$,
-#' b) GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$,
+#' b) GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$ ($\text{GHI}_\text{Threshold}$),
 #' c) Clearness index $k_t > `r Clearness_Kt_THRES`$.
 #' Those criteria have been used in previous studies [@Vamvakas2020]. An example of this process is given for the 2017-04-08 in the Figure (\@ref(fig:dayexample)), where we visualize the enhancement cases and the role of the other physical quantities.
 #'
@@ -203,7 +202,7 @@ daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
 ## plot one selected day ####
-#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identified for the day. With green line is the GHI, blue the DHI, red the threshold from clear sky GHI reference model (Eq. 1) and black the TSI at TOA."
+#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identified for the day. With green line is the GHI, blue the DHI, red the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and black the TSI at TOA as reference."
 daylist <- as.Date(c("2017-04-08"))
 for (aday in daylist) {
     temp <- CSdt[ Day == aday ]
@@ -219,21 +218,21 @@ for (aday in daylist) {
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
     # lines(temp$Date, temp$defHAU, col = "red", lty = 2 )
-    lines(temp$Date, temp$HAU,    col = "red" )
+    lines(temp$Date, temp$HAU + GLB_diff_THRES, col = "red" )
 
     # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
     # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
     # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
-    points(temp[ GLB_ench     > GLB_ench_THRES     &
-                 Clearness_Kt > Clearness_Kt_THRES &
-                 wattGLB      > wattGLB_THRES      &
-                 GLB_diff     > GLB_diff_THRES, Date ],
-           temp[ GLB_ench     > GLB_ench_THRES     &
-                 Clearness_Kt > Clearness_Kt_THRES &
-                 wattGLB      > wattGLB_THRES      &
-                 GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
+    points(temp[GLB_ench     > GLB_ench_THRES     &
+                Clearness_Kt > Clearness_Kt_THRES &
+                wattGLB      > wattGLB_THRES      &
+                GLB_diff     > GLB_diff_THRES, Date ],
+           temp[GLB_ench     > GLB_ench_THRES     &
+                Clearness_Kt > Clearness_Kt_THRES &
+                wattGLB      > wattGLB_THRES      &
+                GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
@@ -250,23 +249,21 @@ for (aday in daylist) {
            bty = "n"
     )
 
-
     # plot(temp$Date, temp$Clearness_Kt)
     # abline(h=.8,col="red")
     # plot(temp$Date, temp$DiffuseFraction_Kd)
     # plot(temp$Date, temp$GLB_ench)
     # plot(temp$Date, temp$GLB_diff)
-
 }
 #'
 
 
 
 ## keep only enhanced cases
-Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
-             Clearness_Kt > Clearness_Kt_THRES &
-             wattGLB      > wattGLB_THRES      &
-             GLB_diff     > GLB_diff_THRES    ]
+Enh <- CSdt[GLB_ench     > GLB_ench_THRES     &
+            Clearness_Kt > Clearness_Kt_THRES &
+            wattGLB      > wattGLB_THRES      &
+            GLB_diff     > GLB_diff_THRES    ]
 
 
 DATA_Enh <- CSdt[ , Enhancement := GLB_ench     > GLB_ench_THRES     &
@@ -301,7 +298,7 @@ Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                       sum_Ench = sum( GLB_diff),
                       avg_Ench = mean(GLB_ench),
-                      sd_Ench  = sd(GLB_ench),
+                      sd_Ench  = sd( GLB_ench),
                       sum_Diff = sum( GLB_diff)),
                  by = "Day"  ]
 
@@ -309,7 +306,7 @@ Enh_yearly <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                        sum_Ench = sum( GLB_diff),
                        avg_Ench = mean(GLB_ench),
-                       sd_Ench  = sd(GLB_ench),
+                       sd_Ench  = sd(  GLB_ench),
                        sum_Diff = sum( GLB_diff)),
                   by = year(Date)  ]
 
@@ -317,7 +314,7 @@ Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                        sum_Ench = sum( GLB_diff),
                        avg_Ench = mean(GLB_ench),
-                       sd_Ench  = sd(GLB_ench),
+                       sd_Ench  = sd(  GLB_ench),
                        sum_Diff = sum( GLB_diff))   ]
 
 
@@ -326,7 +323,7 @@ Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                       sum_Ench = sum( GLB_diff),
                       avg_Ench = mean(GLB_ench),
-                      sd_Ench  = sd(GLB_ench),
+                      sd_Ench  = sd(  GLB_ench),
                       sum_Diff = sum( GLB_diff)),
                   by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
 
@@ -371,8 +368,11 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 #'
 #' ## Results
 #'
-#' The enhancement events occur in $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$ of the total GHI measurements, for
-#' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$ of the days in the data set.
+#' The enhancement events occur in
+#' $`r signif( 100*(sum(!is.na(Enh$GLB_ench)) / sum(!is.na(CSdt$wattGLB))), 3 )`\%$
+#' of the total GHI measurements, and for
+#' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$
+#' of the days in the data set.
 #' The total number of cases we identified, is increasing steadily the last decades,
 #' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year (Figure \@ref(fig:enchtrend)).
 #' Although the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
@@ -406,14 +406,14 @@ lm1        <- lm( Enh_yearly$N ~ Enh_yearly$year )
 abline(lm1)
 fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
-       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-', signif(abs(fit[2]*1),3),'* year'))
 #'
 
 
 
 
 
-#+ excessenergy, include=T,echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
+#+ excessenergy, include=T, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
 plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
       xlab = "Year",
       ylab = bquote("Difference from mean [%]")
@@ -443,7 +443,7 @@ legend('topleft', lty = 1, bty = "n",
 
 # plot( Enh_yearly$year, Enh_yearly$avg_Ench,
 #       xlab = "Year",
-#       ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
+#       ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
 # )
 
 
