@@ -14,6 +14,7 @@
 #'
 #' bibliography:  [references.bib]
 #' biblio-style:  apalike
+#' csl:           anthropocene.csl
 #'
 #' header-includes:
 #' - \usepackage{caption}
@@ -23,13 +24,14 @@
 #' - \setlength{\columnsep}{1cm}
 #'
 #' output:
+#'   bookdown::pdf_document2:
 #'     number_sections:  no
 #'     fig_caption:      no
 #'     keep_tex:         no
 #'     latex_engine:     xelatex
 #'     toc:              no
 #'   word_document: default
-#'   bookdown::pdf_document2:
+#'
 #'
 #' ---
 
@@ -108,30 +110,27 @@ SZA_BIN            <- 1
 #'
 #'
 #'
-
-## TODO docx
-
-#'
 #' ## Data and Methodology
 #'
+#' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. A data quality assurance procedure was applied on these data based on methods proposed by
+#' Long and Shi\ [-@long_automated_2008; -@Long2006],
+#' which were adjusted for the specific site. Only data characterized with acceptable quality was used. We are using, for the global radiation reference, the Haurwitz’s model (reference). The selection was done with data of GHI and DNI for the period 2016 – 2021 using the iterative method of optimizing the ‘Clear sky’ identification method, as proposed by
+#' @Long2000 and @Reno2016.
+#' We have calibrated the above method for our site. Among the eight simple models (Daneshyar–Paltridge–Proctor, Kasten–Czeplak, Haurwitz, Berger–Duffie, Adnot–Bourges–Campana–Gicquel, Robledo-Soler, Kasten and Ineichen-Perez), as described in
+#' @Reno2012 and tested by
+#' @Reno2016,
+#' we found the best result with an adjusted Haurwitz model (A-HAU)
+#' (Eq. \@ref(eq:ahau)),
+#' using as the main selection criterion the root mean squared error (RMSE).
 #'
-#' A radiation data quality assurance procedure was applied adjusted for the site,
-#' based on methods of Long and Shi\ [-@long_automated_2008; -@Long2006].
-#' Only data characterized with acceptable quality was used.
-#' We are using, for the global radiation reference, the Haurwitz's model. The
-#' selection was done with data of GHI and DNI for the period 2016 – 2021 and using the iterative
-#' method of optimizing the 'Clear sky' identification method, as proposed
-#' by @Long2000 and @Reno2016. We have calibrated the above method
-#' for our site. Among the eight simple models (Daneshyar--Paltridge--Proctor, Kasten--Czeplak, Haurwitz, Berger--Duffie, Adnot--Bourges--Campana--Gicquel, Robledo-Soler, Kasten and Ineichen-Perez), as describes in @Reno2012 and tested by @Reno2016, we found
-#' the best result with an adjusted Haurwitz model (A-HAU) (Eq. \@ref(eq:ahau)), using as the main selection criteria the
-#' RMSE.
-#'
-#' Our definition of enhancement cases for GHI for the 1-minute measurements are the all the following conditions.
+#' The enhancement cases for the 1-minute measurements of GHI were identified when the following conditions were met:
 #' a) Sun elevation angle above $`r min_elevation`^\circ$,
-#' b) GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$ ($\text{GHI}_\text{Threshold}$),
+#' b) GHI values above $`r ampl` \times \text{A-HAU} + `r GLB_diff_THRES`$ ($\text{GHI}_\text{Threshold}$), and
 #' c) Clearness index $k_t > `r Clearness_Kt_THRES`$.
-#' Those criteria have been used in previous studies [@Vamvakas2020]. An example of this process is given for the 2017-04-08 in the Figure (\@ref(fig:dayexample)), where we visualize the enhancement cases and the role of the other physical quantities.
-#'
+#' These criteria have been used in previous studies
+#' (e.g., @Vamvakas2020).
+#' An example of this procedure is given for the 2017&#8209;04&#8209;08 in Fig.\ (\@ref(fig:dayexample)),
+#' where the enhancement cases and the role of the other physical quantities are visualized.
 #'
 #' \begin{equation}
 #' \text{GHI}_\text{Clear Sky} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
@@ -202,7 +201,7 @@ daylist <- enh_days$Day
 daylist <- daylist[1:30]
 
 ## plot one selected day ####
-#+ dayexample, include=T, echo=F, fig.cap="Example plot for 2017-04-08. Red cycles denote the enhancement cases we identified for the day. With green line is the GHI, blue the DHI, red the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and black the TSI at TOA as reference."
+#+ dayexample, include=T, echo=F, fig.cap="Diurnal variability of GHI (green) and DNI (blue) for 08-4-2017. Red cycles denote the enhancement cases that were identified during the day. The red line represents the the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and the black line is the TSI at the TOA for reference."
 daylist <- as.Date(c("2017-04-08"))
 for (aday in daylist) {
     temp <- CSdt[ Day == aday ]
@@ -375,7 +374,7 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 #' of the days in the data set.
 #' The total number of cases we identified, is increasing steadily the last decades,
 #' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year (Figure \@ref(fig:enchtrend)).
-#' Although the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
+#' However, the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
 #' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$, with a marginal trend of $`r signif((fit2[2]*1),2)`Wm^{-2}$ per year.
 #'
 
