@@ -49,7 +49,7 @@ knitr::opts_chunk$set(dev        = "png"   )
 knitr::opts_chunk$set(fig.width  = 8       )
 knitr::opts_chunk$set(fig.height = 6       )
 
-knitr::opts_chunk$set(out.width  = "49%"    )
+knitr::opts_chunk$set(out.width  = "60%"    )
 knitr::opts_chunk$set(fig.align  = "center" )
 # knitr::opts_chunk$set(fig.pos    = '!h'     )
 
@@ -135,7 +135,7 @@ SZA_BIN            <- 1
 #'
 #'
 #' \begin{equation}
-#' \text{GHI} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
+#' \text{GHI}_\text{Clear Sky} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
 #' \end{equation}
 #'
 
@@ -243,10 +243,10 @@ for (aday in daylist) {
     #        bty = "n"
     # )
 
-    legend("topleft", c("GHI","DNI",  "GHI thresshold", "TSI on horizontal level","GHI Enhancement event"),
-           col = c("green",   "blue", "red", "black", "red"),
-           pch = c(     NA,       NA,    NA,      NA,    1 ),
-           lty = c(      1,        1,     1,       1,   NA ),
+    legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
+           col = c("green",   "blue", "red", "black",  "red"),
+           pch = c(     NA,       NA,    NA,      NA,     1 ),
+           lty = c(      1,        1,     1,       1,    NA ),
            bty = "n"
     )
 
@@ -268,6 +268,11 @@ Enh <- CSdt[ GLB_ench     > GLB_ench_THRES     &
              wattGLB      > wattGLB_THRES      &
              GLB_diff     > GLB_diff_THRES    ]
 
+
+DATA_Enh <- CSdt[ , Enhancement := GLB_ench     > GLB_ench_THRES     &
+                                   Clearness_Kt > Clearness_Kt_THRES &
+                                   wattGLB      > wattGLB_THRES      &
+                                   GLB_diff     > GLB_diff_THRES    ]
 
 
 
@@ -323,15 +328,24 @@ Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
                       avg_Ench = mean(GLB_ench),
                       sd_Ench  = sd(GLB_ench),
                       sum_Diff = sum( GLB_diff)),
-                  by = .(SZA     = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+                  by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+
+
+Data_sza    <- DATA_Enh[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
+                            N_total = sum(!is.na(wattGLB))),
+                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+
+
+
+
 
 CONF_INTERV <- .95
-conf_param  <- 1-(1-CONF_INTERV)/2
+conf_param  <- 1 - (1 - CONF_INTERV) / 2
 suppressWarnings({
-Enh_sza[,   Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
-Enh_daily[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
-Enh_yearly[,Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
-Enh_total[, Ench_EM:=qt(conf_param, df=N-1) * sd_Ench / sqrt(N)]
+Enh_sza[,   Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+Enh_daily[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+Enh_yearly[,Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+Enh_total[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
 })
 
 
@@ -382,32 +396,51 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-# #' Similar the sum of the energy (in 1 minute resolution), above the reference model, also increase.
-# plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
-#       xlab = "Year",
-#       ylab = bquote("Difference from mean [%]")
-#      )
-# title("Sum of radiation above enhancement threshold", cex = 0.7)
-# lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
-# abline(lm1)
-# fit <- lm1[[1]]
-# legend('topleft', lty = 1, bty = "n",
-#        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-#
-#
-# #+ excess, include=T,echo=F, fig.cap="Mean radiation enhancement per case."
-# plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
-#       xlab = "Year",
-#       ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
-# )
-# lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
-# abline(lm1)
-# fit <- lm1[[1]]
-# legend('topleft', lty = 1, bty = "n",
-#        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-#
-#
-#
+#+ enchtrendN, include=T, echo=F, fig.cap="Trend of yearly number of enhancement cases."
+plot( Enh_yearly$year, Enh_yearly$N ,
+      xlab = "",
+      ylab = bquote("Number of yearly cases" )
+)
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_yearly$N ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+
+
+
+#+ excessenergy, include=T,echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
+plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
+      xlab = "Year",
+      ylab = bquote("Difference from mean [%]")
+     )
+title("Sum of radiation above enhancement threshold", cex = 0.7)
+lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+#+ excess, include=T,echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
+plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
+      xlab = "Year",
+      ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
+)
+abline( h = mean(Enh_yearly$Ench_intesit, na.rm = TRUE), lty = 2 )
+lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
 # plot( Enh_yearly$year, Enh_yearly$avg_Ench,
 #       xlab = "Year",
 #       ylab = bquote("Average enchansment intesity ["~ Watt~m^-2~"]")
@@ -451,6 +484,15 @@ ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Enc
 plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
 arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
 #'
+
+
+#+ include=T, echo=F, fig.cap="Enhancement cases percentage in total data per SZA."
+plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
+      xlab = "Year",
+      ylab = bquote("Enhancement cases [%] of total data")
+      )
+#'
+
 
 
 #'
