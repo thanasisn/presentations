@@ -83,9 +83,6 @@ if(!interactive()) {
 
 
 library(data.table)
-# library(RAerosols)
-# library(R.utils)
-
 source("~/FUNCTIONS/R/data.R")
 source("~/FUNCTIONS/R/trig_deg.R")
 
@@ -350,10 +347,12 @@ Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
 Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
 Enh_yearly[ , Ench_intesit := sum_Ench / N ]
 
-# plot(Enh_daily$Day, Enh_daily$N)
-# plot(Enh_daily$Day, Enh_daily$N_ex)
-# plot(Enh_daily$Day, Enh_daily$sum_Ench)
-# plot(Enh_daily$Day, Enh_daily$avg_Ench)
+
+#+ include=F, echo=F
+plot(Enh_daily$Day, Enh_daily$N)
+plot(Enh_daily$Day, Enh_daily$N_ex)
+plot(Enh_daily$Day, Enh_daily$sum_Ench)
+plot(Enh_daily$Day, Enh_daily$avg_Ench)
 
 
 
@@ -373,10 +372,11 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 #' $`r signif( 100* length(unique(Enh$Day)) / length(unique(CSdt$Day)), 3 )`\%$
 #' of the days in the data set.
 #' The total number of cases we identified, is increasing steadily the last decades,
-#' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year (Figure \@ref(fig:enchtrend)).
+#' with a rate of $`r signif(abs(fit1[2]*1),3)`\%$ per year (Fig. \@ref(fig:enchtrend)).
 #' However, the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
 #' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$, with a marginal trend of $`r signif((fit2[2]*1),2)`Wm^{-2}$ per year.
 #'
+#' Another aspect of the occurrence of enchantment events is in relation with the SZA, where we observe a correlation of the Sun elevation angle with the number of events (Fig. \@ref(fig:szacases)).
 #'
 
 
@@ -422,7 +422,7 @@ legend('topleft', lty = 1, bty = "n",
 #'
 
 
-#+ excess, include=F,echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
+#+ excess, include=F, echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
 plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
       xlab = "Year",
       ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
@@ -433,28 +433,35 @@ abline(lm1)
 fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-#'
 
 
-# plot( Enh_yearly$year, Enh_yearly$avg_Ench,
-#       xlab = "Year",
-#       ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
-# )
+#+ include=F, echo=F
+plot( Enh_yearly$year, Enh_yearly$avg_Ench,
+       xlab = "Year",
+       ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
+)
+
+plot(Enh_daily$Day, Enh_daily$sum_Diff)
+
 
 
 #### Conclusions ####
 #'
 #' ## Conclusions
 #'
+#' We can not attribute the steady increase in enhancement cases we observe to a single factor.
+#'
+#' clouds
+#' Aerosols
+#' brightening
+#'
+#' Although increase in energy at ground
+#'
+#'
 
 
 
-# #' Although the mean difference in radiation per event seems to be almost
-# #' constant about $`r signif(Enh_total$avg_Ench,3)`\pm`r format(Enh_total$Ench_EM,scientific = T,digits = 2)`%$.
 
-
-
-# plot(Enh_daily$Day, Enh_daily$sum_Diff)
 
 
 #'
@@ -471,8 +478,10 @@ plot(Enh_sza$SZA, Enh_sza$N)
 
 # #' Interestingly, when we examine the total energy contribution by SZA we found a maximum at
 # #' $`r Enh_sza[ which.max(sum_Ench), SZA]`^\circ$.
-# plot(Enh_sza$SZA, Enh_sza$sum_Ench)
-# # Enh_sza[ which.max(sum_Ench), SZA ]
+#+ include=F, echo=F
+plot(Enh_sza$SZA, Enh_sza$sum_Ench, main = "Total exess energy")
+
+
 
 #'
 #' there is a dependency of the magnitude of the enhancement with the
@@ -486,7 +495,7 @@ arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg
 #'
 
 
-#+ include=T, echo=F, fig.cap="Enhancement cases percentage in total data per SZA."
+#+ szacases, include=T, echo=F, fig.cap="Enhancement cases percentage in total GHI data per SZA ($1^\\circ$ bin)."
 plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
       xlab = "Solar zenith angle",
       ylab = bquote("Enhancement cases [%] of total data")
