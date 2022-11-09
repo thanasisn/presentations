@@ -377,7 +377,7 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 #' However, the yearly mean excess radiation (radiation above the threshold) per enhancement event seems to be almost
 #' constant with a mean value of $`r round(mean(Enh_yearly$Ench_intesit),1)`\,Wm^{-2}$, with a marginal trend of $`r signif((fit2[2]*1),2)`Wm^{-2}$ per year.
 #'
-
+#'
 
 
 #+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
@@ -394,7 +394,6 @@ legend('topleft', lty = 1, bty = "n",
 #'
 
 
-
 #+ enchtrendN, include=F, echo=F, fig.cap="Trend of yearly number of enhancement cases."
 plot( Enh_yearly$year, Enh_yearly$N ,
       xlab = "",
@@ -407,9 +406,6 @@ fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-', signif(abs(fit[2]*1),3),'* year'))
 #'
-
-
-
 
 
 #+ excessenergy, include=F, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
@@ -446,6 +442,10 @@ legend('topleft', lty = 1, bty = "n",
 # )
 
 
+#### Conclusions ####
+#'
+#' ## Conclusions
+#'
 
 
 
