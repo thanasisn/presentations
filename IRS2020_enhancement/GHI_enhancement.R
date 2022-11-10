@@ -24,13 +24,13 @@
 #' - \setlength{\columnsep}{1cm}
 #'
 #' output:
+#'   word_document: default
 #'   bookdown::pdf_document2:
 #'     number_sections:  no
 #'     fig_caption:      no
 #'     keep_tex:         no
 #'     latex_engine:     xelatex
 #'     toc:              no
-#'   word_document: default
 #'
 #'
 #' ---
