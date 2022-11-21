@@ -36,6 +36,22 @@
 #' ---
 
 
+#
+# Note from editor
+#
+# > In the future, it is interesting to analyze time series of downward
+# > shortwave irradiance anomalies derived from the data set. You need to
+# > compute monthly mean irradiances and climatological mean for January,
+# > February, March etc. Then the corresponding climatological mean is
+# > subtracted form each monthly mean to derive monthly anomaly. It is
+# > interesting to see how these anomalies change with time. In this way,
+# > you are not just focusing on enhancement of surface irradiance, but
+# > also including reduction of surface irradiance by clouds and
+# > aerosols.
+# >
+#
+
+
 #+ include=FALSE, echo=FALSE
 
 ####_  Document options _####
@@ -207,7 +223,7 @@ for (aday in daylist) {
 
     plot(temp$Date, temp$wattGLB, "l", col = "green",
          ylim = ylim,
-         ylab = expression(Watt/m^2), xlab = "UTC")
+         ylab = expression(Watt/m^2), xlab = "Time (UTC)")
 
     lines(temp$Date, temp$wattHOR, col = "blue")
 
@@ -314,7 +330,6 @@ Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
                        sum_Diff = sum( GLB_diff))   ]
 
 
-
 Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
                       N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                       sum_Ench = sum( GLB_diff),
@@ -382,7 +397,7 @@ fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 
 #+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 plot( Enh_yearly$year, Enh_yearly$N_att ,
-      xlab = "",
+      xlab = "Year",
       ylab = bquote("Difference from mean [%]" )
       )
 # title("Number of enchantments incidences", cex = 0.7)
