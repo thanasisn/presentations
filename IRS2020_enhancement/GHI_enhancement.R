@@ -13,8 +13,8 @@
 #' geometry:      "left=1in,right=1in,top=1in,bottom=1in"
 #'
 #' bibliography:  [references.bib]
-#' biblio-style:  apalike
-#' csl:           anthropocene.csl
+#' # biblio-style:  apalike
+#' csl:           american-institute-of-physics.csl
 #'
 #' header-includes:
 #' - \usepackage{caption}
@@ -24,13 +24,15 @@
 #' - \setlength{\columnsep}{1cm}
 #'
 #' output:
-#'   word_document: default
 #'   bookdown::pdf_document2:
 #'     number_sections:  no
 #'     fig_caption:      no
-#'     keep_tex:         no
+#'     keep_tex:         yes
+#'     keep_md:          yes
 #'     latex_engine:     xelatex
 #'     toc:              no
+#'   word_document: default
+#'
 #'
 #'
 #' ---
