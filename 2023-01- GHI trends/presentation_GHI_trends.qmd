@@ -1,6 +1,7 @@
 ---
-title:  "GHI trends"
+title:  "Investigation of direct and global downward sort-wave radiation over Thessaloniki"
 author: "Athanasios Natsis"
+date:   "2023-01-18"
 format: revealjs
 ---
 
