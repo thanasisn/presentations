@@ -24,20 +24,68 @@ format:
 ## Rusults
 
 ```{r}
-knitr::include_graphics("images/longtermtrendsALL-4.pdf")
+# knitr::include_graphics("images/LAP3_t_bg.png")
+knitr::include_graphics("images/longtermtrendsALL-4.png",auto_pdf = T)
 ```
+
+
+
+
+
+<!-- here::here() -->
+
+## 3
+
+::: {#fig-foo}
+
+
+This is the figure
+:::
+
+## 4
+
+::: {#fig-layout layout-ncol=1}
+![](./images/longtermtrendsALL-3.pdf) 
+
+This is a long caption. (a) $\theta=2*x^2$; (b) this is the second part; (c) this is the third part
+:::
+
+## 5
+
+:::: {.columns}
+
+
+::: {.column width="50%"}
+
+![](images/longtermtrendsALL-4.png)
+![](images/longtermtrendsALL-1.png)
+
+:::
+
+::: {.column width="50%"}
+![](images/longtermtrendsCS-4.png)
+
+
+![](images/longtermtrendsCS-1.png)
+
+:::
+
+::::
+
+##  dddd
+
 
 ::: {layout="[[1,1], [1,1]]"}
 
+![](images/longtermtrendsALL-4.png)
 
 
-![]()
+![](images/longtermtrendsCS-4.png)
 
-![](images/longtermtrendsALL-4.pdf)
+![](images/longtermtrendsALL-1.png)
 
-![](images/longtermtrendsALL-4.pdf)
+![](images/longtermtrendsCS-1.png)
 
-![](images/longtermtrendsALL-4.pdf)
 
 :::
 
