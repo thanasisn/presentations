@@ -1,14 +1,30 @@
 ---
-title: "LAP GHI"
-author: "Athanasios Natsis"
-format:
-  revealjs:
-   incremental: true
+title:    "Investigation of direct and global downward sort-wave radiation over Thessaloniki"
+subtitle: "Includes newest trends!"
+author:   "Athanasios Natsis"
+date:     "2023-01-18"
+date-format: iso
+footer: "Laboratory of Atmospheric Physics, A.U.Th."
+logo:   "images/LAP3_t_bg.png"
+
+# format:
+#   revealjs:
+#     incremental: true
+
 # format: pptx
 # format: beamer
 ---
 
-## Quarto
+## What we measure
+
+## How we measure
+
+## How we prosses
+
+## Rusults
+
+
+## END
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
 
@@ -44,3 +60,51 @@ content before the pause
 . . .
 
 content after the pause
+
+## colunmbs
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Left column
+:::
+
+::: {.column width="60%"}
+Right column
+:::
+
+::::
+
+
+## Slide with speaker notes
+
+Slide content
+
+::: {.notes}
+Speaker notes go here. nodfs
+dfs
+fs
+fdsfsdfsf dsfdsfdsfdsfa dsfsaf
+:::
+
+
+
+## Slide Title
+
+Slide content
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+
+
+
+## Slide Title
+
+- Green ^[A footnote]
+- Brown
+- Purple
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
