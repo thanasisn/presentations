@@ -36,38 +36,46 @@ knitr::include_graphics("images/longtermtrendsALL-4.png",auto_pdf = T)
 
 ## 3
 
-::: {#fig-foo}
+## d
 
+![](images/longtermtrendsALL-4.png)
 
-This is the figure
-:::
+## d
+
+![](images/longtermtrendsALL-1.png)
+
+## d
+![](images/longtermtrendsCS-4.png)
+
+## d
+![](images/longtermtrendsCS-1.png)
+
+## ddd
+
+table of pers
+
 
 ## 4
 
-::: {#fig-layout layout-ncol=1}
-![](./images/longtermtrendsALL-3.pdf) 
+![](images/longtermtrendsALL-4.png){height="50%"}
+![](images/longtermtrendsALL-1.png){height="50%"}
+![](images/longtermtrendsCS-4.png){height="50%"}
+![](images/longtermtrendsCS-1.png){height="50%"}
 
-This is a long caption. (a) $\theta=2*x^2$; (b) this is the second part; (c) this is the third part
-:::
+
 
 ## 5
 
 :::: {.columns}
 
-
 ::: {.column width="50%"}
-
-![](images/longtermtrendsALL-4.png)
-![](images/longtermtrendsALL-1.png)
-
+![](images/longtermtrendsALL-4.png){height="50%"}
+![](images/longtermtrendsALL-1.png){height="50%"}
 :::
 
 ::: {.column width="50%"}
-![](images/longtermtrendsCS-4.png)
-
-
-![](images/longtermtrendsCS-1.png)
-
+![](images/longtermtrendsCS-4.png){height="50%"}
+![](images/longtermtrendsCS-1.png){height="50%"}
 :::
 
 ::::
@@ -78,7 +86,6 @@ This is a long caption. (a) $\theta=2*x^2$; (b) this is the second part; (c) thi
 ::: {layout="[[1,1], [1,1]]"}
 
 ![](images/longtermtrendsALL-4.png)
-
 
 ![](images/longtermtrendsCS-4.png)
 
