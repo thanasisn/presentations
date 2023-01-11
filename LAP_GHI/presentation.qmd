@@ -7,9 +7,9 @@ date-format: iso
 footer: "Laboratory of Atmospheric Physics, A.U.Th."
 logo:   "images/LAP3_t_bg.png"
 
-# format:
-#   revealjs:
-#     incremental: true
+format:
+  revealjs:
+    incremental: true
 
 # format: pptx
 # format: beamer
@@ -22,6 +22,24 @@ logo:   "images/LAP3_t_bg.png"
 ## How we prosses
 
 ## Rusults
+
+```{r}
+knitr::include_graphics("images/longtermtrendsALL-4.pdf")
+```
+
+::: {layout="[[1,1], [1,1]]"}
+
+
+
+![]()
+
+![](images/longtermtrendsALL-4.pdf)
+
+![](images/longtermtrendsALL-4.pdf)
+
+![](images/longtermtrendsALL-4.pdf)
+
+:::
 
 
 ## END
