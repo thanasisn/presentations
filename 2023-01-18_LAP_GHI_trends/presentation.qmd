@@ -13,13 +13,14 @@ format:
 # format: pptx
 # format: beamer
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
+# Intro
 
 ```{r}
-#| label: setup
-#| echo: false
+#| label:   setup
+#| echo:    false
 #| include: true
 library(data.table)
 library(kableExtra)
@@ -32,49 +33,16 @@ library(kableExtra)
 
 ## How we prosses
 
-## Rusults
-
-```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T)
-```
 
 
+# Results
 
 
-
-<!-- here::here() -->
-
-## 3
-
-## d
-
-![](images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png)
-
-<!-- ![](images/longtermtrendsALL-4.png) -->
-
-## d
-
-<!-- ![](images/longtermtrendsALL-1.png) -->
-
-## d
-<!-- ![](images/longtermtrendsCS-4.png) -->
-
-## d
-<!-- ![](images/longtermtrendsCS-1.png) -->
-
-## ddd
-
-table of pers
-
-
-## 4
 
 <!-- ![](images/longtermtrendsALL-4.png){height="50%"} -->
 <!-- ![](images/longtermtrendsALL-1.png){height="50%"} -->
 <!-- ![](images/longtermtrendsCS-4.png){height="50%"} -->
 <!-- ![](images/longtermtrendsCS-1.png){height="50%"} -->
-
-
 
 <!-- ## 5 -->
 
@@ -120,27 +88,42 @@ knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/long
 :::
 
 
-##
+## All data trends
 
 ```{r}
+#| echo: false
 tt <- fread("figures/tbl_longterm_trends.dat")
 tt <- tt[var %in% c("DIR_att","HOR_att","GLB_att"), c("var","slope","DATA","slope.stat_sig")]
 tt <- tt[var %in% c("DIR_att","GLB_att"), c("DATA","var","slope","slope.stat_sig")]
 tt$slope <- tt$slope * 100
+setorder(tt,DATA)
+
+tt$var[tt$var == "DIR_att"] <- "Direct Beam"
+tt$var[tt$var == "GLB_att"] <- "Global"
+
 names(tt)[names(tt)=="slope"]          <- "Change per year [%]"
+names(tt)[names(tt)=="var"]            <- "Variable"
 names(tt)[names(tt)=="DATA"]           <- "Sky Cond."
 names(tt)[names(tt)=="slope.stat_sig"] <- "Statistical signif. [%]"
 # pander(tt, emphasize.strong.rows = which(tt$`Statistical signif.` > 90, arr.ind = TRUE))
  
-tt$`Statistical signif. [%]` = cell_spec(tt$`Statistical signif. [%]`, color = ifelse(tt$`Statistical signif. [%]` > 50, "red", "blue"))
+# tt$`Statistical signif. [%]` = cell_spec(tt$`Statistical signif. [%]`, color = ifelse(tt$`Statistical signif. [%]` > 50, "red", "blue"))
 
-kable(tt, digits = 1)
+gcol <- rep(0, nrow(tt) )
+gcol[ (tt$`Statistical signif. [%]` > 50) ] <- "blue"
+
+kable(tt, digits = 1) %>%
+column_spec(which(names(tt) == "Change per year [%]"), bold =      (tt$`Statistical signif. [%]` > 50) ) %>%
+column_spec(which(names(tt) == "Change per year [%]"), strikeout = (tt$`Statistical signif. [%]` < 50) ) %>%
+column_spec(which(names(tt) != "Statistical signif. [%]"), 
+            color = gcol ) 
+
 ```
 
 
 ::: {.notes}
 Ignoring low statistical significance
-the rest show an increasing trend.
+the rest shows an increasing trend for most of the cases
 :::
 
 
