@@ -9,11 +9,22 @@ logo:   "images/LAP3_t_bg.png"
 format:
   revealjs:
     incremental: true
+    chalkboard:  true
 # format: pptx
 # format: beamer
 editor_options: 
   chunk_output_type: console
 ---
+
+
+```{r}
+#| label: setup
+#| echo: false
+#| include: true
+library(data.table)
+library(kableExtra)
+```
+
 
 ## What we measure
 
@@ -87,11 +98,11 @@ table of pers
 
 ::: {layout="[[1,1]]"}
 ```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T)
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png")
 ```
 
 ```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T)
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png")
 ```
 :::
 
@@ -100,18 +111,44 @@ knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/long
 
 ::: {layout="[[1,1]]"}
 ```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-4.png",auto_pdf = T)
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-4.png")
 ```
 
 ```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-1.png",auto_pdf = T)
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-3.png")
 ```
 :::
 
 
+##
+
+```{r}
+tt <- fread("figures/tbl_longterm_trends.dat")
+tt <- tt[var %in% c("DIR_att","HOR_att","GLB_att"), c("var","slope","DATA","slope.stat_sig")]
+tt <- tt[var %in% c("DIR_att","GLB_att"), c("DATA","var","slope","slope.stat_sig")]
+tt$slope <- tt$slope * 100
+names(tt)[names(tt)=="slope"]          <- "Change per year [%]"
+names(tt)[names(tt)=="DATA"]           <- "Sky Cond."
+names(tt)[names(tt)=="slope.stat_sig"] <- "Statistical signif. [%]"
+# pander(tt, emphasize.strong.rows = which(tt$`Statistical signif.` > 90, arr.ind = TRUE))
+ 
+tt$`Statistical signif. [%]` = cell_spec(tt$`Statistical signif. [%]`, color = ifelse(tt$`Statistical signif. [%]` > 50, "red", "blue"))
+
+kable(tt, digits = 1)
+```
 
 
+::: {.notes}
+Ignoring low statistical significance
+the rest show an increasing trend.
+:::
 
+
+# head 1
+
+## head 2
+
+### head 3
 
 
 ## END
