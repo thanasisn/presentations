@@ -6,13 +6,13 @@ date:     "2023-01-18"
 date-format: iso
 footer: "Laboratory of Atmospheric Physics, A.U.Th."
 logo:   "images/LAP3_t_bg.png"
-
 format:
   revealjs:
     incremental: true
-
 # format: pptx
 # format: beamer
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## What we measure
@@ -24,8 +24,7 @@ format:
 ## Rusults
 
 ```{r}
-# knitr::include_graphics("images/LAP3_t_bg.png")
-knitr::include_graphics("images/longtermtrendsALL-4.png",auto_pdf = T)
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T)
 ```
 
 
@@ -38,17 +37,19 @@ knitr::include_graphics("images/longtermtrendsALL-4.png",auto_pdf = T)
 
 ## d
 
-![](images/longtermtrendsALL-4.png)
+![](images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png)
+
+<!-- ![](images/longtermtrendsALL-4.png) -->
 
 ## d
 
-![](images/longtermtrendsALL-1.png)
+<!-- ![](images/longtermtrendsALL-1.png) -->
 
 ## d
-![](images/longtermtrendsCS-4.png)
+<!-- ![](images/longtermtrendsCS-4.png) -->
 
 ## d
-![](images/longtermtrendsCS-1.png)
+<!-- ![](images/longtermtrendsCS-1.png) -->
 
 ## ddd
 
@@ -57,44 +58,60 @@ table of pers
 
 ## 4
 
-![](images/longtermtrendsALL-4.png){height="50%"}
-![](images/longtermtrendsALL-1.png){height="50%"}
-![](images/longtermtrendsCS-4.png){height="50%"}
-![](images/longtermtrendsCS-1.png){height="50%"}
+<!-- ![](images/longtermtrendsALL-4.png){height="50%"} -->
+<!-- ![](images/longtermtrendsALL-1.png){height="50%"} -->
+<!-- ![](images/longtermtrendsCS-4.png){height="50%"} -->
+<!-- ![](images/longtermtrendsCS-1.png){height="50%"} -->
 
 
 
-## 5
+<!-- ## 5 -->
 
-:::: {.columns}
+<!-- :::: {.columns} -->
 
-::: {.column width="50%"}
-![](images/longtermtrendsALL-4.png){height="50%"}
-![](images/longtermtrendsALL-1.png){height="50%"}
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+##  All sky conditions
+
+::: {layout="[[1,1]]"}
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T)
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T)
+```
 :::
 
-::: {.column width="50%"}
-![](images/longtermtrendsCS-4.png){height="50%"}
-![](images/longtermtrendsCS-1.png){height="50%"}
+
+##  Clear sky conditions
+
+::: {layout="[[1,1]]"}
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-4.png",auto_pdf = T)
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-1.png",auto_pdf = T)
+```
 :::
 
-::::
-
-##  dddd
 
 
-::: {layout="[[1,1], [1,1]]"}
-
-![](images/longtermtrendsALL-4.png)
-
-![](images/longtermtrendsCS-4.png)
-
-![](images/longtermtrendsALL-1.png)
-
-![](images/longtermtrendsCS-1.png)
 
 
-:::
 
 
 ## END
