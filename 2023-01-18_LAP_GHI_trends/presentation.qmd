@@ -31,7 +31,7 @@ library(kableExtra)
 
 ## How we measure
 
-## How we prosses
+## How we process
 
 
 
@@ -126,10 +126,23 @@ Ignoring low statistical significance
 the rest shows an increasing trend for most of the cases
 :::
 
-## Is it consistent?
+## Are the trends valid?
+
+Cumulative sum of deseasonalized monthly means.
+
+::: {layout="[[1,1]]"}
+```{r}
+knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png")
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png")
+```
+:::
 
 
 
+## Some more dependencies
 
 
 
