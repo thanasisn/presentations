@@ -144,6 +144,37 @@ knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/c
 
 ## Some more dependencies
 
+6
+21
+36
+51
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png")
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png")
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-51.png")
+```
+
+### ?
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png")
+```
+
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png")
+```
 
 
 
