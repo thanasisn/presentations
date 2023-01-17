@@ -1,6 +1,7 @@
 
 # Presentations
 
-My presentations source files
+My presentations source files.
 
-Towards reproducible results in research
+Towards reproducible results in research.
+

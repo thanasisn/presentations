@@ -160,6 +160,7 @@ In brief...
 - Aggregation
     - Daily
     - Monthly
+- Deseasonalize
 :::
 
 ::::
@@ -380,7 +381,7 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
     - Brightening, last ~30 years
     - On Ground level
     - Also in **Direct Beam Radiation** ^[Short time series for now!]
-- Similar results from other sources.
+- Similar results from other sources
 
 \  
 
@@ -421,6 +422,7 @@ Key term: **"Global Dimming and Brightening"**
     - Aerosol emission patterns
     - ...
     
+
 
 
 
