@@ -46,28 +46,7 @@ library(kableExtra)
 
 
 
-<!-- ![](images/longtermtrendsALL-4.png){height="50%"} -->
-<!-- ![](images/longtermtrendsALL-1.png){height="50%"} -->
-<!-- ![](images/longtermtrendsCS-4.png){height="50%"} -->
-<!-- ![](images/longtermtrendsCS-1.png){height="50%"} -->
 
-<!-- ## 5 -->
-
-<!-- :::: {.columns} -->
-
-<!-- ::: {.column width="50%"} -->
-<!-- ```{r} -->
-<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png",auto_pdf = T) -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ::: {.column width="50%"} -->
-<!-- ```{r} -->
-<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T) -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- :::: -->
 
 ##  All sky conditions
 
@@ -134,152 +113,151 @@ Ignoring low statistical significance
 the rest shows an increasing trend for most of the cases
 :::
 
+
 ## Are the trends valid?
 
-Cumulative sum of deseasonalized monthly means.
+Cumulative sum of deseasonalized monthly means...
+
+:::  {.fragment}
+
 
 ::: {layout="[[1,1]]"}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png")
 ```
-
 ```{r}
 knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png")
 ```
 :::
 
+  
+::: aside
+  
+Monthly means of deseasonlized daily means. Cumulative sum of monthly means. For a specific SZA (63).
+:::
 
 
-## SZA dependency ~ ALL SKY 
+:::
+
+
+
+
+## SZA dependency by Season ~  ALL SKY 
 
 ::: {layout="[[1,1],[1,1]]"}
-```{r}
 
+:::  {.fragment}
+```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png")
 ```
+:::
+
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png")
 ```
+:::
+
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png")
 ```
+:::
+
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png")
 ```
 :::
 
+:::
 
 
-## SZA dependency ~ CLEAR SKY
+## SZA dependency by Season ~  CLEAR SKY
 
 ::: {layout="[[1,1],[1,1]]"}
 
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
 ```
+:::
 
-
-
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-51.png")
 ```
+:::
 
 
-
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png")
 ```
+:::
 
 
-
+:::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-111.png")
 ```
+:::
+
 
 :::
 
 
-# Concluding
-
-## head 2
-
-### head 3
+## Concluding
 
 
-## END
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+:::: {.columns}
 
-## Bullets
+::: {.column width="50%"}
 
-When you click the **Render** button a document will be generated that includes:
+- We observe an **increasing Global Shortwave Radiation**
+    - At Thessaloniki
+    - On Ground level
+    - Also observed in **Direct Beam Radiation**
+- Similar results from other sources for this period.
+:::
 
--   Content authored with markdown
--   Output from executable code
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
+::: {.column width="50%"}
 ```{r}
-1 + 1
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T)
 ```
-
-
-::: {.incremental}
-- Eat spaghetti
-- Drink wine
 :::
 
+::::
 
 
 
-## Slide with a pause
+- Hint on beam irradic
 
-content before the pause
-
-. . .
-
-content after the pause
-
-
-
-## Slide with speaker notes
-
-Slide content
-
-::: {.notes}
-Speaker notes go here. nodfs
-dfs
-fs
-fdsfsdfsf dsfdsfdsfdsfa dsfsaf
-:::
-
-
-
-## Slide Title
-
-Slide content
 
 ::: aside
-Some additional commentary of more peripheral interest.
+Keyword: Global Dimming and Brightening
 :::
 
 
+---
 
-## Slide Title
-
-- Green ^[A footnote]
-- Brown
-- Purple
-
-::: aside
-Some additional commentary of more peripheral interest.
+::: {.r-fit-text}
+\ \ \ \ Thank you ! \ \ \ \ 
 :::
 
+\ 
+\ 
+<style type="text/css">
+  .reveal p {
+    text-align: center;
+  }
+</style>
 
+mail:\ \ <natsisthanasis@gmail.com>
 
-
+The presentation will be available here (hopefully):
 <https://github.com/thanasisn/presentations>
+
 
 
