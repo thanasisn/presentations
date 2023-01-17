@@ -17,3 +17,9 @@ $presentation-h2-font-size: 1.2em;
   color: #00000055;
 }
 
+.reveal .slide-logo {
+  height: 60px !important;
+  width:  60px !important;
+  max-width:  unset !important;
+  max-height: unset !important;
+}

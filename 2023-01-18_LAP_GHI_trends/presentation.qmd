@@ -19,6 +19,7 @@ format:
     min-scale:    0.1
     max-scale:    5
     # slide-number: true
+    # self-contained: true
     auto-stretch: true
     linestretch:  1.3
 
@@ -53,14 +54,13 @@ library(kableExtra)
 ```
 
 
-## What we measure
 
+
+## What we measure
 
 ![](images/Illustration-of-a-pyranometer-a-and-a-pyrheliometer.png)
 
-
 :::: {.columns}
-
 ::: {.column width="50%"}
 **GHI** or *Global*
 
@@ -72,7 +72,6 @@ Global Horizontal Irradiance
 
 Direct Normal Irradiance
 :::
-
 ::::
 
 \ 
@@ -82,8 +81,9 @@ Image:  https://www.sevensensor.com/what-is-pyranometer
 :::
 
 
-## What we measure
 
+
+## What we measure
 
 ### Typical spectral response
 
@@ -105,11 +105,11 @@ Mubarak R, Schilke H, Seckmeyer G. Improving the Irradiance Data Measured by Sil
 :::
 
 
+
+
 ## Have you seen those on the roof?
 
-
 :::: {.columns}
-
 ::: {.column width="50%"}
 
 ![](images/cm21.png)
@@ -119,12 +119,10 @@ Mubarak R, Schilke H, Seckmeyer G. Improving the Irradiance Data Measured by Sil
 
 ![](images/P1110595e2.png)
 :::
-
 ::::
 
 
 :::: {.columns}
-
 ::: {.column width="50%"}
 **Pyranometer CM-21.**
 
@@ -136,9 +134,7 @@ Global Horizontal Irradiance
 
 Direct Normal Irradiance
 :::
-
 ::::
-
 
 
 
@@ -171,8 +167,6 @@ In brief...
 \ 
 \ 
 
-
-
 ::: aside
 :::  {.fragment}
 \ 
@@ -182,7 +176,10 @@ If you use CM-21 data, ask for an update, or wait for refresh on `sirena`
 
 
 
+
 # Results
+
+
 
 
 
@@ -198,21 +195,24 @@ Each point is an aggregated monthly value
 
 
 
-<!-- ##  All sky conditions  -->
-
-<!-- ::: {layout="[[1,1]]"} -->
-
-<!-- ```{r} -->
-<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png") -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png") -->
-<!-- ``` -->
-<!-- ::: -->
 
 
-##  Clear sky conditions
+##  All sky conditions {visibility="hidden"} 
+
+::: {layout="[[1,1]]"}
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png")
+```
+
+```{r}
+knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png")
+```
+:::
+
+
+
+
+##  Clear sky conditions Global Irradiance
 
 ::: {style="text-align: center; font-size: 1em; line-height: -2em"}
 ::: {layout="[[1,1]]"}
@@ -221,6 +221,8 @@ Each point is an aggregated monthly value
 ![Direct](images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-3.png)
 :::
 :::
+
+
 
 
 ## All data trends
@@ -261,29 +263,34 @@ the rest shows an increasing trend for most of the cases
 :::
 
 
+
+
 ## Are the trends consistent ?
 
 Cumulative sum of deseasonalized monthly means...
 
+::::: {style="text-align: center"}
+
+:::: {layout-ncol=2}
 ::: {.fragment}
-::: {style="text-align: center"}
-
-::: {layout-ncol=2}
-![All Sky Cumulative trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png)
-
-![Clear Sky Cumulative trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png)
+![All Sky Cumulative Global trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png)
 :::
 
+::: {.fragment}
+![Clear Sky Cumulative Global trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png)
+:::
+::::
+
 \ 
 \ 
 
+:::::
+
+::: {.fragment}
 ::: aside
 Monthly means of deseasonalized daily means.  Cumulative sum of monthly means.  For a specific SZA (63).
 :::
-
 :::
-:::
-
 
 
 
@@ -328,10 +335,12 @@ Monthly means of deseasonalized daily means.  Cumulative sum of monthly means.  
 :::
 :::
 
+
+
+
 ## SZA dependency by Season :: CLEAR SKY {visibility="hidden"} 
 
 ::: {layout="[[1,1],[1,1]]"}
-
 :::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
@@ -344,48 +353,50 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 ```
 :::
 
-
 :::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png")
 ```
 :::
 
-
 :::  {.fragment}
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-111.png")
 ```
 :::
-
-
 :::
 
 
-## Concluding
 
-### We observed:
+
+# Concluding
+
+---
+
+### We observed
 
 - An **increasing Global Shortwave Radiation**
     - Thessaloniki 
     - Brightening, last ~30 years
     - On Ground level
-    - Also in **Direct Beam Radiation** ^[Short time series yet!]
+    - Also in **Direct Beam Radiation** ^[Short time series for now!]
 - Similar results from other sources.
 
- 
 \  
+
  
 
 
-## Concluding
+
+---
 
 ### We care
 
-- Depends on Anthropocentric activities
+- Depends on Anthropogenic activities
     - Aerosols ...
-- Dimming on other time scales/regions
-- Effects Climate
+- It is not global    
+    - Dimming on other time scales/regions
+- Effects 
     - Radiation balance
     - Modeling
     - Solar productivity
@@ -393,23 +404,23 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 \ 
 
 ::: aside
-Key term: **Global Dimming and Brightening**
+Key term: **"Global Dimming and Brightening"**
 :::
 
 
-## Concluding
+
+
+---
 
 ### We want to
 
 - Understand what drives the phenomenon in Thessaloniki
-    - What dependencies can find with other factors/causes
+    - Find links with other factors/causes
 - Is there any other locally useful information
     - Weather patterns
     - Aerosol emission patterns
     - ...
     
-
-
 
 
 
@@ -419,8 +430,9 @@ Key term: **Global Dimming and Brightening**
 \ \ \ \ Thank you ! \ \ \ \ 
 :::
 
-\ 
-\ 
+\  
+\  
+\  
 <style type="text/css">
   .reveal p { text-align: center;
 } </style>
@@ -430,19 +442,4 @@ mail:\ \ <natsisthanasis@gmail.com>
 The presentation will be available here (hopefully):
 <https://github.com/thanasisn/presentations>
 
-
-
-## test
-
-::: {style="font-size: 1.5em; text-align: center"}
-text
-
-text
-
-text
-:::
-
-
-
-[executable code]{.grey}
 
