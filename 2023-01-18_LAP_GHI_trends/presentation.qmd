@@ -16,7 +16,10 @@ format:
     margin:       0.03
     width:        960
     height:       900
+    min-scale:    0.1
+    max-scale:    5
     slide-number: true
+    auto-stretch: true
 
 # format: pptx
 # format: beamer
@@ -283,20 +286,30 @@ Monthly means of deseasonlized daily means.  Cumulative sum of monthly means.  F
 ::::
 
 
+![](image1.png){.fragment width="450" height="300"}
+
+![](image2.png){.fragment width="300" height="450"}
+
+![](image3.png){.fragment width="400" height="400"}
+:::
 
 
 
 ## SZA dependency by Season ~  ALL SKY 
 
-::: {style="text-align: center; font-size: 1em; line-height: 1em"}
+::: {style="text-align: center; font-size: 1em; line-height: -2em"}
 ::: {layout="[[1,1],[1,1]]"}
 
 :::  {.fragment}
-![Winter](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png)
+::: {.r-stack}
+![](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png)
+Winter
+:::
 :::
 
 :::  {.fragment}
-![Spring](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png)
+![](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png)
+Spring
 :::
 
 :::  {.fragment}
@@ -304,9 +317,7 @@ Monthly means of deseasonlized daily means.  Cumulative sum of monthly means.  F
 :::
 
 :::  {.fragment}
-```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png")
-```
+![Autumn](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png)
 :::
 
 :::
@@ -410,10 +421,8 @@ Keyword: Global Dimming and Brightening
 \ 
 \ 
 <style type="text/css">
-  .reveal p {
-    text-align: center;
-  }
-</style>
+  .reveal p { text-align: center;
+} </style>
 
 mail:\ \ <natsisthanasis@gmail.com>
 

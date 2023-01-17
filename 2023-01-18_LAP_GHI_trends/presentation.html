@@ -567,29 +567,24 @@ Athanasios Natsis
 <p>&nbsp; &nbsp;</p>
 
 </div>
+<p><img data-src="image1.png" class="fragment" width="450" height="300"></p>
+<p><img data-src="image2.png" class="fragment" width="300" height="450"></p>
+<p><img data-src="image3.png" class="fragment" width="400" height="400"> :::</p>
 <aside><div>
 <p>Monthly means of deseasonlized daily means. Cumulative sum of monthly means. For a specific SZA (63).</p>
 </div></aside></section>
 <section id="sza-dependency-by-season-all-sky" class="slide level2 center">
 <h2>SZA dependency by Season ~ ALL SKY</h2>
-<div style="text-align: center; font-size: 1em; line-height: 1em">
+<div style="text-align: center; font-size: 1em; line-height: -2em">
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png"></p>
-<p></p><figcaption>Winter</figcaption><p></p>
-</figure>
+<div class="r-stack">
+<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png"> Winter</p>
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png"></p>
-<p></p><figcaption>Spring</figcaption><p></p>
-</figure>
-</div>
+<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png"> Spring</p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -602,10 +597,11 @@ Athanasios Natsis
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png" width="672"></p>
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png"></p>
+<p></p><figcaption>Autumn</figcaption><p></p>
+</figure>
 </div>
 </div>
 </div>
@@ -676,10 +672,8 @@ Athanasios Natsis
 </div>
 &nbsp; &nbsp;
 <style type="text/css">
-  .reveal p {
-    text-align: center;
-  }
-</style>
+  .reveal p { text-align: center;
+} </style>
 <p>mail:&nbsp;&nbsp;<a href="mailto:natsisthanasis@gmail.com" class="email">natsisthanasis@gmail.com</a></p>
 <p>The presentation will be available here (hopefully): <a href="https://github.com/thanasisn/presentations" class="uri">https://github.com/thanasisn/presentations</a></p>
 </section>
@@ -881,6 +875,11 @@ Athanasios Natsis
 
         // Factor of the display size that should remain empty around the content
         margin: 3.0e-2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.1,
+
+        maxScale: 5,
 
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
