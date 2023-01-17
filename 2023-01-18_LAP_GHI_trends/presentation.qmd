@@ -8,6 +8,7 @@ footer: "Laboratory of Atmospheric Physics, A.U.Th."
 logo:   "images/LAP3_t_bg.png"
 format:
   revealjs:
+    theme:       [white, style.css]
     incremental: true
     chalkboard:  true
     progress:    true
@@ -149,11 +150,11 @@ knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/c
 
 
 
-## SZA dependency for all sky conditions
+## SZA dependency ~ ALL SKY 
 
 ::: {layout="[[1,1],[1,1]]"}
 ```{r}
-# out-height: "200px"
+
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png")
 ```
 ```{r}
@@ -169,7 +170,7 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 
 
 
-## SZA dependency for Clear sky conditions
+## SZA dependency ~ CLEAR SKY
 
 ::: {layout="[[1,1],[1,1]]"}
 
@@ -177,13 +178,19 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
 ```
 
+
+
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-51.png")
 ```
 
+
+
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png")
 ```
+
+
 
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-111.png")
@@ -191,7 +198,8 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 
 :::
 
-# head 1
+
+# Concluding
 
 ## head 2
 
@@ -223,7 +231,6 @@ When you click the **Render** button a presentation will be generated that inclu
 - Drink wine
 :::
 
-dd
 
 
 
@@ -235,19 +242,6 @@ content before the pause
 
 content after the pause
 
-## colunmbs
-
-:::: {.columns}
-
-::: {.column width="40%"}
-Left column
-:::
-
-::: {.column width="60%"}
-Right column
-:::
-
-::::
 
 
 ## Slide with speaker notes
