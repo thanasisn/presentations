@@ -43,6 +43,9 @@ editor_options:
 ---
 
 
+
+
+
 # Introduction
 
 ```{r}
@@ -52,6 +55,7 @@ editor_options:
 library(data.table)
 library(kableExtra)
 ```
+
 
 
 
@@ -83,6 +87,7 @@ Image:  https://www.sevensensor.com/what-is-pyranometer
 
 
 
+
 ## What we measure
 
 ### Typical spectral response
@@ -103,6 +108,7 @@ Image:  https://www.sevensensor.com/what-is-pyranometer
 \  
 Mubarak R, Schilke H, Seckmeyer G. Improving the Irradiance Data Measured by Silicon-Based Sensors. Energies. 2021; doi:10.3390/en14102766
 :::
+
 
 
 
@@ -135,6 +141,7 @@ Global Horizontal Irradiance
 Direct Normal Irradiance
 :::
 ::::
+
 
 
 
@@ -178,6 +185,7 @@ If you use CM-21 data, ask for an update, or wait for refresh on `sirena`
 
 
 
+
 # Results
 
 
@@ -213,6 +221,7 @@ knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/long
 
 
 
+
 ##  Clear sky conditions Global Irradiance
 
 ::: {style="text-align: center; font-size: 1em; line-height: -2em"}
@@ -222,6 +231,7 @@ knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/long
 ![Direct](images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-3.png)
 :::
 :::
+
 
 
 
@@ -257,11 +267,11 @@ column_spec(which(names(tt) != "Statistical signif. [%]"),
             color = gcol ) 
 ```
 
-
 ::: {.notes}
 Ignoring low statistical significance
 the rest shows an increasing trend for most of the cases
 :::
+
 
 
 
@@ -292,6 +302,7 @@ Cumulative sum of deseasonalized monthly means...
 Monthly means of deseasonalized daily means.  Cumulative sum of monthly means.  For a specific SZA (63).
 :::
 :::
+
 
 
 
@@ -339,6 +350,7 @@ Monthly means of deseasonalized daily means.  Cumulative sum of monthly means.  
 
 
 
+
 ## SZA dependency by Season :: CLEAR SKY {visibility="hidden"} 
 
 ::: {layout="[[1,1],[1,1]]"}
@@ -370,13 +382,18 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 
 
 
+
 # Concluding
+
+
+
+
 
 ---
 
 ### We observed
 
-- An **increasing Global Shortwave Radiation**
+- An **increasing trend of Global Shortwave Radiation**
     - Thessaloniki 
     - Brightening, last ~30 years
     - On Ground level
@@ -385,7 +402,7 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 
 \  
 
- 
+
 
 
 
@@ -411,6 +428,7 @@ Key term: **"Global Dimming and Brightening"**
 
 
 
+
 ---
 
 ### We want to
@@ -421,7 +439,7 @@ Key term: **"Global Dimming and Brightening"**
     - Weather patterns
     - Aerosol emission patterns
     - ...
-    
+
 
 
 
@@ -443,5 +461,9 @@ mail:\ \ <natsisthanasis@gmail.com>
 
 The presentation will be available here (hopefully):
 <https://github.com/thanasisn/presentations>
+
+
+
+
 
 
