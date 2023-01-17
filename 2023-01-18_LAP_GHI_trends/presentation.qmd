@@ -254,26 +254,23 @@ the rest shows an increasing trend for most of the cases
 
 Cumulative sum of deseasonalized monthly means...
 
-:::  {.fragment}
+:::: {style="text-align: center"}
+:::: {.fragment}
+::: {layout-ncol=2}
+![All Sky Cummulative trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png)
 
-
-::: {layout="[[1,1]]"}
-```{r}
-knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png")
-```
-```{r}
-knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png")
-```
-:::
-
-:::: {.columns}
-::: {.column width="50%"}
-**All sky, Direct**
-:::
-::: {.column width="50%"}
-**Clear sky Direct**
+![Clear Sky Cummulative trend](images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png)
 :::
 ::::
+
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="50%"} -->
+<!-- **All sky, Direct** -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- **Clear sky Direct** -->
+<!-- ::: -->
+<!-- :::: -->
 
 
 \  
@@ -283,32 +280,27 @@ knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/c
 Monthly means of deseasonlized daily means.  Cumulative sum of monthly means.  For a specific SZA (63).
 :::
 
+::::
 
-:::
 
 
 
 
 ## SZA dependency by Season ~  ALL SKY 
 
+::: {style="text-align: center; font-size: 1em; line-height: 1em"}
 ::: {layout="[[1,1],[1,1]]"}
 
 :::  {.fragment}
-```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png")
-```
+![Winter](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png)
 :::
 
 :::  {.fragment}
-```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png")
-```
+![Spring](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png)
 :::
 
 :::  {.fragment}
-```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png")
-```
+![Summer](images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png)
 :::
 
 :::  {.fragment}
@@ -318,7 +310,7 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 :::
 
 :::
-
+:::
 
 ## SZA dependency by Season ~ CLEAR SKY {visibility="hidden"} 
 
@@ -430,3 +422,12 @@ The presentation will be available here (hopefully):
 
 
 
+## test
+
+::: {style="font-size: 1.5em; text-align: center"}
+text
+
+text
+
+text
+:::
