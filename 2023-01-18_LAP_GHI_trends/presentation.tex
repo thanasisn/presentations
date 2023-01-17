@@ -100,6 +100,20 @@
 \def\fps@figure{htbp}
 \makeatother
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \makeatletter
 \makeatother
 \makeatletter
@@ -169,80 +183,160 @@
 
 \title{Investigation of direct and global downward sort-wave radiation
 over Thessaloniki}
-\subtitle{Includes newest trends!}
+\subtitle{Including the newest trends!}
 \author{Athanasios Natsis}
 \date{2023-01-18}
 \logo{\includegraphics{images/LAP3\_t\_bg.png}}
 
 \begin{document}
 \frame{\titlepage}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, sharp corners, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, breakable, boxrule=0pt, enhanced, frame hidden, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
 
-\begin{frame}{What we measure}
+\begin{frame}{Introduction}
+\protect\hypertarget{introduction}{}
+\begin{block}{What we measure}
 \protect\hypertarget{what-we-measure}{}
-\end{frame}
+\includegraphics{images/Illustration-of-a-pyranometer-a-and-a-pyrheliometer.png}
 
-\begin{frame}{How we measure}
-\protect\hypertarget{how-we-measure}{}
-\end{frame}
-
-\begin{frame}{How we prosses}
-\protect\hypertarget{how-we-prosses}{}
-\end{frame}
-
-\begin{frame}{Rusults}
-\protect\hypertarget{rusults}{}
-\includegraphics{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.pdf}
-\end{frame}
-
-\begin{frame}{3}
-\protect\hypertarget{section}{}
-\end{frame}
-
-\begin{frame}{d}
-\protect\hypertarget{d}{}
-\includegraphics{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png}
-\end{frame}
-
-\begin{frame}{d}
-\protect\hypertarget{d-1}{}
-\end{frame}
-
-\begin{frame}{d}
-\protect\hypertarget{d-2}{}
-\end{frame}
-
-\begin{frame}{d}
-\protect\hypertarget{d-3}{}
-\end{frame}
-
-\begin{frame}{ddd}
-\protect\hypertarget{ddd}{}
-table of pers
-\end{frame}
-
-\begin{frame}{4}
-\protect\hypertarget{section-1}{}
-\end{frame}
-
-\begin{frame}{5}
-\protect\hypertarget{section-2}{}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
+\textbf{GHI} or \emph{Global}
+
+Global Horizontal Irradiance
 \end{column}
 
 \begin{column}{0.5\textwidth}
+\textbf{DNI} or \emph{Direct}
+
+Direct Normal Irradiance
 \end{column}
 \end{columns}
+
+~
+
+\marginnote{\begin{footnotesize}
+
+Image: https://www.sevensensor.com/what-is-pyranometer
+
+\end{footnotesize}}
+\end{block}
 \end{frame}
 
-\begin{frame}{dddd}
-\protect\hypertarget{dddd}{}
+\begin{frame}[fragile]
+\begin{block}{Typical spectral responce}
+\protect\hypertarget{typical-spectral-responce}{}
+\includegraphics{images/energies-14-02766-g003.webp}
+
+~ ~ ~ ~ ~ ~
+
+\marginnote{\begin{footnotesize}
+
+~ Mubarak R, Schilke H, Seckmeyer G. Improving the Irradiance Data
+Measured by Silicon-Based Sensors. Energies. 2021; 14(10):2766.
+doi:10.3390/en14102766
+
+\end{footnotesize}}
+\end{block}
+
+\begin{block}{Have you seen those on the roof?}
+\protect\hypertarget{have-you-seen-those-on-the-roof}{}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\includegraphics{images/cm21.png}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\includegraphics{images/P1110595e2.png}
+\end{column}
+\end{columns}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{Pyranometer CM-21.}
+
+Global Horizontal Irradiance
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Pyrheliometer CHP-1}
+
+Direct Normal Irradiance
+\end{column}
+\end{columns}
+\end{block}
+
+\begin{block}{How we processed data here}
+\protect\hypertarget{how-we-processed-data-here}{}
+In brief\ldots{}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\tightlist
+\item
+  Raw data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Inspect / Clean
+  \item
+    Convert to Watt/m\textsuperscript{2}
+  \item
+    Quality control
+  \end{itemize}
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+\tightlist
+\item
+  Data grouping
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All Sky conditions
+  \item
+    Clear Sky conditions
+  \end{itemize}
+\item
+  Aggregation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Daily
+  \item
+    Monthly
+  \end{itemize}
+\end{itemize}
+\end{column}
+\end{columns}
+
+~ ~
+
+\marginnote{\begin{footnotesize}
+
+~ If you use CM-21 data, ask for an update, or wait for refresh on
+\texttt{sirena}
+
+\end{footnotesize}}
+\end{block}
+\end{frame}
+
+\begin{frame}{Results}
+\protect\hypertarget{results}{}
+\begin{block}{All sky conditions}
+\protect\hypertarget{all-sky-conditions}{}
 \begin{figure}
 
 \begin{minipage}[t]{0.50\linewidth}
 
 {\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png}
 
 }
 
@@ -251,6 +345,120 @@ table of pers
 \begin{minipage}[t]{0.50\linewidth}
 
 {\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png}
+
+}
+
+\end{minipage}%
+
+\end{figure}
+\end{block}
+
+\begin{block}{Clear sky conditions}
+\protect\hypertarget{clear-sky-conditions}{}
+\begin{figure}
+
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-4.png}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsCS-3.png}
+
+}
+
+\end{minipage}%
+
+\end{figure}
+\end{block}
+
+\begin{block}{All data trends}
+\protect\hypertarget{all-data-trends}{}
+\begin{tabular}{>{}l|>{}l|>{}r|r}
+\hline
+Sky Cond. & Variable & Change per year [\%] & Statistical signif. [\%]\\
+\hline
+\textcolor{0}{ALL} & \textcolor{0}{Direct Beam} & \textcolor{0}{\sout{12.5}} & 12.0\\
+\hline
+\textcolor{blue}{ALL} & \textcolor{blue}{Global} & \textcolor{blue}{\textbf{40.9}} & 100.0\\
+\hline
+\textcolor{blue}{CLEAR} & \textcolor{blue}{Direct Beam} & \textcolor{blue}{\textbf{37.9}} & 98.6\\
+\hline
+\textcolor{blue}{CLEAR} & \textcolor{blue}{Global} & \textcolor{blue}{\textbf{24.9}} & 100.0\\
+\hline
+\end{tabular}
+
+\note{Ignoring low statistical significance the rest shows an increasing
+trend for most of the cases}
+\end{block}
+
+\begin{block}{Are the trends consistent ?}
+\protect\hypertarget{are-the-trends-consistent}{}
+Cumulative sum of deseasonalized monthly means\ldots{}
+
+\begin{figure}
+
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-1.png}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_3_trends_consistency_files/figure-html/cumulativesums-4.png}
+
+}
+
+\end{minipage}%
+
+\end{figure}
+
+~
+
+\marginnote{\begin{footnotesize}
+
+Monthly means of deseasonlized daily means. Cumulative sum of monthly
+means. For a specific SZA (63).
+
+\end{footnotesize}}
+\end{block}
+
+\begin{block}{SZA dependency by Season \textasciitilde{} ALL SKY}
+\protect\hypertarget{sza-dependency-by-season-all-sky}{}
+\begin{figure}
+
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png}
 
 }
 
@@ -260,6 +468,8 @@ table of pers
 
 {\centering 
 
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png}
+
 }
 
 \end{minipage}%
@@ -268,113 +478,179 @@ table of pers
 
 {\centering 
 
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png}
+
 }
 
 \end{minipage}%
 
 \end{figure}
-\end{frame}
+\end{block}
 
-\begin{frame}{END}
-\protect\hypertarget{end}{}
-Quarto enables you to weave together content and executable code into a
-finished presentation. To learn more about Quarto presentations see
-\url{https://quarto.org/docs/presentations/}.
-\end{frame}
+\begin{block}{SZA dependency by Season \textasciitilde{} CLEAR SKY}
+\protect\hypertarget{sza-dependency-by-season-clear-sky}{}
+\begin{figure}
 
-\begin{frame}{Bullets}
-\protect\hypertarget{bullets}{}
-When you click the \textbf{Render} button a document will be generated
-that includes:
+\begin{minipage}[t]{0.50\linewidth}
 
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-51.png}
+
+}
+
+\end{minipage}%
+\newline
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\includegraphics[width=4.48in,height=\textheight]{images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-111.png}
+
+}
+
+\end{minipage}%
+
+\end{figure}
+\end{block}
+
+\begin{block}{Concluding}
+\protect\hypertarget{concluding}{}
+\begin{block}{We observed:}
+\protect\hypertarget{we-observed}{}
 \begin{itemize}
 \tightlist
 \item
-  Content authored with markdown
-\item
-  Output from executable code
-\end{itemize}
-\end{frame}
+  We observe an \textbf{increasing Global Shortwave Radiation}
 
-\begin{frame}[fragile]{Code}
-\protect\hypertarget{code}{}
-When you click the \textbf{Render} button a presentation will be
-generated that includes both content and the output of embedded code.
-You can embed code like this:
-
-\begin{verbatim}
-[1] 2
-\end{verbatim}
-
-\begin{itemize}[<+->]
-\tightlist
+  \begin{itemize}
+  \tightlist
+  \item
+    Thessaloniki
+  \item
+    Brightening, last \textasciitilde30 years
+  \item
+    On Ground level
+  \item
+    Also in \textbf{Direct Beam Radiation} \footnote<.->{Short time
+      series yet!}
+  \end{itemize}
 \item
-  Eat spaghetti
-\item
-  Drink wine
+  Similar results from other sources.
 \end{itemize}
 
-dd
-\end{frame}
+~ ~
+\end{block}
+\end{block}
 
-\begin{frame}{Slide with a pause}
-\protect\hypertarget{slide-with-a-pause}{}
-content before the pause
-
-\pause
-
-content after the pause
-\end{frame}
-
-\begin{frame}{colunmbs}
-\protect\hypertarget{colunmbs}{}
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
-Left column
-\end{column}
-
-\begin{column}{0.6\textwidth}
-Right column
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Slide with speaker notes}
-\protect\hypertarget{slide-with-speaker-notes}{}
-Slide content
-
-\note{Speaker notes go here. nodfs dfs fs fdsfsdfsf dsfdsfdsfdsfa
-dsfsaf}
-\end{frame}
-
-\begin{frame}{Slide Title}
-\protect\hypertarget{slide-title}{}
-Slide content
-
-\marginnote{\begin{footnotesize}
-
-Some additional commentary of more peripheral interest.
-
-\end{footnotesize}}
-\end{frame}
-
-\begin{frame}{Slide Title}
-\protect\hypertarget{slide-title-1}{}
+\begin{block}{Concluding}
+\protect\hypertarget{concluding-1}{}
+\begin{block}{We care}
+\protect\hypertarget{we-care}{}
 \begin{itemize}
 \tightlist
 \item
-  Green \footnote<.->{A footnote}
+  Depends on Anthropocentric activities
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Aerosols \ldots{}
+  \end{itemize}
 \item
-  Brown
+  Dimming on other time scales/regions
 \item
-  Purple
+  Effects Climate
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Radiation balance
+  \item
+    Modeling
+  \item
+    Solar productivity
+  \end{itemize}
 \end{itemize}
+
+~
 
 \marginnote{\begin{footnotesize}
 
-Some additional commentary of more peripheral interest.
+Key term: \textbf{Global Dimming and Brightening}
 
 \end{footnotesize}}
+\end{block}
+\end{block}
+
+\begin{block}{Concluding}
+\protect\hypertarget{concluding-2}{}
+\begin{block}{We want to}
+\protect\hypertarget{we-want-to}{}
+\begin{itemize}
+\tightlist
+\item
+  Understand what drives the phenomenon in Thessaloniki
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What dependencies can find with other factors/causes
+  \end{itemize}
+\item
+  Is there any other locally useful information
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Weather patterns
+  \item
+    Aerosol emission patterns
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+~
+
+\marginnote{\begin{footnotesize}
+
+Keyword: Global Dimming and Brightening
+
+\end{footnotesize}}
+\end{block}
+\end{block}
+\end{frame}
+
+\begin{frame}
+~~~~Thank you ! ~~~~
+
+~ ~
+
+mail:~~\href{mailto:natsisthanasis@gmail.com}{\nolinkurl{natsisthanasis@gmail.com}}
+
+The presentation will be available here (hopefully):
+\url{https://github.com/thanasisn/presentations}
 \end{frame}
 
 
