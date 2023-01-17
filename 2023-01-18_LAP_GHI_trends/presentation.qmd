@@ -10,6 +10,12 @@ format:
   revealjs:
     incremental: true
     chalkboard:  true
+    progress:    true
+    center:      true
+    margin:      0.03
+    width:       960
+    height:      900
+
 # format: pptx
 # format: beamer
 editor_options: 
@@ -65,6 +71,7 @@ library(kableExtra)
 ##  All sky conditions
 
 ::: {layout="[[1,1]]"}
+
 ```{r}
 knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png")
 ```
@@ -142,41 +149,47 @@ knitr::include_graphics("images/DHI_GHI_3_trends_consistency_files/figure-html/c
 
 
 
-## Some more dependencies
+## SZA dependency for all sky conditions
 
-6
-21
-36
-51
-
+::: {layout="[[1,1],[1,1]]"}
 ```{r}
+# out-height: "200px"
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-6.png")
 ```
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png")
+```
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png")
+```
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-96.png")
+```
+:::
+
+
+
+## SZA dependency for Clear sky conditions
+
+::: {layout="[[1,1],[1,1]]"}
 
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
 ```
 
 ```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-36.png")
-```
-
-```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-51.png")
 ```
-
-### ?
-
-```{r}
-knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-66.png")
-```
-
 
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-81.png")
 ```
 
+```{r}
+knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-111.png")
+```
 
+:::
 
 # head 1
 
