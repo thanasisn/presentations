@@ -6,6 +6,14 @@
 /* $body-color: #101010; */
 /* $link-color: #42affa; */
 
+$presentation-h1-font-size: 2em;
+
 $presentation-h2-font-size: 1.2em;
 
 /*-- scss:rules --*/
+
+
+.grey {
+  color: #00000055;
+}
+
