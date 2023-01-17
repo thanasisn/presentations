@@ -23,7 +23,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-# Intro
+# Introduction
 
 ```{r}
 #| label:   setup
@@ -36,7 +36,57 @@ library(kableExtra)
 
 ## What we measure
 
+<!-- https://www.sevensensor.com/what-is-pyranometer -->
+
+![](images/Illustration-of-a-pyranometer-a-and-a-pyrheliometer.png)
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**GHI** or *Global*
+
+Global Horizontal Irradiance
+:::
+
+::: {.column width="50%"}
+**DNI** or *Direct*
+
+Direct Normal Irradiance
+:::
+
+:::
+
+\ 
+
+::: aside
+Image:  https://www.sevensensor.com/what-is-pyranometer
+:::
+
+
+----
+
+### Typical spectral responce
+
+![](images/energies-14-02766-g003.webp)
+
+\ 
+\ 
+\ 
+\ 
+
+
+::: aside
+Mubarak R, Schilke H, Seckmeyer G. Improving the Irradiance Data Measured by Silicon-Based Sensors. Energies. 2021; 14(10):2766. https://doi.org/10.3390/en14102766
+:::
+
+
+
+
 ## How we measure
+
+
+
 
 ## How we process
 
@@ -209,35 +259,57 @@ knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrends
 
 ## Concluding
 
-
-
-:::: {.columns}
-
-::: {.column width="50%"}
+### We observed:
 
 - We observe an **increasing Global Shortwave Radiation**
-    - At Thessaloniki
+    - Thessaloniki 
+    - Brightening, last ~30 years
     - On Ground level
-    - Also observed in **Direct Beam Radiation**
-- Similar results from other sources for this period.
-:::
+    - Also in **Direct Beam Radiation** ^[Short time series yet!]
+- Similar results from other sources.
 
-::: {.column width="50%"}
-```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-1.png",auto_pdf = T)
-```
-:::
-
-::::
+\ 
+\ 
 
 
+## Concluding
 
-- Hint on beam irradic
+### We care
 
+
+- Depends on Anthropocentric activities
+    - Aerosols ...
+- Dimming on other time scales/regions
+- Effects Climate
+    - Radiation balance
+    - Modeling
+    - Solar productivity
+
+\ 
 
 ::: aside
 Keyword: Global Dimming and Brightening
 :::
+
+
+## Concluding
+
+### We want to
+
+- Understand what drives the phenomenon in Thessaloniki
+    - What dependencies can find with other factors/causes
+- Is there any other locally useful information
+    - Weather patterns
+    - Aerosol emission patterns
+    - ...
+    
+\ 
+
+::: aside
+Keyword: Global Dimming and Brightening
+:::
+
+
 
 
 ---
