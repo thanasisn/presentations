@@ -447,20 +447,22 @@ Key term: **"Global Dimming and Brightening"**
 ---
 
 ::: {.r-fit-text}
-\ \ \ \ Thank you ! \ \ \ \ 
+\ \ \ \ Thank you !\ \ \ \  
 :::
 
+
 \  
+
 \  
-\  
+
 <style type="text/css">
   .reveal p { text-align: center;
 } </style>
 
 mail:\ \ <natsisthanasis@gmail.com>
 
-The presentation will be available here (hopefully):
-<https://github.com/thanasisn/presentations>
+The presentation will be available here:
+[github.com/thanasisn/presentations](https://github.com/thanasisn/presentations)
 
 
 
