@@ -206,17 +206,17 @@ Each point is an aggregated monthly value
 
 
 
-##  All sky conditions {visibility="hidden"} 
+<!-- ##  All sky conditions {visibility="hidden"}  -->
 
-::: {layout="[[1,1]]"}
-```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png")
-```
+<!-- ::: {layout="[[1,1]]"} -->
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-4.png") -->
+<!-- ``` -->
 
-```{r}
-knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png")
-```
-:::
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/longtermtrendsALL-3.png") -->
+<!-- ``` -->
+<!-- ::: -->
 
 
 
@@ -243,7 +243,7 @@ knitr::include_graphics("images/DHI_GHI_1_longterm_trends_files/figure-html/long
 tt <- fread("figures/tbl_longterm_trends.dat")
 tt <- tt[var %in% c("DIR_att","HOR_att","GLB_att"), c("var","slope","DATA","slope.stat_sig")]
 tt <- tt[var %in% c("DIR_att","GLB_att"), c("DATA","var","slope","slope.stat_sig")]
-tt$slope <- tt$slope * 100
+# tt$slope <- tt$slope * 100
 setorder(tt,DATA)
 
 tt$var[tt$var == "DIR_att"] <- "Direct Beam"
@@ -260,7 +260,7 @@ names(tt)[names(tt)=="slope.stat_sig"] <- "Statistical signif. [%]"
 gcol <- rep(0, nrow(tt) )
 gcol[ (tt$`Statistical signif. [%]` > 50) ] <- "blue"
 
-kable(tt, digits = 1) %>%
+kable(tt, digits = 2) %>%
 column_spec(which(names(tt) == "Change per year [%]"), bold =      (tt$`Statistical signif. [%]` > 50) ) %>%
 column_spec(which(names(tt) == "Change per year [%]"), strikeout = (tt$`Statistical signif. [%]` < 50) ) %>%
 column_spec(which(names(tt) != "Statistical signif. [%]"), 
@@ -355,6 +355,7 @@ Monthly means of deseasonalized daily means.  Cumulative sum of monthly means.  
 
 ::: {layout="[[1,1],[1,1]]"}
 :::  {.fragment}
+
 ```{r}
 knitr::include_graphics("images/DHI_GHI_2_sza_trends_files/figure-html/szatrendsseas-21.png")
 ```
