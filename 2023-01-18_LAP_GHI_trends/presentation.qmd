@@ -6,11 +6,12 @@ date:     "2023-01-18"
 date-format: iso
 footer: "Laboratory of Atmospheric Physics, A.U.Th."
 logo:   "images/LAP3_t_bg.png"
+
 format:
   revealjs:
     theme:          [beige, style.css]
-    incremental:    false
-    chalkboard:     false
+    incremental:    false    ## true to present
+    chalkboard:     false    ## true to present
     progress:       true
     center:         true
     margin:         0.03
@@ -19,7 +20,7 @@ format:
     min-scale:      0.1
     max-scale:      5
     # slide-number: true
-    self-contained: true
+    self-contained: true     ## false to present
     auto-stretch:   true
     linestretch:    1.3
 
@@ -248,6 +249,8 @@ setorder(tt,DATA)
 
 tt$var[tt$var == "DIR_att"] <- "Direct Beam"
 tt$var[tt$var == "GLB_att"] <- "Global"
+
+tt <- tt[!DATA == "CLOUD"]
 
 names(tt)[names(tt)=="slope"]          <- "Change per year [%]"
 names(tt)[names(tt)=="var"]            <- "Variable"
