@@ -1,0 +1,107 @@
+#vcenter {
+  vertical-align: middle;
+}
+
+.v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+.border {
+  border: 1px solid #dee2e6;
+}
+
+.border-thick {
+  border-width: 3px;
+}
+
+#title-slide .title {
+  font-size: 2em;
+  <!-- color: #b22222; -->
+}
+
+.GHI {
+  /* font-family: Arial; */
+  /* color:       #1a9850; */
+  color:       #136f39;
+  font-weight: bold;
+}
+
+.DNI {
+  /* font-family: Arial; */
+  color:       #0000a5;
+  font-weight: bold;
+}
+
+.CSid {
+  /* font-family: Arial; */
+  color:       #862507;
+  font-weight: bold;
+}
+
+.QCrad {
+  /* font-family: Arial; */
+  color:       #14149e;
+  font-weight: bold;
+}
+
+
+.CE {
+  /* font-family: Arial; */
+  /* background-color: grey; */
+  text-decoration: underline #1a9850;
+  color:           #b00821;
+  font-weight:     bold;
+}
+
+.ECE {
+  /* font-family: Arial; */
+  /* background-color: grey; */
+  text-decoration: underline #1a9850;
+  color:           #ff00ff;
+  font-weight:     bold;
+}
+
+
+.figure {
+  margin:     auto;
+  text-align: center;
+}
+
+.caption{
+  text-align: center;
+}
+
+
+h4 {
+  text-align:center;
+}
+
+h3 {
+  text-align:center;
+}
+
+h2 {
+  text-align:center;
+}
+
+h1 {
+  text-align:center;
+}
+
+.test-background {
+    background-color: #447099   !important;
+    data-background-color: #f00 !important;
+}
+
+.trend-bg {
+}
+
+.enh-bg {
+}
+
+.reveal .slide-number > a[href*='title-slide'] {
+  display: none;
+}
