@@ -23,7 +23,7 @@ fi
 
 echo "Upload to $target"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,html,css}" copy "/home/athan/MANUSCRIPTS/presentations/2024-12-19_PhD"                 "$target"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config"                                                 copy "/home/athan/MANUSCRIPTS/presentations/2024-12-19_PhD/slides_el_files" "$target/slides_el_files"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config"                                                 copy "/home/athan/MANUSCRIPTS/presentations/2024-12-19_PhD/Solar_radiation_aerosols_clouds_files" "$target/Solar_radiation_aerosols_clouds_files"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config"               --include "*.{svg}"               copy "/home/athan/MANUSCRIPTS/presentations/2024-12-19_PhD"                 "$target"
 
 echo "BYE"
