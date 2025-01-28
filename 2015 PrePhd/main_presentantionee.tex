@@ -1,0 +1,396 @@
+
+%to make a handout
+%documentclass[11pt]{article}
+%\usepackage{beamerarticle}
+
+%to suppress all frame titles in the article mode
+%\setbeamertemplate<article>{frametitle}{}
+%\only<article>{This text is shown only in article mode.}
+\documentclass[noamsthm,12pt]{beamer}
+
+\usepackage{tipa}
+\let\ipa\textipa
+%\usepackage{pgf}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{outlines}
+\sisetup{range-phrase={ με }}
+\usepackage{ragged2e}
+
+\mode<presentation>
+{
+%\usetheme{Malmoe}
+%\usetheme{Warsaw}
+
+%\usetheme{Montpellier}
+%\usetheme{AntibesGina}
+
+%shows full sections
+%\usetheme{PaloAlto}
+\usetheme{Hannover}
+
+%lots of info on the bottom
+%\usetheme{Madrid}
+
+%no sections shown
+%\usetheme{Rochester}
+%\usetheme{Pittsburgh}
+
+%very different
+%\usetheme{Bergen}
+
+  % or ...
+
+%  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage{xgreek}
+\usepackage{pxfonts}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setsansfont[Mapping=tex-text]{GFS Neohellenic}
+\setsansfont[Mapping=tex-text,Scale=.8]{Verdana}
+
+
+\usepackage[absolute,overlay]{textpos}
+
+\usepackage{covington}
+
+\renewcommand{\arraystretch}{.8}
+
+\title[Αεροζόλ\\ Άμεση ηλιακή ακτινοβολία] % (optional, use only with long paper titles)
+{Επιδράσεις ατμοσφαιρικών\\ αιωρημάτων και νεφών\\ στην άμεση ηλιακή ακτινοβολία.}
+
+% \subtitle
+% {\footnotesize Μελέτη της μεταβλητότητας του συνολικού οπτικού ατμοσφαιρικού πάχους λόγω εξασθένησης από τα ατμοσφαιρικά αιωρήματα και τα νέφη. Θα χρησιμοποιηθούν μετρήσεις της άμεσης ηλιακής ακτινοβολίες στη Θεσσαλονίκη με πυρηλιόμετρο, σε συνδυασμό με φασματικές μετρήσεις από έναν φασματογράφο. Τα αποτελέσματα θα συγκριθούν με μετρήσεις από το δίκτυο ΑΕRΟΝΕΤ. Η χρονική μεταβλητότητα του προσδιοριζόμενου οπτικού ατμοσφαιρικού πάχους στην περιοχή της Θεσσαλονίκης θα μελετηθεί για διάφορες περιβαλλοντολογικές συνθήκες και φαινόμενα. }
+
+\author[Νάτσης] % (optional, use only with lots of authors)
+{Νάτσης Θανάσης }
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Φυσικό Α.Π.Θ] % (optional, but mostly needed)
+{Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκη, τμήμα Φυσικής}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[LAP 2015] % (optional, should be abbreviation of conference name)
+{Εργαστήριο Φυσικής της Ατμόσφαιρας, 2008}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+
+
+% If you wish to uncover everything in a step-wise fashion
+% \beamerdefaultoverlayspecification{<+->}
+
+%addtobeamertemplate{background canvas}{\transcover}{}
+
+
+
+\begin{document}
+\noindent
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\hfill
+	\parbox{.73\textwidth}{
+	\renewcommand{\baselinestretch}{10}
+	\setcounter{tocdepth}{1}
+	\tableofcontents}	
+	
+	
+	% You might wish to add the option [pausesections]
+\end{frame}
+
+\section{Βιογραφικά}
+
+\subsection{Εκπαίδευση}
+
+\makeatletter
+\newcommand{\justified}{%
+  \rightskip\z@skip%
+  \leftskip\z@skip}
+\makeatother
+
+
+\begin{frame}
+	\frametitle{Βιογραφικά στοιχεία}
+
+\structure{Πτυχίο \emph{Φυσικής} {\footnotesize(Φυσικό Α.Π.Θ)}}\\
+	\hangindent=0.5cm \parindent=0.5cm\justified {\scriptsize Πτυχιακή εργασία:} \emph{Παρακολούθηση πυρκαγιών από δορυφορικές παρατηρήσεις σε παγκόσμια κλίμακα.\\ World Fire Atlas (ESA).}\\ \ \\
+	
+\noindent
+\structure{Μεταπτυχιακό \emph{Φυσική Της Ατμόσφαιρας} {\footnotesize(Φυσικό Α.Π.Θ)}}\\ 
+	\hangindent=0.5cm \parindent=0.5cm\justified {\scriptsize Διπλωματική εργασία:} \emph{Τροποποίηση μοντέλου πρόβλεψης του δείκτη υπεριώδους ακτινοβολίας (UV index).\\ TUV και MODIS}
+
+	
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+\begin{picture}(320,250)
+
+	%% World Fire Atlas
+	\put(-10,0){
+		\includegraphics[trim={12cm 7cm 9cm 1cm},clip,width=8cm]{density.png}
+	}
+	\put(-5,5){
+	\structure{\large \textbf{World Fire Atlas}}
+	}
+	
+	%% AOD uvindex
+	\pause
+	\put(90,55){
+		\includegraphics[trim={.5cm .5cm 0cm 0cm},clip,width=7cm]{AOD-7.png}
+	}
+	\put(110,78){
+	\structure{\large \textbf{AOD \normalsize(MODIS)}}
+	}
+	
+	%% uvindex
+	\pause
+	\put(-10,0){
+		\includegraphics[trim={1cm 1cm 1cm 0cm},clip,width=7cm]{Rplot02.png}
+	}
+	\put(10,22){
+	\structure{\large \textbf{UV index \normalsize(TUV)}}
+	}
+	
+\end{picture}
+\end{frame}
+
+% \subsection{Δεξιότητες}
+% 
+% 
+% \begin{frame}
+% \begin{picture}(320,250)
+% 
+% 	%% sensor box
+% 	\put(-10,15){
+% 		\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=5cm]{kouti.png}
+% 	}
+% 	\put(-5,5){
+% 	\structure{\large \textbf{Adruino RF T sensors}}
+% 	}
+% 	
+% 	%% raspi
+% 	\put(140,40){
+% 		\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=5cm]{P1050688.png}
+% 	}
+% 	\put(140,20){
+% 	\structure{\large \textbf{\begin{tabular}{l}Raspberry Pi\\ RF logger\end{tabular}}}
+% 	}
+% 	
+% 	%% uvindex
+% 	\pause
+% 	\put(5,50){
+% 		\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=9cm]{kate.png}
+% 	}
+% 	\put(20,85){
+% 	\structure{\large \textbf{Coding}}
+% 	}
+% 	
+% \end{picture}
+% \end{frame}
+
+
+\section[Στόχοι]{Στόχοι Διατριβής}
+\subsection{Μετρήσεις Αεροζόλ}
+
+\begin{frame}
+	\frametitle{Μετρήσεις Αεροζόλ}
+	\vspace{-1cm}
+	\begin{quote}
+		\justifying
+	 ''Μετρήσεις της άμεσης ηλιακής ακτινοβολίας στη Θεσσαλονίκη, με πυρηλιόμετρο, σε συνδυασμό με φασματικές μετρήσεις με φασματογράφο.''
+	\end{quote}
+	\hfill
+	\ \\
+	\hfill
+	\begin{outline}
+		\1 Μέτρηση ολικής άμεσης ακτινοβολίας με το\\
+		\hfill \textbf{Πυρηλιόμετρο CHP} \hfill \phantom{d} 
+		\1 Μέτρηση φασματικής άμεσης ακτινοβολίας με το\\
+		\hfill \textbf{Φασματόμετρο CCD} \hfill \phantom{d} 
+	\end{outline}
+\end{frame}
+
+\subsection{Validation}
+
+\begin{frame}
+	\frametitle{Επικύρωση μετρήσεων}
+	\begin{quote}
+		\justifying
+		''Τα αποτελέσματα θα συγκριθούν με μετρήσεις από το δίκτυο ΑΕRΟΝΕΤ.''		
+	\end{quote}
+	\hfill
+	\ \\
+	\hfill
+	\begin{outline}
+		\1 Σύγκριση με τις μετρήσεις AOD του οργάνου\\
+		\hfill \textbf{CIMEL} \hfill \phantom{s} \\του Εργαστηρίου Φυσικής της Ατμόσφαιρας
+	\end{outline}
+\end{frame}
+
+
+\subsection{Διερεύνηση}
+
+\begin{frame}
+	\frametitle{Διερεύνηση}
+	\begin{quote}
+	\justifying
+	''Μελέτη της μεταβλητότητας του συνολικού οπτικού ατμοσφαιρικού πάχους λόγω εξασθένησης από τα ατμοσφαιρικά αιωρήματα και τα νέφη.''
+	\end{quote}
+
+	\begin{quote}
+	\justifying
+	''Μελέτη της χρονική μεταβλητότητα του προσδιοριζόμενου οπτικού ατμοσφαιρικού πάχους στην περιοχή της Θεσσαλονίκης, για διάφορες περιβαλλοντολογικές συνθήκες και φαινόμενα.''
+	\end{quote}
+	\hfill
+	\begin{outline}	
+		\1 Ανάλυση των μετρήσεων
+			\2[] Υπολογισμός των ατμοσφαιρικών αιωρημάτων
+		\1 Σύγκριση φασματικών και μη φασματικών μεθόδων
+		\end{outline}
+
+\end{frame}
+
+
+\section{Πειραματική Διάταξη}
+
+\subsection[Πυρηλιόμετρο]{Πυρηλιόμετρο}
+
+\begin{frame}
+	\frametitle{Πυρηλιόμετρο CHP \\{\small από Kipp \& Zonen}\\{\small \SIrange{200}{4000}{\nano\meter}}}
+
+	\begin{textblock*}{3cm}(2.5cm,.6cm) % {block width} (coords)
+	\includegraphics[width=3cm]{03_Pyrheliometers_01_CHP_1_01_CHP_1.jpg}
+	\end{textblock*}
+
+	
+    \centering
+	
+	\begin{outline}
+		\1 Εγκατάσταση του πυρηλιόμετρου
+		\1 Βαθμονόμηση του οργάνου
+		\1 Προγραμματισμός ηλιοστάτη (tracker)
+		\1 Μετρήσεις άμεσης ακτινοβολίας
+			\2[] Μετατροπή φυσικών μεγεθών \si{\volt} σε \si{\watt \per \meter^2}
+			\2[] Καταγραφή
+			\2[] Πρωτογενή επεξεργασία
+	\end{outline}
+
+
+\end{frame}
+
+\subsection{Φασματόμετρο CCD}
+
+\begin{frame}
+	\frametitle{CCD-Spectrometer\\ \vspace{-.5\baselineskip}
+	{\small UVB, enhanced and UV/VIS}\\ \vspace{-.5\baselineskip}
+	{\small Metcon, Hamamatsu, Zeiss, tec5}\\
+	{\small \SIrange{300}{1000}{\nano\meter}}
+	}
+
+	\begin{textblock*}{3cm}(2.5cm,.6cm) % {block width} (coords)
+	\includegraphics[trim={6cm 4cm 11cm 19.8cm},clip,width=3cm]{ccd.pdf}\\ \vspace{-10pt}
+	{\tiny Natalia Kouremeti 2008}
+	\end{textblock*}
+	
+	\begin{outline}
+		\1 Εγκατάσταση του οργάνου
+			\2[] Στον ηλιοστάτη παράλληλα με το πυρηλιόμετρο
+		\1 Υπάρχουσα τεχνογνωσία του L.A.P.
+		\1 Παραγωγή παράλληλων φασματικών μετρήσεων
+	\end{outline}
+\end{frame}
+
+
+
+
+\section{Προϊόντα}
+
+\subsection{Κύρια}
+
+\begin{frame}
+	\frametitle{Αναμενόμενα προϊόντα}
+		
+	\begin{outline}
+		\1 Μετρήσεις ατμοσφαιρικών αιωρημάτων
+			\2 Ταυτόχρονες μετρήσεις με διάφορες διατάξεις
+			\2 Χρονοσειρά για το διάστημα των μετρήσεων
+		\1 Σύγκριση/Μελέτη μεθόδων μέτρησης
+			\2 Ολικής - Φασματικής ακτινοβολίας
+			\2 Συσχέτιση οργάνων μέτρησης
+		\1 Ανάλυση/Μελέτη του μετρούμενου μεγέθους
+			\2 Παρακολούθηση τιμών και μεταβολών AOD
+			\2 Μελέτη φαινομένων για τη Θεσσαλονίκη
+			\2 Κλιματικός/μετεωρολογικός χαρακτηρισμός
+		
+	\end{outline}
+
+		
+\end{frame}
+
+
+\subsection{Δευτερεύοντα}
+
+\begin{frame}
+	\frametitle{Δευτερεύοντες στόχοι}
+	\begin{outline}
+		\1 Παραγωγή εργαλείων/μεθόδων 
+			\2[] Λειτουργία ηλιοστάτη
+			\2[] Βαθμονόμηση οργάνων
+			\2[] Καταγραφής και Μετρήσεων AOD με το πυρηλιόμετρο και το φασματόμετρο
+		\1 Παραγωγή υπολογιστικών εργαλείων
+			\2[] Φιλτράρισμα δεδομένων
+			\2[] Στατιστική επεξεργασία
+			\2[] Ανάλυση αποτελεσμάτων
+		\1 Αναπαράξιμα αποτελέσματα/διαδικασίες
+			\2[] Χρήση Λογισμικού Ανοικτού Κώδικα
+			\2[] Τεκμηρίωση πειραματικής διαδικασίας
+	\end{outline}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \section*{τελος}
+
+\begin{frame}[c]
+\phantom{1}  \vfill \phantom{1}  \hfill \phantom{1}  \structure{Ευχαριστώ!}  \phantom{1}  \hfill \phantom{1}  \vfill \phantom{1} 
+
+\begin{textblock*}{13cm}(2.5cm,8.5cm)
+\scriptsize Νάτσης Θανάσης\\
+\href{mailto:natsisthanasis@gmail.com}{\url{natsisthanasis@gmail.com}}
+\end{textblock*}
+\end{frame}
+\end{document}
