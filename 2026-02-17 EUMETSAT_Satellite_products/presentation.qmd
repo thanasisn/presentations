@@ -78,26 +78,8 @@ MTG-Si Sounder?
 
 Metop-SGA  sounding and imagery mission ?
 
-IRS hyperspectral sounder
-
-
-## MTG
-
-Actual measurements
-
-Products from the measurements
-
-
-## S4
-
-Actual measurements
-
-Products from the measurements
-
-## Sounder?..
 
 -->
-
 
 
 
@@ -631,12 +613,15 @@ L2
 :::
 
 ::::: {.columns style='display: flex !important; height: 90%;'}
+
 ::: {.column width="60%" style='display: flex; justify-content: right; align-items: center;'}
 [contact:]{style="font-size: 80%;"}<br>
 [**anatsis@noa.gr**]{style="font-size: 120%;"}<br>
 [source code:]{style="font-size: 80%;"}<br>
 [**github.com/thanasisn**]{style="font-size: 120%;"}
 :::
+
+https://github.com/thanasisn/presentations/tree/02cfee5702d458d86ed556b902be752c2d10952a/2026-02-11%20EUMETSAT_Satellite_products
 
 ::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
 
