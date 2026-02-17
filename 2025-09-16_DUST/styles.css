@@ -1,0 +1,40 @@
+
+## 4. Optional: styles.css
+
+Create a `styles.css` file for custom styling:
+
+```css
+/* Custom styles for the presentation */
+
+.smaller {
+  font-size: 0.8em;
+}
+
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vcenter {
+  justify-content: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 0.7em;
+  color: #666;
+}
+
+/* Custom colors */
+slides > slide {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+slides > slide:not(.nobackground):after {
+  content: attr(data-slide-num) " / " attr(data-total-slides);
+  color: rgba(255, 255, 255, 0.6);
+}

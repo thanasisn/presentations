@@ -1,0 +1,153 @@
+---
+title: "Dust products"
+author: "Athanasios Natsis"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  slidy_presentation: default
+  beamer_presentation:
+    latex_engine: xelatex
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+subtitle: Some options
+---
+
+<!-- ## Create a Dust product {.smaller} -->
+
+<!-- 1. Polar Multi-sensor Aerosol product (PMAp) -->
+
+
+## Polar Multi-sensor Aerosol product (PMAp) {.smaller}
+Climate record 2007--2019 (PMAp CDR)
+
+Output
+
+- AOD (GOME-2)
+- Aersool types and clouds (IASI, AVHRR)
+- Dust as non operational product...
+- PMAp (dust-dominated total AOD contribution from other aerosol types than dust)
+- LEO
+
+Aerosol types:
+ ocean fine mode, ocean coarse mode, thick biomass burning, desert dust, volcanic ash/thick dust, volcanic ash with SO2, aerosol contaminated cloud, ash contaminated cloud, unclassified
+
+
+## Polar Multi-sensor Aerosol product (PMAp) {.smaller}
+Inputs:
+
+- GOME-2 Fundamental Data Record (FDR) Level 1C
+- IASI FDR Level-1C (NRT)
+- AVHRR Level 1B NRT
+
+
+## Polar Multi-sensor Aerosol product (PMAp) {.smaller}
+Algorithm:
+
+- cloud identification and correction using collocated AVHRR observations
+- discrimination between aerosols and clouds 
+- preliminary classification of aerosols, including desert dust detection.
+- AODs also for partly cloudy footprints, 
+<!-- if the cloud fraction is not too large and reflectances can be corrected for cloud contamination -->
+
+- retrieval of estimated AOD using unpolarised GOME-2 reflectances and a Look-Up-Table
+- set of AOD estimates is retrieved for each candidate aerosol model.
+
+- find the best fit between the measured and modelled reflectances and Stokes
+fractions
+
+- best model (LUTs from  9 models), for each aerosol, aerosol type is set and final AOD from the AODs retrieved
+at the second step is selected
+
+<!-- - 4 aerosol models with different absorption and vertical profile, used in the forward model represent dust -->
+
+Validation:
+
+- AERONET
+
+
+
+## Polar Multi-sensor Aerosol product (PMAp) {.smaller}
+
+PMAp --> AODs @ 550nm
+
+- not possible to define the dust fraction (or AOD related to dust particles only) from a PMAp total AOD
+- Define the dust-dominated total AOD
+where the aerosol class is set to “desert dust” or "thick dust" 
+for pixels which the assumed dominant aerosol type is dust
+
+“total AOD” 
+“dust-dominated total AOD” 
+
+WORKS  but:
+
+- for subset of data/domain
+- against specially filtered AERONET data
+- better describing dust occurrence and variation
+- sensitive enough for high AOD cases involving dust
+- PMAp observations cannot be used to define DAOD global variation
+
+
+
+
+## Thanos AOD retrieval (we need a nice name)
+Inputs:
+
+- Temperature @10.8μm        (MSG --> update σε MTG)
+- Land Surface Temperature   (ERA5 --> update σε MTG[^1])
+- Humidity                   (ERA5)
+- Constant from MODTRAN4     (more model runs)
+- Cloud mask                 (MSG/MTG)
+
+[^1]: pre-operational
+
+## Thanos AOD retrieval (we need a nice name)
+Difficulties:
+
+- Discrimination of dust from clouds
+- Define/choose a rolling pristine sky
+- ERA5 latency 5 days for preliminary, 2-3 months for final
+
+Validation:
+
+- AERONET
+- Sentinel-3?
+
+Upgrades:
+
+- Automation
+- Machine learning
+
+<!--
+
+## Data Visualization {.flexbox .vcenter}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(dplyr)
+```
+
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "steelblue", size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", color = "darkred") +
+  labs(title = "Car Stopping Distance vs Speed",
+       x = "Speed (mph)",
+       y = "Stopping Distance (ft)") +
+  theme_minimal()
+```
+
+## Data visualization {.flexbox .vcenter}
+
+```{r}
+car_stats <- cars %>%
+  summarize(
+    Mean_Speed = mean(speed),
+    Mean_Distance = mean(dist),
+    Correlation = cor(speed, dist)
+  )
+
+knitr::kable(car_stats, caption = "Summary Statistics")
+```
+-->
