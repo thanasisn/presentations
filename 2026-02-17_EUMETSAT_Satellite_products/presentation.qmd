@@ -603,28 +603,20 @@ L2 data
 
 
 
+
 # 
 
 :::{.r-stack}
-[_**ευχαριστώ!**_]{style="font-size: 150%;"}  \
-\ 
+[_**ευχαριστώ!**_]{style="font-size:150%;"}
 :::
 
-::::: {.columns style='display: flex !important; height: 90%;'}
 
-::: {.column width="50%" style='display: flex; justify-content: right; align-items: center;'}
-[contact:]{style="font-size: 80%;"}<br>
-[**anatsis@noa.gr**]{style="font-size: 120%;"}<br>
-[source code:]{style="font-size: 80%;"}<br>
-[**github.com/thanasisn/presentations**]{style="font-size: 120%;"}
+[contact:]{style="font-size:80%;"}
+[**anatsis@noa.gr**]{style="font-size:120%;"}
+
+[source code:]{style="font-size:80%;"}
+[**github.com/thanasisn/presentations**]{style="font-size:120%;"}
+
+::: {.img-fit .center}
+![this Presentation](images/presentation_qr.png){style="height:10vh; max-height:10vh; width:auto;" fig-align="center"}
 :::
-
-::: {.column width="50%" style='display: flex; justify-content: center; align-items: center;'}
-![Presentation](images/presentation_qr.png){style="max-height:80%; width:auto;"}
-:::
-
-::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
-
-:::
-:::::
-
