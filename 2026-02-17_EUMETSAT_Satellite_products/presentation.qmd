@@ -107,8 +107,9 @@ Metop-SGA  sounding and imagery mission ?
 
 -------------------------------------------------------------------------------------
 
-###  Main data resources {.smaller .center}
+###  Main data resources {.smaller}
 
+::: tiny
 - [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
 - [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
 - [AC SAF, Atmospheric Composition Monitoring](https://www.eumetsat.int/ac-saf), ozone, trace gases, aerosols and ultraviolet data
@@ -118,6 +119,7 @@ Metop-SGA  sounding and imagery mission ?
 - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
 - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
 - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
+:::
 
 ::: footer
 EUMETSAT, Satellite Application Facilities (SAF)
@@ -236,6 +238,8 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 
 ### EUMETSAT MTG available products (2026-02-01)  {.smaller}
 
+<div style="margin-top: 1em;"></div>
+
 ::: {.tiny}
 ::: {.two-col}
 - Accumulated precipitation at ground by blended MW+IR and FCI
@@ -319,7 +323,7 @@ day_essl_low_level_moisture,
 day_microphysics, 
 day_severe_storms, 
 day_severe_storms_tropical, 
-dust, 
+**dust**, 
 essl_colorized_low_level_moisture, 
 essl_low_level_moisture, 
 fci_fire_channels_sum, 
@@ -377,16 +381,16 @@ volcanic_emissions
 
 LI Lightning Imager Groups
 
-::: r-stretch
-| Variable           | Description                                                                  |
-|--------------------|------------------------------------------------------------------------------|
-| `group_time`       | UTC time of the group.                                                       |
-| `latitude`         | Average latitude of the events in the group weighted by the event radiance.  |
-| `longitude`        | Average longitude of the events in the group weighted by the event radiance. |
-| `radiance`         | Total radiance of the group ([Optical Characteristics of OTD Flashes and the Implications for Flash-Type Discrimination](https://doi.org/10.1175/2010JTECHA1405.1)[)](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#). |
-| `number_of_events` | Number of events in the group. |
-| `flash_id`         | ID of the flash that allows one to relate the groups in the LI-2-LGR-x-FD-x to the LI-2-LFL-x-FD-x  |
-| `group_filter_qa`  | Quality of the group computed at the group-rejection step; the step at which groups are analysed singularly ([Rejection of groups prior to the computation of flashes](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)). |
+::: tiny
+| Variable             | Description                                                                                                                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `group_time`         | UTC time of the group                                                                                                                                                                                                                        |
+| `latitude`           | Avg latitude of the events in the group weighted by the event radiance                                                                                                                                                                       |
+| `longitude`          | Avg longitude of the events in the group weighted by the event radiance                                                                                                                                                                      |
+| `radiance`           | Total radiance of the group ([Optical Characteristics of OTD Flashes and the Implications...](https://doi.org/10.1175/2010JTECHA1405.1)[)](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#)                       |
+| `number_of_events`   | Number of events in the group                                                                                                                                                                                                                |
+| `flash_id`           | ID of the flash that allows one to relate the groups in the LI-2-LGR-x-FD-x to the LI-2-LFL-x-FD-x                                                                                                                                           |
+| `group_filter_qa`    | Quality of the group computed at the group-rejection step ([Rejection of groups prior to the comp...](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)) |
 :::
 
 <div style="font-size: 0.65em; opacity: 0.8; margin-top: 0.4em;">
@@ -403,27 +407,24 @@ Key variables in LI-2-LGR-x-FD-x.
 
 LI Lightning Imager Flashes
 
-::: r-stretch
-| Variable                  |  Description |
-| ------------------------- | ------------ |
-| `flash_time`              | UTC time of the first group in the flash. |
-| `flash_duration`          | Duration of the flash, ie, time difference between the first a the last group of the flash. |
-| `latitude`                | Average latitude of the events in the flash weighted by the event radiance. |
-| `longitude`               | Average longitude of the events in the flash weighted by the event radiance. |
-| `radiance`                | Total radiance of the flash ([Optical Characteristics of OTD Flashes and the Implications for Flash-Type Discrimination](https://doi.org/10.1175/2010JTECHA1405.1)). |
-| `number_of_events`        | Number of events in the flash. |
-| `number_of_groups`        | Number of groups in the flash. |
-| `flash_footprint`         | Size of the flash footprint in number of pixels. |
-| `flash_id`                | ID of the flash. |
-| `flash_filter_confidence` | Quality of the filter computed at the group-rejection step; the step at which groups are analysed singularly ([Rejection of flashes](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)). |
+::: tiny
+| Variable                  | Description                                                                                                                                                                                                               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `flash_time`              | UTC time of the first group in the flash                                                                                                                                                                                  |
+| `flash_duration`          | Duration of the flash, ie, time difference between the first a the last group of the flash                                                                                                                                |
+| `latitude`                | Average latitude of the events in the flash weighted by the event radiance                                                                                                                                                |
+| `longitude`               | Average longitude of the events in the flash weighted by the event radiance                                                                                                                                               |
+| `radiance`                | Total radiance of the flash ([Optical Characteristics of OTD Flashes and the Implications...](https://doi.org/10.1175/2010JTECHA1405.1))                                                                                  |
+| `number_of_events`        | Number of events in the flash                                                                                                                                                                                             |
+| `number_of_groups`        | Number of groups in the flash                                                                                                                                                                                             |
+| `flash_footprint`         | Size of the flash footprint in number of pixels                                                                                                                                                                           |
+| `flash_id`                | ID of the flash                                                                                                                                                                                                           |
+| `flash_filter_confidence` | Quality of the filter computed at the group-rejection step ([Rejection of flashes](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)) |
 :::
-
 
 <div style="font-size: 0.65em; opacity: 0.8; margin-top: 0.4em;">
 Key variables in LI-2-LFL-x-FD-x.
 </div>
-
-
 
 ::: {.notes}
 :::
@@ -434,16 +435,21 @@ Key variables in LI-2-LFL-x-FD-x.
 
 --------------------------------------------------------------------------------
 
-
 ### Infrared Sounder IRS {.smaller}
 
-- Spatial:  4km at nadir (1.025° x 1.025°)
-- Temporal: 15 -- 30  minutes for local zones, 60 minutes for full disk
-- Atmospheric dynamic variables (e.g. water vapour flux, wind profiles, transport of pollutant gases).
+**Hyperspectral infrared sounder**
 
 - Goal: 
-   - Derive the time evolution of vertically resolved water vapour structures
-   - Extract three dimensional wind fields with a vertical resolution in the order of 2 km
+   - Derive the evolution of vertically resolved water vapour structures
+   - Extract 3D wind fields with a vertical resolution ~ 2 km
+   - Track the 3D structures
+      - atmospheric water vapour and temperature
+      - carbon monoxide and pollution
+      - atmospheric dynamic variables
+
+- Spatial:  **4km** at nadir (1.025° x 1.025°)
+- Temporal: 15 -- 30  minutes for local zones, **60 minutes** for full disk
+
 
 ::: notes
 spatial on the Earth surface is 4km at nadir, increasing up to 10km, and above
@@ -459,18 +465,13 @@ No concurrent ‘full disc scan’
 
 ### Infrared Sounder IRS {.smaller}
 
-**Hyperspectral infrared sounder**
 
-- tracking the 3D structure
-- atmospheric water vapour and temperature
-- carbon monoxide and pollution
+<div style="margin-top: 2em;"></div>
 
-::: r-strech
 | Band                | Wavenumber Range        | Channels | Main  Targets                           |
 | ------------------- | ----------------------  | -------- | --------------------------------------- |
 | Long Wave IR (LWIR) | 679.5 – 1210.0  cm^-1^  | 887      | H2O, CO2, O3, Surface, Clouds, Aerosols |
 | Mid Wave IR (MWIR)  | 1600.0 – 2250.4  cm^-1^ | 1076     | H2O, CO, N20, NO                        |
-:::
 
 Vertical resolution TBD ... (~ 2km)
 
@@ -483,14 +484,13 @@ https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 ### Infrared Sounder IRS {.smaller}
 
-L2
+L2 data
 
 - Temperature, humidity, ozone profiles
 - Surface parameters
 - Instability indices and total vertical column
 - Cloud products
 - Contextual parameters
-
 
 [Test/Simulated data available here](https://user.eumetsat.int/resources/user-guides/mtg-test-data)
 
@@ -502,8 +502,7 @@ https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 ### Infrared Sounder IRS {.smaller}
 
-
-![ ](images/IASI_CrIS_FCI_IRS.png){style="max-height:40vh; display:block; margin:auto;"}
+![ ](images/IASI_CrIS_FCI_IRS.png){style="max-height:70vh; display:block; margin:auto;"}
 
 ::: {.tiny style="text-align:center; width:80%; margin:auto;"}
 Infrared Atmospheric Sounding Interferometer (LEO),  
@@ -550,7 +549,7 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 
 ###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)  {.smaller}
 
-L1
+L1 data
 
 <div style="margin-top: 1em;"></div>
 
@@ -569,7 +568,7 @@ L1
 
 ###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)  {.smaller}
 
-L2
+L2 data
 
 <div style="margin-top: 1em;"></div>
 
@@ -581,11 +580,10 @@ L2
 | SO2              | Sulfur dioxide (SO2) total column                                     |
 | HCHO             | Formaldehyde (HCHO) total column                                      |
 | CHOCHO           | Glyoxal (CHOCHO) total column                                         |
-| Cloud            | Cloud optical thickness, fraction, altitude                           |
+| Cloud            | Cloud optical thickness, cloud fraction, cloud altitude               |
 | Aerosol          | Aerosol column optical thickness, type, layer height, absorbing index |
 | Surface          | Surface and aerosol characteristics                                   |
 :::
-
 
 
 ::: footer
@@ -605,7 +603,7 @@ L2
 
 
 
-# {.center }
+# 
 
 :::{.r-stack}
 [_**ευχαριστώ!**_]{style="font-size: 150%;"}  \
@@ -614,14 +612,16 @@ L2
 
 ::::: {.columns style='display: flex !important; height: 90%;'}
 
-::: {.column width="60%" style='display: flex; justify-content: right; align-items: center;'}
+::: {.column width="50%" style='display: flex; justify-content: right; align-items: center;'}
 [contact:]{style="font-size: 80%;"}<br>
 [**anatsis@noa.gr**]{style="font-size: 120%;"}<br>
 [source code:]{style="font-size: 80%;"}<br>
-[**github.com/thanasisn**]{style="font-size: 120%;"}
+[**github.com/thanasisn/presentations**]{style="font-size: 120%;"}
 :::
 
-https://github.com/thanasisn/presentations/tree/02cfee5702d458d86ed556b902be752c2d10952a/2026-02-11%20EUMETSAT_Satellite_products
+::: {.column width="50%" style='display: flex; justify-content: center; align-items: center;'}
+![Presentation](images/presentation_qr.png){style="max-height:80%; width:auto;"}
+:::
 
 ::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
 
