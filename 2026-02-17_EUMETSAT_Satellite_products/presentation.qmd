@@ -47,7 +47,7 @@ format:
           \setmonofont{DejaVu Sans Mono}
   pdf: 
     output-file:      "Satellite_Instruments_and_Data"
-    toc:               yes
+    toc:               true
     latex:             xelatex
     include-in-header:
       - text: |
@@ -130,9 +130,11 @@ EUMETSAT, Satellite Application Facilities (SAF)
 
 ###  Main resources for reference
 
+<div style="margin-top: 3em;"></div>
+
 - [EUMETView](https://view.eumetsat.int/), interactive map and product explorer
-- [EUMETSAT User Portal](https://user.eumetsat.int/catalogue), guides and product
-  references,
+- [EUMETSAT User Portal](https://user.eumetsat.int/catalogue), guides and products
+  references
   - Training
   - Software
   - Guides
@@ -279,9 +281,9 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 
 -------------------------------------------------------------------------------------
 
-### LSA SAF MTG available products (2026-02-01)  {.smaller .center}
+### **LSA** SAF available products  {.smaller .center}
 
-An example of more products from SAF
+<div style="margin-top: 3em;"></div>
 
 - Land Surface Albedo (MTDAL)
 - Fire Radiative Power (MTFRP)
@@ -289,6 +291,76 @@ An example of more products from SAF
 
 ::: footer
 [datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/](https://datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/)
+:::
+
+-------------------------------------------------------------------------------------
+
+### **AC** SAF  available products {.smaller}
+
+::: {.tiny}
+::: {.two-col}
+**NRT products**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total HCHO column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Global 1-day UV index forecast
+- Global tropospheric ozone column
+- IASI CO
+- IASI SO2
+- IASI HNO3
+- IASI total O3 and O3 profiles
+
+**Offline products**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total BrO column
+- Total HCHO column
+- Total H2O column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Surface UV
+- Tropical tropospheric ozone column
+- Global tropospheric ozone column
+- GOME-2 level 3 daily trace gas columns
+- GOME-2 level 3 monthly trace gas columns
+
+**Data records**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total BrO column
+- Total HCHO column
+- Total H2O column
+- OCIO column
+- Total CHOCHO column
+- NO2 and H2O climate data records
+- Tropospheric BrO column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Lambertian-equivalent reflectivity
+- Surface UV
+- IASI L2 O3
+- IASI L2 CO
+- IASI L2 SO2
+- Demonstrational products
+- Daily IASI NH3 product
+- Daily IASI dust product
+- European UV product/data record
+:::
+:::
+
+::: footer
+[acsaf.org](https://acsaf.org/)
 :::
 
 -------------------------------------------------------------------------------------
