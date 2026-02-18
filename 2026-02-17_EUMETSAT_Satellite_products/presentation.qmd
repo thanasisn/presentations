@@ -47,7 +47,8 @@ format:
           \setmonofont{DejaVu Sans Mono}
   pdf: 
     output-file:      "Satellite_Instruments_and_Data"
-    latex: xelatex
+    toc:               yes
+    latex:             xelatex
     include-in-header:
       - text: |
           \usepackage{fontspec}
