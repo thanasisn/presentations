@@ -110,6 +110,8 @@ Metop-SGA  sounding and imagery mission ?
 
 ###  Main data resources {.smaller}
 
+<div style="margin-top: 1em;"></div>
+
 ::: tiny
 - [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
 - [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
@@ -120,6 +122,10 @@ Metop-SGA  sounding and imagery mission ?
 - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
 - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
 - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
+:::
+
+::: notes
+SAFs in general have data and Software 
 :::
 
 ::: footer
@@ -241,7 +247,7 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 
 ### EUMETSAT MTG available products (2026-02-01)  {.smaller}
 
-<div style="margin-top: 1em;"></div>
+<div style="margin-top: 2em;"></div>
 
 ::: {.tiny}
 ::: {.two-col}
