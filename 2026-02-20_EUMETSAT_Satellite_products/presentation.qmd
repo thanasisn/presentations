@@ -1,5 +1,5 @@
 ---
-title:    "Satellite Instruments and Data,\na limided overview"
+title:    "MTG Satellites, Instruments and Data,\na limited overview"
 date:     "2026-02-20"
 author:   "Athanasios Natsis"
 subtitle: "NOA/ReACT"
@@ -47,7 +47,7 @@ format:
           \setsansfont{DejaVu Sans}
           \setmonofont{DejaVu Sans Mono}
   pdf:
-    output-file:      "Satellite_Instruments_and_Data"
+    output-file:      "Satellite_Instruments_and_Data_presentation"
     toc:               true
     latex:             xelatex
     include-in-header:
@@ -89,7 +89,7 @@ Metop-SGA  sounding and imagery mission ?
 
 - **MTG**: Meteosat Third Generation  system of geostationary satellites operated by
   EUMETSAT.
-- **EUMETSAT**: Europe's meteorological satellite agency, intergovernmental
+- **EUMETSAT**: Europe's meteorological satellite agency, an intergovernmental
   organization.
   - **goal**: Produce satellite data on weather, climate, and the environment.
     Provide near-real time data for members, partners, and other data users.
@@ -132,7 +132,7 @@ SAFs in general have data and Software
 
 -------------------------------------------------------------------------------------
 
-###  Main resources for reference
+###  Main reference resources
 
 <div style="margin-top: 3em;"></div>
 
@@ -191,6 +191,7 @@ SAFs in general have data and Software
   - 1/4 of Full disk /15 minutes
 - Ultraviolet Visible Near-infrared (UVN) Sounder
   - Copernicus Sentinel-4
+  - Smaller disc than FCI, /60min
 :::
 ::::
 
@@ -285,91 +286,6 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 
 -------------------------------------------------------------------------------------
 
-### **LSA** SAF available products  {.smaller .center}
-
-<div style="margin-top: 3em;"></div>
-
-- Land Surface Albedo (MTDAL)
-- Fire Radiative Power (MTFRP)
-- Land Surface Temperature (MTLST)
-
-::: footer
-[datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/](https://datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/)
-:::
-
--------------------------------------------------------------------------------------
-
-### **AC** SAF  available products {.smaller}
-
-::: {.tiny}
-::: {.two-col}
-**NRT products**
-
-- Total ozone column
-- Total and tropospheric NO2 columns
-- Total SO2 column
-- Total HCHO column
-- High-resolution ozone profile
-- Absorbing aerosol height
-- Absorbing aerosol index from PMDs
-- Global 1-day UV index forecast
-- Global tropospheric ozone column
-- IASI CO
-- IASI SO2
-- IASI HNO3
-- IASI total O3 and O3 profiles
-
-**Offline products**
-
-- Total ozone column
-- Total and tropospheric NO2 columns
-- Total SO2 column
-- Total BrO column
-- Total HCHO column
-- Total H2O column
-- High-resolution ozone profile
-- Absorbing aerosol height
-- Absorbing aerosol index from PMDs
-- Surface UV
-- Tropical tropospheric ozone column
-- Global tropospheric ozone column
-- GOME-2 level 3 daily trace gas columns
-- GOME-2 level 3 monthly trace gas columns
-
-**Data records**
-
-- Total ozone column
-- Total and tropospheric NO2 columns
-- Total SO2 column
-- Total BrO column
-- Total HCHO column
-- Total H2O column
-- OCIO column
-- Total CHOCHO column
-- NO2 and H2O climate data records
-- Tropospheric BrO column
-- High-resolution ozone profile
-- Absorbing aerosol height
-- Absorbing aerosol index from PMDs
-- Lambertian-equivalent reflectivity
-- Surface UV
-- IASI L2 O3
-- IASI L2 CO
-- IASI L2 SO2
-
-**Demonstrational products**
-
-- Daily IASI NH3 product
-- Daily IASI dust product
-- European UV product/data record
-:::
-:::
-
-::: footer
-[acsaf.org](https://acsaf.org/)
-:::
-
--------------------------------------------------------------------------------------
 
 ###  FCI composites (MTG-I)
 
@@ -669,6 +585,93 @@ L2 data
 [sentinels.copernicus.eu/missions/sentinel-4](https://sentinels.copernicus.eu/missions/sentinel-4)
 :::
 
+
+-------------------------------------------------------------------------------------
+
+### Land Surface Analysis **LSA** SAF available products  {.smaller .center}
+
+<div style="margin-top: 3em;"></div>
+
+- Land Surface Albedo (MTDAL)
+- Fire Radiative Power (MTFRP)
+- Land Surface Temperature (MTLST)
+
+::: footer
+[datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/](https://datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/)
+:::
+
+-------------------------------------------------------------------------------------
+
+### Atmospheric Composition Monitoring **AC** SAF  available products {.smaller}
+
+::: {.tiny}
+::: {.two-col}
+**NRT products**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total HCHO column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Global 1-day UV index forecast
+- Global tropospheric ozone column
+- IASI CO
+- IASI SO2
+- IASI HNO3
+- IASI total O3 and O3 profiles
+
+**Offline products**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total BrO column
+- Total HCHO column
+- Total H2O column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Surface UV
+- Tropical tropospheric ozone column
+- Global tropospheric ozone column
+- GOME-2 level 3 daily trace gas columns
+- GOME-2 level 3 monthly trace gas columns
+
+**Data records**
+
+- Total ozone column
+- Total and tropospheric NO2 columns
+- Total SO2 column
+- Total BrO column
+- Total HCHO column
+- Total H2O column
+- OCIO column
+- Total CHOCHO column
+- NO2 and H2O climate data records
+- Tropospheric BrO column
+- High-resolution ozone profile
+- Absorbing aerosol height
+- Absorbing aerosol index from PMDs
+- Lambertian-equivalent reflectivity
+- Surface UV
+- IASI L2 O3
+- IASI L2 CO
+- IASI L2 SO2
+
+**Demonstrational products**
+
+- Daily IASI NH3 product
+- Daily IASI dust product
+- European UV product/data record
+:::
+:::
+
+::: footer
+[acsaf.org](https://acsaf.org/)
+:::
+
 -------------------------------------------------------------------------------------
 
 ## Other Links {.smaller}
@@ -677,7 +680,7 @@ L2 data
 - [MTG in operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)  
   Current status and operational information
 - [MTG test data](https://user.eumetsat.int/resources/user-guides/mtg-test-data)  
-  If you want to test posible applications
+  If you want to test possible applications
 :::
 
 
