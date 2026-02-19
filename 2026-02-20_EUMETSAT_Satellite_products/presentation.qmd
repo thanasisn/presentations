@@ -171,9 +171,10 @@ SAFs in general have data and Software
 :::
 
 ::: notes
-τι είναι οι MTG
-- 6 δορυφόροι
+- 6 satellites
+
 - 4 MTG-I
+
 - 2 MTG-S
 :::
 
@@ -277,7 +278,7 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 :::
 
 ::: notes
-26 products
+26 products, 27 now, also counting the file formats
 :::
 
 ::: footer
@@ -471,7 +472,7 @@ No concurrent ‘full disc scan’
 Vertical resolution TBD ... (~ 2km)
 
 ::: footer
-https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
+[user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide)
 :::
 
 
@@ -490,7 +491,7 @@ L2 data
 [Test/Simulated data available here](https://user.eumetsat.int/resources/user-guides/mtg-test-data)
 
 ::: footer
-https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
+[user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide)
 :::
 
 -------------------------------------------------------------------------------------
@@ -507,7 +508,7 @@ MTG Flexible Combined Imager (GEO)
 :::
 
 ::: footer
-https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
+[user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide)
 :::
 
 -------------------------------------------------------------------------------------
@@ -682,7 +683,6 @@ L2 data
 - [MTG test data](https://user.eumetsat.int/resources/user-guides/mtg-test-data)  
   If you want to test possible applications
 :::
-
 
 
 
