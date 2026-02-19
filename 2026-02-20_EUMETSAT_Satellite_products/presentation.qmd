@@ -89,15 +89,14 @@ Metop-SGA  sounding and imagery mission ?
 
 - **MTG**: Meteosat Third Generation  system of geostationary satellites operated by
   EUMETSAT.
-- **EUMETSAT**:  Europe's meteorological satellite agency, intergovernmental
+- **EUMETSAT**: Europe's meteorological satellite agency, intergovernmental
   organization.
-- **General goals**:  Produce satellite data on weather, climate, and the environment
-  around the clock. Near-real time for members, partners, and people who use the
-  data.
-- **Fields**: Nowcasting, Numerical Weather Prediction models, Climate records, Other
-  products and services (incl.  firefighting, air quality forecasts, air traffic
-  control, search and rescue missions, disaster risk reduction, agricultural
-  productivity, marine and coastal management......)
+  - **goal**: Produce satellite data on weather, climate, and the environment.
+    Provide near-real time data for members, partners, and other data users.
+  - **fields**: Nowcasting, Numerical Weather Prediction models, Climate records,
+    Other products and services (incl.  firefighting, air quality forecasts, air
+    traffic control, search and rescue missions, disaster risk reduction,
+    agricultural productivity, marine and coastal management......)
 
 -------------------------------------------------------------------------------------
 
@@ -116,22 +115,20 @@ Metop-SGA  sounding and imagery mission ?
 ::: tiny
 - [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
 - [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
-- [AC SAF, Atmospheric Composition Monitoring](https://www.eumetsat.int/ac-saf), ozone, trace gases, aerosols and ultraviolet data
-- [H SAF, Operational Hydrology and Water Management](https://www.eumetsat.int/h-saf), data for operational hydrological
-- [LSA SAF, Land Surface Analysis](https://www.eumetsat.int/lsa-saf), land, land-atmosphere interactions and biosphere
-- [NWC SAF, Nowcasting and Very Short Range Forecasting](https://www.eumetsat.int/nwc-saf), forecast for the next few hours
-- [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
-- [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
-- [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
+- Satellite Application Facilities SAF
+  - [AC SAF, Atmospheric Composition Monitoring](https://www.eumetsat.int/ac-saf), ozone, trace gases, aerosols and ultraviolet data
+  - [H SAF, Operational Hydrology and Water Management](https://www.eumetsat.int/h-saf), data for operational hydrological
+  - [LSA SAF, Land Surface Analysis](https://www.eumetsat.int/lsa-saf), land, land-atmosphere interactions and biosphere
+  - [NWC SAF, Nowcasting and Very Short Range Forecasting](https://www.eumetsat.int/nwc-saf), forecast for the next few hours
+  - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
+  - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
+  - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
 :::
 
 ::: notes
 SAFs in general have data and Software 
 :::
 
-::: footer
-EUMETSAT, Satellite Application Facilities (SAF)
-:::
 
 -------------------------------------------------------------------------------------
 
@@ -374,13 +371,13 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 
 -------------------------------------------------------------------------------------
 
-###  FCI composites
+###  FCI composites (MTG-I)
 
 Predefined composites of wavelengths...
 
 ```
 from satpy import Scene
-scn = Scene(filenames=files, reader='fci_l1c_nc')
+scn = Scene(filenames = files, reader = 'fci_l1c_nc')
 print(scn.available_composite_names())
 ```
 
@@ -459,7 +456,7 @@ volcanic_emissions
 
 -------------------------------------------------------------------------------------
 
-### LI Lightning Imager {.smaller}
+### LI Lightning Imager (MTG-I) {.smaller}
 
 LI Lightning Imager Groups
 
@@ -485,7 +482,7 @@ Key variables in LI-2-LGR-x-FD-x.
 
 -------------------------------------------------------------------------------------
 
-### LI Lightning Imager {.smaller}
+### LI Lightning Imager (MTG-I) {.smaller}
 
 LI Lightning Imager Flashes
 
@@ -517,7 +514,7 @@ Key variables in LI-2-LFL-x-FD-x.
 
 --------------------------------------------------------------------------------
 
-### Infrared Sounder IRS {.smaller}
+### InfraRed Sounder IRS (MTG-S) {.smaller}
 
 **Hyperspectral infrared sounder**
 
@@ -545,7 +542,7 @@ No concurrent ‘full disc scan’
 
 -------------------------------------------------------------------------------------
 
-### Infrared Sounder IRS {.smaller}
+### Infrared Sounder IRS (MTG-S) {.smaller}
 
 
 <div style="margin-top: 2em;"></div>
@@ -564,12 +561,12 @@ https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 -------------------------------------------------------------------------------------
 
-### Infrared Sounder IRS {.smaller}
+### Infrared Sounder IRS (MTG-S) {.smaller}
 
 L2 data
 
-- Temperature, humidity, ozone profiles
-- Surface parameters
+- Temperature, humidity and ozone profiles
+- Earth Surface parameters
 - Instability indices and total vertical column
 - Cloud products
 - Contextual parameters
@@ -582,9 +579,9 @@ https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 -------------------------------------------------------------------------------------
 
-### Infrared Sounder IRS {.smaller}
+### Spectral coverage {.smaller}
 
-![ ](images/IASI_CrIS_FCI_IRS.png){style="max-height:70vh; display:block; margin:auto;"}
+![ ](images/IASI_CrIS_FCI_IRS.png){style="max-height:60vh; display:block; margin:auto;"}
 
 ::: {.tiny style="text-align:center; width:80%; margin:auto;"}
 Infrared Atmospheric Sounding Interferometer (LEO),  
@@ -599,11 +596,11 @@ https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 -------------------------------------------------------------------------------------
 
-###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)  {.smaller}
+###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN) (MTG-S) {.smaller}
 
 <div style="margin-top: 1em;"></div>
 
-Objective: Observe the diurnal cycle of the tropospheric composition, trace gases, aerosol and cloud properties
+**objective**: Observe the diurnal cycle of the tropospheric composition, trace gases, aerosol and cloud properties
 
 ::: {.tiny style="text-align:center; width:80%; margin:auto;"}
 O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
@@ -629,7 +626,7 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 
 -------------------------------------------------------------------------------------
 
-###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)  {.smaller}
+###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN) (MTG-S)  {.smaller}
 
 L1 data
 
@@ -689,7 +686,7 @@ L2 data
 # 
 
 :::{.r-stack}
-[_**ευχαριστώ!**_]{style="font-size:150%;"}
+[_**ευχαριστώ! thanks!**_]{style="font-size:150%;"}
 :::
 
 

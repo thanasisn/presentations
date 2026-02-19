@@ -164,9 +164,11 @@ Metop-SGA  sounding and imagery mission ?
 <h3 id="definitions">Definitions</h3>
 <ul>
 <li><strong>MTG</strong>: Meteosat Third Generation system of geostationary satellites operated by EUMETSAT.</li>
-<li><strong>EUMETSAT</strong>: Europe’s meteorological satellite agency, intergovernmental organization.</li>
-<li><strong>General goals</strong>: Produce satellite data on weather, climate, and the environment around the clock. Near-real time for members, partners, and people who use the data.</li>
-<li><strong>Fields</strong>: Nowcasting, Numerical Weather Prediction models, Climate records, Other products and services (incl.&nbsp;firefighting, air quality forecasts, air traffic control, search and rescue missions, disaster risk reduction, agricultural productivity, marine and coastal management……)</li>
+<li><strong>EUMETSAT</strong>: Europe’s meteorological satellite agency, intergovernmental organization.
+<ul>
+<li><strong>goal</strong>: Produce satellite data on weather, climate, and the environment. Provide near-real time data for members, partners, and other data users.</li>
+<li><strong>fields</strong>: Nowcasting, Numerical Weather Prediction models, Climate records, Other products and services (incl.&nbsp;firefighting, air quality forecasts, air traffic control, search and rescue missions, disaster risk reduction, agricultural productivity, marine and coastal management……)</li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -184,6 +186,8 @@ Metop-SGA  sounding and imagery mission ?
 <ul>
 <li><a href="https://data.eumetsat.int/search">EUMETSAT data store</a> / <a href="https://user.eumetsat.int/catalogue">EUMETSAT data catalogue</a></li>
 <li><a href="https://archive.eumetsat.int/">EUMETSAT ‘data archive’</a></li>
+<li>Satellite Application Facilities SAF
+<ul>
 <li><a href="https://www.eumetsat.int/ac-saf">AC SAF, Atmospheric Composition Monitoring</a>, ozone, trace gases, aerosols and ultraviolet data</li>
 <li><a href="https://www.eumetsat.int/h-saf">H SAF, Operational Hydrology and Water Management</a>, data for operational hydrological</li>
 <li><a href="https://www.eumetsat.int/lsa-saf">LSA SAF, Land Surface Analysis</a>, land, land-atmosphere interactions and biosphere</li>
@@ -191,6 +195,7 @@ Metop-SGA  sounding and imagery mission ?
 <li><a href="https://www.eumetsat.int/nwp-saf">NWP SAF, Numerical Weather Prediction</a>, interface between satellite data and European activities in NWP</li>
 <li><a href="https://www.eumetsat.int/osi-saf">OSI SAF, Ocean and Sea Ice</a>, ocean-atmosphere interface</li>
 <li><a href="https://www.eumetsat.int/rom-saf">ROM SAF, Radio Occultation Meteorology</a>, high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas</li>
+</ul></li>
 </ul>
 </div>
 <aside class="notes">
@@ -206,9 +211,6 @@ Metop-SGA  sounding and imagery mission ?
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<div class="footer">
-<p>EUMETSAT, Satellite Application Facilities (SAF)</p>
-</div>
 </section>
 <section class="slide level2">
 
@@ -588,10 +590,10 @@ Metop-SGA  sounding and imagery mission ?
 </section>
 <section class="slide level2">
 
-<h3 id="fci-composites">FCI composites</h3>
+<h3 id="fci-composites-mtg-i">FCI composites (MTG-I)</h3>
 <p>Predefined composites of wavelengths…</p>
 <pre><code>from satpy import Scene
-scn = Scene(filenames=files, reader='fci_l1c_nc')
+scn = Scene(filenames = files, reader = 'fci_l1c_nc')
 print(scn.available_composite_names())</code></pre>
 <div class="tiny">
 <p>24h_microphysics, airmass, ash, cimss_cloud_type, cimss_cloud_type_raw, cloud_phase, cloud_phase_distinction, cloud_phase_distinction_raw, cloud_phase_raw, cloud_phase_with_night_ir105, cloud_type, cloud_type_with_night_ir105, cloudtop, colorized_ir_clouds, convection, day_essl_colorized_low_level_moisture, day_essl_low_level_moisture, day_microphysics, day_severe_storms, day_severe_storms_tropical, <strong>dust</strong>, essl_colorized_low_level_moisture, essl_low_level_moisture, fci_fire_channels_sum, fire_temperature, fire_temperature_38refl, fire_temperature_rad, flames_masked, fog, geo_color, geo_color_background_with_low_clouds, geo_color_high_clouds, geo_color_low_clouds, geo_color_night, green_snow, hrv_clouds, ir108_3d, ir_cloud_day, ir_sandwich, ir_sandwich_with_night_colorized_ir_clouds, <strong>natural_color</strong>, natural_color_raw, ndvi_hybrid_green, ndvi_hybrid_green_fully_sunzencorrected, ndvi_hybrid_green_raw, night_fog, night_ir105, night_ir_alpha, night_ir_with_background, night_ir_with_background_hires, night_microphysics, night_microphysics_tropical, overshooting_tops, rocket_plume_day, rocket_plume_night, simple_fci_fire_mask, snow, true_color, true_color_flames_with_night_ir105, true_color_fully_sunzencorrected, true_color_raw, true_color_raw_with_corrected_green, true_color_reproduction, true_color_reproduction_corr, true_color_reproduction_uncorr, true_color_with_night_ir, true_color_with_night_ir105, true_color_with_night_ir_hires, volcanic_emissions</p>
@@ -599,7 +601,7 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="li-lightning-imager">LI Lightning Imager</h3>
+<h3 class="smaller" id="li-lightning-imager-mtg-i">LI Lightning Imager (MTG-I)</h3>
 <p>LI Lightning Imager Groups</p>
 <div class="tiny">
 <table class="caption-top">
@@ -650,7 +652,7 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="li-lightning-imager-1">LI Lightning Imager</h3>
+<h3 class="smaller" id="li-lightning-imager-mtg-i-1">LI Lightning Imager (MTG-I)</h3>
 <p>LI Lightning Imager Flashes</p>
 <div class="tiny">
 <table class="caption-top">
@@ -726,7 +728,7 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="infrared-sounder-irs">Infrared Sounder IRS</h3>
+<h3 class="smaller" id="infrared-sounder-irs-mtg-s">InfraRed Sounder IRS (MTG-S)</h3>
 <p><strong>Hyperspectral infrared sounder</strong></p>
 <ul>
 <li>Goal:
@@ -762,7 +764,7 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="infrared-sounder-irs-1">Infrared Sounder IRS</h3>
+<h3 class="smaller" id="infrared-sounder-irs-mtg-s-1">Infrared Sounder IRS (MTG-S)</h3>
 <div style="margin-top: 2em;">
 
 </div>
@@ -803,11 +805,11 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="infrared-sounder-irs-2">Infrared Sounder IRS</h3>
+<h3 class="smaller" id="infrared-sounder-irs-mtg-s-2">Infrared Sounder IRS (MTG-S)</h3>
 <p>L2 data</p>
 <ul>
-<li>Temperature, humidity, ozone profiles</li>
-<li>Surface parameters</li>
+<li>Temperature, humidity and ozone profiles</li>
+<li>Earth Surface parameters</li>
 <li>Instability indices and total vertical column</li>
 <li>Cloud products</li>
 <li>Contextual parameters</li>
@@ -819,8 +821,8 @@ print(scn.available_composite_names())</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="infrared-sounder-irs-3">Infrared Sounder IRS</h3>
-<p><img data-src="images/IASI_CrIS_FCI_IRS.png" style="max-height:70vh; display:block; margin:auto;"></p>
+<h3 class="smaller" id="spectral-coverage">Spectral coverage</h3>
+<p><img data-src="images/IASI_CrIS_FCI_IRS.png" style="max-height:60vh; display:block; margin:auto;"></p>
 <div class="tiny" style="text-align:center; width:80%; margin:auto;">
 <p>Infrared Atmospheric Sounding Interferometer (LEO),<br>
 Cross-track Infrared Sounder (LEO),<br>
@@ -833,11 +835,11 @@ MTG Flexible Combined Imager (GEO)</p>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)</h3>
+<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn-mtg-s">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN) (MTG-S)</h3>
 <div style="margin-top: 1em;">
 
 </div>
-<p>Objective: Observe the diurnal cycle of the tropospheric composition, trace gases, aerosol and cloud properties</p>
+<p><strong>objective</strong>: Observe the diurnal cycle of the tropospheric composition, trace gases, aerosol and cloud properties</p>
 <div class="tiny" style="text-align:center; width:80%; margin:auto;">
 <p>O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO (Formaldehyde), CHOCHO (glyoxal)</p>
 </div>
@@ -889,7 +891,7 @@ MTG Flexible Combined Imager (GEO)</p>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>VIS and NIR bands implemented in two spectrometers UVVIS &amp; NIR)</p></li></ol></aside></section>
 <section class="slide level2">
 
-<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn-1">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)</h3>
+<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn-mtg-s-1">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN) (MTG-S)</h3>
 <p>L1 data</p>
 <div style="margin-top: 1em;">
 
@@ -945,7 +947,7 @@ MTG Flexible Combined Imager (GEO)</p>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn-2">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)</h3>
+<h3 class="smaller" id="sentinel-4ultraviolet-visible-and-near-infrared-spectrometer-s4-uvn">Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN)</h3>
 <p>L2 data</p>
 <div style="margin-top: 1em;">
 
@@ -1016,7 +1018,7 @@ If you want to test posible applications</li>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
 <div class="r-stack">
-<p><span style="font-size:150%;"><em><strong>ευχαριστώ!</strong></em></span></p>
+<p><span style="font-size:150%;"><em><strong>ευχαριστώ! thanks!</strong></em></span></p>
 </div>
 <p><span style="font-size:80%;">contact:</span> <span style="font-size:120%;"><strong>anatsis@noa.gr</strong></span></p>
 <p><span style="font-size:80%;">source code:</span> <span style="font-size:120%;"><strong>github.com/thanasisn/presentations</strong></span></p>
