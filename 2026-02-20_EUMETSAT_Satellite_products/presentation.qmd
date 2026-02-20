@@ -421,7 +421,7 @@ No concurrent ‘full disc scan’
 
 -------------------------------------------------------------------------------------
 
-### Infrared Sounder IRS (MTG-S) {.smaller}
+### InfraRed Sounder IRS (MTG-S) {.smaller}
 
 
 <div style="margin-top: 2em;"></div>
@@ -548,6 +548,42 @@ L2 data
 [sentinels.copernicus.eu/missions/sentinel-4](https://sentinels.copernicus.eu/missions/sentinel-4)
 :::
 
+-------------------------------------------------------------------------------------
+
+###  Main data resources {.smaller}
+
+<div style="margin-top: 1em;"></div>
+
+::: tiny
+- [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
+- [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
+- Satellite Application Facilities SAF
+  - [AC SAF, Atmospheric Composition Monitoring](https://www.eumetsat.int/ac-saf), ozone, trace gases, aerosols and ultraviolet data
+  - [H SAF, Operational Hydrology and Water Management](https://www.eumetsat.int/h-saf), data for operational hydrological
+  - [LSA SAF, Land Surface Analysis](https://www.eumetsat.int/lsa-saf), land, land-atmosphere interactions and biosphere
+  - [NWC SAF, Nowcasting and Very Short Range Forecasting](https://www.eumetsat.int/nwc-saf), forecast for the next few hours
+  - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
+  - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
+  - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
+:::
+
+::: notes
+SAFs in general have data and Software 
+:::
+
+-------------------------------------------------------------------------------------
+
+###  Main reference resources
+
+<div style="margin-top: 3em;"></div>
+
+- [EUMETView](https://view.eumetsat.int/), interactive map and product explorer
+- [EUMETSAT User Portal](https://user.eumetsat.int/catalogue), guides and products
+  references
+  - Training
+  - Software
+  - Guides
+  - ......
 
 -------------------------------------------------------------------------------------
 
@@ -635,47 +671,8 @@ L2 data
 [acsaf.org](https://acsaf.org/)
 :::
 
-
 -------------------------------------------------------------------------------------
 
-###  Main data resources {.smaller}
-
-<div style="margin-top: 1em;"></div>
-
-::: tiny
-- [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
-- [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
-- Satellite Application Facilities SAF
-  - [AC SAF, Atmospheric Composition Monitoring](https://www.eumetsat.int/ac-saf), ozone, trace gases, aerosols and ultraviolet data
-  - [H SAF, Operational Hydrology and Water Management](https://www.eumetsat.int/h-saf), data for operational hydrological
-  - [LSA SAF, Land Surface Analysis](https://www.eumetsat.int/lsa-saf), land, land-atmosphere interactions and biosphere
-  - [NWC SAF, Nowcasting and Very Short Range Forecasting](https://www.eumetsat.int/nwc-saf), forecast for the next few hours
-  - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
-  - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
-  - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
-:::
-
-::: notes
-SAFs in general have data and Software 
-:::
-
-
--------------------------------------------------------------------------------------
-
-###  Main reference resources
-
-<div style="margin-top: 3em;"></div>
-
-- [EUMETView](https://view.eumetsat.int/), interactive map and product explorer
-- [EUMETSAT User Portal](https://user.eumetsat.int/catalogue), guides and products
-  references
-  - Training
-  - Software
-  - Guides
-  - ......
-
-
--------------------------------------------------------------------------------------
 ## Other Links {.smaller}
 
 ::: r-stretch
@@ -685,9 +682,11 @@ SAFs in general have data and Software
   If you want to test possible applications
 :::
 
+-------------------------------------------------------------------------------------
 
+### This was an overview of the MTG satellites and data
 
-# 
+<div style="margin-top: 3em;"></div>
 
 :::{.r-stack}
 [_**ευχαριστώ! thanks!**_]{style="font-size:150%;"}
@@ -697,9 +696,9 @@ SAFs in general have data and Software
 [contact:]{style="font-size:80%;"}
 [**anatsis@noa.gr**]{style="font-size:120%;"}
 
-[source code:]{style="font-size:80%;"}
+[presentation:]{style="font-size:80%;"}
 [**github.com/thanasisn/presentations**]{style="font-size:120%;"}
 
 ::: {.img-fit .center}
-![this Presentation](images/presentation_qr.png){style="height:10vh; max-height:10vh; width:auto;" fig-align="center"}
+![](images/presentation_qr.png){style="height:20vh; max-height:20vh; width:auto;" fig-align="center"}
 :::
