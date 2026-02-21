@@ -1,0 +1,96 @@
+---
+title:    "MTG Satellites, Instruments and Data,\na limited overview"
+date:     "2026-02-20"
+author:   "Athanasios Natsis"
+subtitle: "NOA/ReACT"
+
+output:
+  powerpoint_presentation:
+    reference_doc: default
+---
+
+# FCI composites (MTG-I)
+
+Predefined wavelength composites for cloud and atmospheric monitoring.
+
+```{python eval=FALSE, include=TRUE}
+from satpy import Scene
+scn = Scene(filenames=files, reader='fci_l1c_nc')
+print(scn.available_composite_names())
+```
+
+Available composites include:
+
+* 24h_microphysics
+* airmass
+* ash
+* dust
+* natural_color
+* true_color
+* volcanic_emissions
+
+# LI Lightning Imager — Groups
+
+* `group_time`: UTC time
+* `latitude`, `longitude`: Radiance-weighted location
+* `radiance`: Total radiance
+* `number_of_events`
+* `flash_id`
+* `group_filter_qa`
+
+# LI Lightning Imager — Flashes
+
+* `flash_time`
+* `flash_duration`
+* `latitude`, `longitude`
+* `radiance`
+* `number_of_groups`
+* `flash_footprint`
+* `flash_filter_confidence`
+
+# InfraRed Sounder IRS (MTG-S)
+
+Hyperspectral infrared sounder:
+
+* 4 km spatial resolution
+* 60 min full disk coverage
+* Retrieves temperature, humidity, ozone, CO
+
+# IRS Spectral Bands
+
+| Band | Range          | Channels |
+| ---- | -------------- | -------- |
+| LWIR | 679–1210 cm⁻¹  | 887      |
+| MWIR | 1600–2250 cm⁻¹ | 1076     |
+
+# Spectral Coverage
+
+```{r, echo=FALSE, out.width="85%"}
+knitr::include_graphics("images/IASI_CrIS_FCI_IRS.png")
+```
+
+# Sentinel-4 / UVN
+
+Observes:
+
+* O₃
+* NO₂
+* SO₂
+* HCHO
+* CHOCHO
+
+Revisit time: ~60 minutes
+
+# Main Data Resources
+
+* EUMETSAT Data Store
+* EUMETSAT Data Archive
+* SAF products
+
+# Thank You
+
+ευχαριστώ! thanks!
+
+[anatsis@noa.gr](mailto:anatsis@noa.gr)
+github.com/thanasisn/presentations
+

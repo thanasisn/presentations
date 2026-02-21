@@ -1,0 +1,135 @@
+---
+title:    "MTG Satellites, Instruments and Data,\na limited overview"
+date:     "2026-02-20"
+author:   "Athanasios Natsis"
+subtitle: "NOA/ReACT"
+
+output:
+  beamer_presentation:
+    theme: Madrid
+    colortheme: seahorse
+    fonttheme: professionalfonts
+    slide_level: 1
+    latex: xelatex
+fontsize: 11pt
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{graphicx}
+  - \usepackage{fontspec}
+  - \usepackage{xunicode}
+  - \usepackage{xltxtra}
+  - \usepackage{xgreek}
+  - \setmainfont{Linux Libertine O}
+  - \setsansfont{Linux Biolinum O}
+  - \setmonofont{Linux Libertine Mono O}
+---
+
+# FCI composites (MTG-I)
+
+Predefined composites of wavelengths for cloud, dust, ash and atmospheric analysis.
+
+```{python eval=FALSE, include=TRUE}
+from satpy import Scene
+scn = Scene(filenames=files, reader='fci_l1c_nc')
+print(scn.available_composite_names())
+```
+
+{\tiny
+24h_microphysics, airmass, ash, cimss_cloud_type, cloud_phase, convection, dust, natural_color, true_color, volcanic_emissions, ...
+}
+
+# LI Lightning Imager (MTG-I) — Groups
+
+\small
+
+| Variable           | Description                 |
+| ------------------ | --------------------------- |
+| `group_time`       | UTC time of the group       |
+| `latitude`         | Radiance-weighted latitude  |
+| `longitude`        | Radiance-weighted longitude |
+| `radiance`         | Total radiance              |
+| `number_of_events` | Number of events            |
+| `flash_id`         | Associated flash ID         |
+| `group_filter_qa`  | Quality indicator           |
+
+{\footnotesize Product: LI-2-LGR-x-FD-x}
+
+# LI Lightning Imager (MTG-I) — Flashes
+
+\small
+
+| Variable                  | Description                 |
+| ------------------------- | --------------------------- |
+| `flash_time`              | Time of first group         |
+| `flash_duration`          | Flash duration              |
+| `latitude`                | Radiance-weighted latitude  |
+| `longitude`               | Radiance-weighted longitude |
+| `radiance`                | Total flash radiance        |
+| `number_of_groups`        | Number of groups            |
+| `flash_footprint`         | Flash size in pixels        |
+| `flash_filter_confidence` | Confidence indicator        |
+
+# InfraRed Sounder IRS (MTG-S)
+
+**Hyperspectral infrared sounder**
+
+* 3D temperature and humidity structure
+* Water vapour transport
+* CO and ozone monitoring
+* ~2 km vertical resolution
+
+**Specifications:**
+
+* Spatial resolution: 4 km at nadir
+* Temporal: 15–30 min regional
+* 60 min full disk
+
+# IRS Spectral Bands
+
+| Band | Wavenumber Range | Channels | Main Targets |
+| ---- | ---------------- | -------- | ------------ |
+| LWIR | 679.5–1210 cm⁻¹  | 887      | H₂O, CO₂, O₃ |
+| MWIR | 1600–2250 cm⁻¹   | 1076     | H₂O, CO      |
+
+# Spectral Coverage Comparison
+
+```{r, echo=FALSE, out.width="85%"}
+knitr::include_graphics("images/IASI_CrIS_FCI_IRS.png")
+```
+
+# Sentinel-4 / UVN (MTG-S)
+
+Objective: Monitor the diurnal cycle of atmospheric composition over Europe.
+
+* O₃
+* NO₂
+* SO₂
+* HCHO
+* CHOCHO
+
+**Spatial resolution:** 8 × 8 km²
+**Revisit time:** ~60 min
+
+# Main Data Resources
+
+* EUMETSAT Data Store
+* EUMETSAT Data Archive
+
+Satellite Application Facilities:
+
+* AC SAF
+* H SAF
+* LSA SAF
+* NWC SAF
+* NWP SAF
+* OSI SAF
+* ROM SAF
+
+# Thank You
+
+**ευχαριστώ! thanks!**
+
+[anatsis@noa.gr](mailto:anatsis@noa.gr)
+github.com/thanasisn/presentations
+
+
