@@ -24,6 +24,39 @@ header-includes:
   - \setmonofont{Linux Libertine Mono O}
 ---
 
+<!--
+Επίσης, θα ήταν πολύ χρήσιμο αν θα μπορούσες (μέχρι να στηθούν τα HPC) να κάνεις μια
+παρουσίαση στην ομάδα Για τα προιόντα κλπ που έχουμε από EUMETSATo
+
+Αν μπορείς να κάνεις ένα overview, πχ αυτός ο sounder που λένε τι θα δίνει, με τι
+ανάλυση στο vertical κλπ, το MTG πχ, το S4 κλπ Ατμοσφαιρικά κυρίως
+-->
+
+
+
+### Definitions
+
+- **MTG**: Meteosat Third Generation  system of geostationary satellites operated by
+  EUMETSAT.
+- **EUMETSAT**: Europe's meteorological satellite agency, an intergovernmental
+  organization.
+  - **goal**: Produce satellite data on weather, climate, and the environment.
+    Provide near-real time data for members, partners, and other data users.
+  - **fields**: Nowcasting, Numerical Weather Prediction models, Climate records,
+    Other products and services (incl.  firefighting, air quality forecasts, air
+    traffic control, search and rescue missions, disaster risk reduction,
+    agricultural productivity, marine and coastal management......)
+
+-------------------------------------------------------------------------------------
+
+
+### Data scope
+
+![NRT 4d weather cube](images/data_domain.png){.r-stretch width=100%}
+
+
+-------------------------------------------------------------------------------------
+
 # FCI composites (MTG-I)
 
 Predefined composites of wavelengths for cloud, dust, ash and atmospheric analysis.

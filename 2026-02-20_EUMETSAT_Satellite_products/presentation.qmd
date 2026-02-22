@@ -66,21 +66,12 @@ format:
           % \setmonofont{DejaVu Sans Mono}
 ---
 
-
 <!--
 Επίσης, θα ήταν πολύ χρήσιμο αν θα μπορούσες (μέχρι να στηθούν τα HPC) να κάνεις μια
 παρουσίαση στην ομάδα Για τα προιόντα κλπ που έχουμε από EUMETSATo
 
 Αν μπορείς να κάνεις ένα overview, πχ αυτός ο sounder που λένε τι θα δίνει, με τι
 ανάλυση στο vertical κλπ, το MTG πχ, το S4 κλπ Ατμοσφαιρικά κυρίως
-
-Λέω να δεις τα MTG, 3MI, S4 και το IRS κάπως, ένας sounder Και το lightning κλπ
-
-MTG-Si Sounder?
-
-Metop-SGA  sounding and imagery mission ?
-
-
 -->
 
 

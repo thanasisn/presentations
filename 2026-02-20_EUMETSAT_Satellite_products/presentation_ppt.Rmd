@@ -9,6 +9,92 @@ output:
     reference_doc: default
 ---
 
+<!--
+Επίσης, θα ήταν πολύ χρήσιμο αν θα μπορούσες (μέχρι να στηθούν τα HPC) να κάνεις μια
+παρουσίαση στην ομάδα Για τα προιόντα κλπ που έχουμε από EUMETSATo
+
+Αν μπορείς να κάνεις ένα overview, πχ αυτός ο sounder που λένε τι θα δίνει, με τι
+ανάλυση στο vertical κλπ, το MTG πχ, το S4 κλπ Ατμοσφαιρικά κυρίως
+-->
+
+
+### Definitions {.smaller}
+
+- **MTG**: Meteosat Third Generation  system of geostationary satellites operated by
+  EUMETSAT.
+- **EUMETSAT**: Europe's meteorological satellite agency, an intergovernmental
+  organization.
+  - **goal**: Produce satellite data on weather, climate, and the environment.
+    Provide near-real time data for members, partners, and other data users.
+  - **fields**: Nowcasting, Numerical Weather Prediction models, Climate records,
+    Other products and services (firefighting, air quality forecasts, air
+    traffic control, search and rescue missions, disaster risk reduction,
+    agricultural productivity, marine and coastal management......)
+
+-------------------------------------------------------------------------------------
+
+
+### Data scope
+
+![NRT 4d weather cube](images/data_domain.png){heigth=90%}
+
+
+-------------------------------------------------------------------------------------
+
+## MTG-I Imaging mission {style="text-align: center;"}
+
+::::: {.columns style='display: flex !important;'}
+::: {.column width="60%" style='display: flex; justify-content: right; align-items: center; height: 50vh;'}
+![MTG-I](images/mtg-I.png){style='max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain;'}
+:::
+
+::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
+- *FCI* - Full disc scanning service
+  - /10 minutes, 16 spectral bands
+- *FCI* - Rapid scanning service
+  - Europe /2.5 minutes,  16 spectral bands
+- *LI* - Lightning Imager
+   - Full disc, continuous
+:::
+::::
+
+::: footer
+[www.eumetsat.int/meteosat-third-generation](https://www.eumetsat.int/meteosat-third-generation)
+
+[user.eumetsat.int/resources/user-guides/mtg-in-operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)
+:::
+
+::: notes
+- 6 satellites
+
+- 4 MTG-I
+
+- 2 MTG-S
+:::
+
+-------------------------------------------------------------------------------------
+
+## MTG-S Sounding mission {style="text-align: center;"}
+
+::::: {.columns style='display: flex !important;'}
+::: {.column width="60%" style='display: flex; justify-content: right; align-items: center; height: 50vh;'}
+![MTG-S](images/mtg-S.png){style='max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain;'}
+:::
+
+::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
+- Infrared Sounder (IRS) 
+  - 1/4 of Full disk /15 minutes
+- Ultraviolet Visible Near-infrared (UVN) Sounder
+  - Copernicus Sentinel-4
+  - Smaller disc than FCI, /60min
+:::
+::::
+
+::: footer
+[www.eumetsat.int/meteosat-third-generation](https://www.eumetsat.int/meteosat-third-generation)
+
+[user.eumetsat.int/resources/user-guides/mtg-in-operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)
+:::
 # FCI composites (MTG-I)
 
 Predefined wavelength composites for cloud and atmospheric monitoring.
