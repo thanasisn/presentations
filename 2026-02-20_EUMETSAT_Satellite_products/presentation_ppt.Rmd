@@ -41,14 +41,15 @@ output:
 -------------------------------------------------------------------------------------
 
 
-## MTG-I Imaging mission {style="text-align: center;"}
+## MTG-I Imaging mission {.small}
 
-::::: {.columns style='display: flex !important;'}
-::: {.column width="60%" style='display: flex; justify-content: right; align-items: center; height: 50vh;'}
-![MTG-I](images/mtg-I.png){style='max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain;'}
+::::: {.columns}
+
+::: {.column width="60%"}
+![MTG-I](images/mtg-I.png){width=80%}
 :::
 
-::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
+::: {.column width="40%"}
 - *FCI* - Full disc scanning service
   - /10 minutes, 16 spectral bands
 - *FCI* - Rapid scanning service
@@ -56,33 +57,26 @@ output:
 - *LI* - Lightning Imager
    - Full disc, continuous
 :::
+
 ::::
 
-::: footer
 [www.eumetsat.int/meteosat-third-generation](https://www.eumetsat.int/meteosat-third-generation)
 
 [user.eumetsat.int/resources/user-guides/mtg-in-operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)
-:::
 
-::: notes
-- 6 satellites
-
-- 4 MTG-I
-
-- 2 MTG-S
-:::
 
 -------------------------------------------------------------------------------------
 
-## MTG-S Sounding mission {style="text-align: center;"}
+## MTG-S Sounding mission 
 
-::::: {.columns style='display: flex !important;'}
-::: {.column width="60%" style='display: flex; justify-content: right; align-items: center; height: 50vh;'}
-![MTG-S](images/mtg-S.png){style='max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain;'}
+::::: {.columns}
+
+::: {.column width="60%"}
+![MTG-S](images/mtg-S.png){width=80%}
 :::
 
-::: {.column width="40%" style='display: flex; justify-content: center; align-items: center;'}
-- Infrared Sounder (IRS) 
+::: {.column width="40%"}
+- Infrared Sounder (IRS)
   - 1/4 of Full disk /15 minutes
 - Ultraviolet Visible Near-infrared (UVN) Sounder
   - Copernicus Sentinel-4
@@ -90,24 +84,23 @@ output:
 :::
 ::::
 
-::: footer
-[www.eumetsat.int/meteosat-third-generation](https://www.eumetsat.int/meteosat-third-generation)
+https://www.eumetsat.int/meteosat-third-generation
 
-[user.eumetsat.int/resources/user-guides/mtg-in-operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)
-:::
+https://user.eumetsat.int/resources/user-guides/mtg-in-operations
 
 -------------------------------------------------------------------------------------
 
-<section data-background-image="images/full_disk_FCI_true_color_202303181150-MTG-i1.jpg" data-background-size="contain" data-background-position="center">
-</section>
+## 
+
+![](images/full_disk_FCI_true_color_202303181150-MTG-i1.jpg){width=100%}
+
 
 -------------------------------------------------------------------------------------
 
-### Flexible Combined Imager FCI {.smaller .center}
+### Flexible Combined Imager FCI {.smaller}
 
 Full Earth disk every 10 minutes
 
-::: { .r-stretch}
 |    | Spectral ch. | Central wavelength | Spectral width | Spatial Sampling Distance |
 |----|--------------|--------------------|----------------|---------|
 | 1  | VIS 0.4      |  0.444 µm          | 0.060 µm       |  1.0 km |
@@ -126,25 +119,20 @@ Full Earth disk every 10 minutes
 | 14 | IR 10.5      | 10.500 µm          | 0.700 µm       |  2.0 km 1.0 km (HR) |
 | 15 | IR 12.3      | 12.300 µm          | 0.500 µm       |  2.0 km |
 | 16 | IR 13.3      | 13.300 µm          | 0.600 µm       |  2.0 km |
-:::
 
-<div style="font-size: 0.65em; opacity: 0.8; margin-top: 0.4em;">
 Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
-</div>
 
+https://user.eumetsat.int/resources/user-guides/mtg-fci-level-1c-data-guide
 
-::: footer
-[user.eumetsat.int/resources/user-guides/mtg-fci-level-1c-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-fci-level-1c-data-guide)
-:::
 
 -------------------------------------------------------------------------------------
 
-### EUMETSAT MTG available products (2026-02-01)  {.smaller}
+### EUMETSAT MTG available products (2026-02-01)  {.small}
 
-<div style="margin-top: 2em;"></div>
+:::: {.columns}
 
-::: {.tiny}
-::: {.two-col}
+::: {.column width="50%"}
+
 - Accumulated precipitation at ground by blended MW+IR and FCI
 - Active Fire Monitoring (CAP, netCDF)
 - All Sky Radiance (BUFR, netCDF)
@@ -155,6 +143,11 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 - Cloud Type
 - FCI Level 1c High Resolution Image Data
 - FCI Level 1c Normal Resolution Image Data
+
+:::
+
+::: {.column width="50%"}
+
 - FCI Level 3 Sea Surface Temperature
 - FCI Snow detection (snow mask) by VIS/NIR radiometry
 - Global Instability Indices
@@ -168,16 +161,15 @@ Visible (VIS), Near Infrared (NIR), Infrared (IR), Water Vapour (WV)
 - Optimal Cloud Analysis
 - Outgoing LW radiation at TOA
 - Precipitation rate at ground by blended FCI IR / LEO MW precipitation
-:::
+
 :::
 
-::: notes
-26 products, 27 now, also counting the file formats
-:::
+::::
 
-::: footer
-[data.eumetsat.int/extended?query=mtg](https://data.eumetsat.int/extended?query=mtg)
-:::
+---
+
+https://data.eumetsat.int/extended?query=mtg
+
 
 -------------------------------------------------------------------------------------
 
@@ -271,7 +263,6 @@ volcanic_emissions
 
 LI Lightning Imager Groups
 
-::: tiny
 | Variable             | Description                                                                                                                                                                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `group_time`         | UTC time of the group                                                                                                                                                                                                                        |
@@ -281,15 +272,10 @@ LI Lightning Imager Groups
 | `number_of_events`   | Number of events in the group                                                                                                                                                                                                                |
 | `flash_id`           | ID of the flash that allows one to relate the groups in the LI-2-LGR-x-FD-x to the LI-2-LFL-x-FD-x                                                                                                                                           |
 | `group_filter_qa`    | Quality of the group computed at the group-rejection step ([Rejection of groups prior to the comp...](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)) |
-:::
 
-<div style="font-size: 0.65em; opacity: 0.8; margin-top: 0.4em;">
 Key variables in LI-2-LGR-x-FD-x.
-</div>
 
-::: footer
-[user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide)
-:::
+https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide
 
 -------------------------------------------------------------------------------------
 
@@ -297,7 +283,6 @@ Key variables in LI-2-LGR-x-FD-x.
 
 LI Lightning Imager Flashes
 
-::: tiny
 | Variable                  | Description                                                                                                                                                                                                               |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `flash_time`              | UTC time of the first group in the flash                                                                                                                                                                                  |
@@ -310,18 +295,10 @@ LI Lightning Imager Flashes
 | `flash_footprint`         | Size of the flash footprint in number of pixels                                                                                                                                                                           |
 | `flash_id`                | ID of the flash                                                                                                                                                                                                           |
 | `flash_filter_confidence` | Quality of the filter computed at the group-rejection step ([Rejection of flashes](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide#ID-Rejection-of-groups-prior-to-the-computation-of-flashes)) |
-:::
 
-<div style="font-size: 0.65em; opacity: 0.8; margin-top: 0.4em;">
 Key variables in LI-2-LFL-x-FD-x.
-</div>
 
-::: {.notes}
-:::
-
-::: footer
-[user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide)
-:::
+https://user.eumetsat.int/resources/user-guides/mtg-li-level-2-data-guide
 
 --------------------------------------------------------------------------------
 
@@ -356,8 +333,6 @@ No concurrent ‘full disc scan’
 ### InfraRed Sounder IRS (MTG-S) {.smaller}
 
 
-<div style="margin-top: 2em;"></div>
-
 | Band                | Wavenumber Range        | Channels | Main  Targets                           |
 | ------------------- | ----------------------  | -------- | --------------------------------------- |
 | Long Wave IR (LWIR) | 679.5 – 1210.0  cm^-1^  | 887      | H2O, CO2, O3, Surface, Clouds, Aerosols |
@@ -365,9 +340,7 @@ No concurrent ‘full disc scan’
 
 Vertical resolution TBD ... (~ 2km)
 
-::: footer
-[user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide)
-:::
+https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 
 -------------------------------------------------------------------------------------
@@ -384,9 +357,7 @@ L2 data
 
 [Test/Simulated data available here](https://user.eumetsat.int/resources/user-guides/mtg-test-data)
 
-::: footer
-[user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide](https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide)
-:::
+https://user.eumetsat.int/resources/user-guides/mtg-irs-level-1-data-guide
 
 -------------------------------------------------------------------------------------
 
@@ -409,8 +380,6 @@ MTG Flexible Combined Imager (GEO)
 
 ###  Sentinel-4/Ultraviolet, Visible and Near-infrared Spectrometer (S4 / UVN) (MTG-S) {.smaller}
 
-<div style="margin-top: 1em;"></div>
-
 **objective**: Observe the diurnal cycle of the tropospheric composition, trace gases, aerosol and cloud properties
 
 ::: {.tiny style="text-align:center; width:80%; margin:auto;"}
@@ -418,9 +387,6 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 (Formaldehyde), CHOCHO (glyoxal)
 :::
 
-<div style="margin-top: 1em;"></div>
-
-::: {.tiny}
 |                                 |                                                                                          |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
 | Instrument type                 | Passive imaging spectrometer                                                             |
@@ -431,7 +397,6 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 | Spectral resolution             | 0.5 nm for the UV-VIS channel; 0.12 nm for the NIR channel                               |
 | Radiometric accuracy (absolute) | 3% (2% goal) of the measured sun irradiance, earth radiance and spectral reflectance.    |
 | Revisit time                    | ~ 60 min                                                                                 |
-:::
 
 [^1]: VIS and NIR bands implemented in two spectrometers UVVIS & NIR)
 
@@ -441,9 +406,6 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 
 L1 data
 
-<div style="margin-top: 1em;"></div>
-
-::: {.tiny}
 | Level-1B product | Parameter(s)                                                             | Distributed     |
 | ---------------- | ------------------------------------------------------------------------ | --------------- |
 | Earth Radiance   | Spectrally and radiometrically calibrated and geo-located Earth radiance | To all users    |
@@ -452,7 +414,6 @@ L1 data
 | Calibration      | Calibration data.                                                        | To Expert Users |
 | Star             | Star calibration data                                                    | To Expert Users |
 | Diagnostic       | Instrument diagnostic data                                               | To Expert Users |
-:::
 
 -------------------------------------------------------------------------------------
 
@@ -460,9 +421,6 @@ L1 data
 
 L2 data
 
-<div style="margin-top: 1em;"></div>
-
-::: {.tiny}
 | Level-2 products | Parameter(s)                                                          |
 | ---------------- | --------------------------------------------------------------------- |
 | O3               | Ozone (O3) total column, tropospheric sub-column,                     |
@@ -473,12 +431,9 @@ L2 data
 | Cloud            | Cloud optical thickness, cloud fraction, cloud altitude               |
 | Aerosol          | Aerosol column optical thickness, type, layer height, absorbing index |
 | Surface          | Surface and aerosol characteristics                                   |
-:::
 
 
-::: footer
-[sentinels.copernicus.eu/missions/sentinel-4](https://sentinels.copernicus.eu/missions/sentinel-4)
-:::
+https://sentinels.copernicus.eu/missions/sentinel-4
 
 -------------------------------------------------------------------------------------
 
@@ -486,7 +441,6 @@ L2 data
 
 <div style="margin-top: 1em;"></div>
 
-::: tiny
 - [EUMETSAT data store](https://data.eumetsat.int/search) / [EUMETSAT data catalogue](https://user.eumetsat.int/catalogue)
 - [EUMETSAT 'data archive'](https://archive.eumetsat.int/)
 - Satellite Application Facilities SAF
@@ -497,7 +451,6 @@ L2 data
   - [NWP SAF, Numerical Weather Prediction](https://www.eumetsat.int/nwp-saf), interface between satellite data and European activities in NWP
   - [OSI SAF, Ocean and Sea Ice](https://www.eumetsat.int/osi-saf), ocean-atmosphere interface
   - [ROM SAF, Radio Occultation Meteorology](https://www.eumetsat.int/rom-saf), high-quality GNSS Radio Occultation (RO) data for NWP and climate application areas
-:::
 
 ::: notes
 SAFs in general have data and Software 
@@ -506,8 +459,6 @@ SAFs in general have data and Software
 -------------------------------------------------------------------------------------
 
 ###  Main reference resources
-
-<div style="margin-top: 3em;"></div>
 
 - [EUMETView](https://view.eumetsat.int/), interactive map and product explorer
 - [EUMETSAT User Portal](https://user.eumetsat.int/catalogue), guides and products
@@ -521,15 +472,12 @@ SAFs in general have data and Software
 
 ### Land Surface Analysis **LSA** SAF available products  {.smaller .center}
 
-<div style="margin-top: 3em;"></div>
 
 - Land Surface Albedo (MTDAL)
 - Fire Radiative Power (MTFRP)
 - Land Surface Temperature (MTLST)
 
-::: footer
-[datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/](https://datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/)
-:::
+https://datalsasaf.lsasvcs.ipma.pt/PRODUCTS/MTG/
 
 -------------------------------------------------------------------------------------
 
@@ -607,18 +555,15 @@ SAFs in general have data and Software
 
 ## Other Links {.smaller}
 
-::: r-stretch
 - [MTG in operations](https://user.eumetsat.int/resources/user-guides/mtg-in-operations)  
   Current status and operational information
 - [MTG test data](https://user.eumetsat.int/resources/user-guides/mtg-test-data)  
   If you want to test possible applications
-:::
 
 -------------------------------------------------------------------------------------
 
 ### This was an overview of the MTG satellites and data
 
-<div style="margin-top: 3em;"></div>
 
 :::{.r-stack}
 [_**ευχαριστώ! thanks!**_]{style="font-size:150%;"}
