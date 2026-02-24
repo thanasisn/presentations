@@ -82,12 +82,12 @@ https://user.eumetsat.int/resources/user-guides/mtg-in-operations
 
 -------------------------------------------------------------------------------------
 
-## MTG-S Sounding mission {.small} 
+## MTG-S Sounding mission {.small}
 
 ::::: {.columns}
 
 ::: {.column width="60%"}
-![MTG-S](images/mtg-S.png){height=10%}
+![MTG-S](images/mtg-S.png){width=80%}
 :::
 
 ::: {.column width="40%"}
@@ -105,16 +105,15 @@ https://user.eumetsat.int/resources/user-guides/mtg-in-operations
 
 -------------------------------------------------------------------------------------
 
-## 
-
-![](images/full_disk_FCI_true_color_202303181150-MTG-i1.jpg){width=100%}
+## {background-image="images/full_disk_FCI_true_color_202303181150-MTG-i1.jpg"}
 
 
 -------------------------------------------------------------------------------------
 
-### Flexible Combined Imager FCI {.tiny}
+### Flexible Combined Imager FCI
 
 Full Earth disk every 10 minutes
+
 
 \tiny
 |    | Channel    |  λc   | Δλ  | SSD  |
@@ -405,9 +404,8 @@ O3 (Ozone), NO2 (Nitrogen dioxide), SO2 (Sulfur dioxide), HCHO
 (Formaldehyde), CHOCHO (glyoxal)
 :::
 
-|                                 |                                                                                          |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
 | Instrument type                 | Passive imaging spectrometer                                                             |
+| ------------------------------- | ---------------------------------------------------------------------------------------- |
 | Spectrometric bands             | **3**, Ultraviolet (305-400 nm), Visible (400-500 nm) and Near Infrared(750-775 nm) [^1] |
 | Spectrometric channels          | **2**, (UV-VIS channel; NIR channel)                                                     |
 | Field Of View                   | E-W: 30°W-46.5°E @ 40°N, N-S: 30°N-65°N                                                  |
