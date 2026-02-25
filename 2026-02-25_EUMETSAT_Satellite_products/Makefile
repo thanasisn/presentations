@@ -27,18 +27,18 @@ list:
 		echo "  - $$file"; \
 	done
 
-# Create necessary directories
-dirs:
-	mkdir -p $(OUTPUT_DIR)
-	mkdir -p $(FIG_DIR)
-	mkdir -p $(DATA_DIR)
-	mkdir -p $(IMAGES_DIR)
+# # Create necessary directories
+# dirs:
+# 	mkdir -p $(OUTPUT_DIR)
+# 	mkdir -p $(FIG_DIR)
+# 	mkdir -p $(DATA_DIR)
+# 	mkdir -p $(IMAGES_DIR)
 
-# Create HTML ioslides presentation
-slides: dirs
-	@echo "Building HTML slides from $(RMD_FILE)"
-	-Rscript -e "rmarkdown::render('$(RMD_FILE)', output_format = 'ioslides_presentation', output_dir = '$(OUTPUT_DIR)', output_file = '$(BASE_NAME)')"
-	@echo "HTML presentation created: $(OUTPUT_DIR)/$(BASE_NAME).html"
+# # Create HTML ioslides presentation
+# slides: dirs
+# 	@echo "Building HTML slides from $(RMD_FILE)"
+# 	-Rscript -e "rmarkdown::render('$(RMD_FILE)', output_format = 'ioslides_presentation', output_dir = '$(OUTPUT_DIR)', output_file = '$(BASE_NAME)')"
+# 	@echo "HTML presentation created: $(OUTPUT_DIR)/$(BASE_NAME).html"
 
 # Create PDF presentation (Beamer)
 pdf: presentation_beamer.pdf
@@ -47,25 +47,49 @@ presentation_beamer.pdf : presentation_beamer.Rmd
 	-Rscript -e "rmarkdown::render('presentation_beamer.Rmd', output_format = 'beamer_presentation', output_file = 'presentation_beamer.pdf')"
 	@echo "PDF presentation created: presentation_beamer.pdf"
 
-# Create PowerPoint presentation
-ppt: presentation_ppt.ppt
-presentation_ppt.ppt : presentation_ppt.Rmd
-	@echo "Building PowerPoint from presentation_ppt.Rmd"
-	-Rscript -e "rmarkdown::render('presentation_ppt.Rmd', output_format = 'powerpoint_presentation', output_file = 'presentation_ppt.pptx')"
-	@echo "PowerPoint presentation created: presentation_ppt.pptx"
+# # Create PowerPoint presentation
+# ppt: presentation_ppt.ppt
+# presentation_ppt.ppt : presentation_ppt.Rmd
+# 	@echo "Building PowerPoint from presentation_ppt.Rmd"
+# 	-Rscript -e "rmarkdown::render('presentation_ppt.Rmd', output_format = 'powerpoint_presentation', output_file = 'presentation_ppt.pptx')"
+# 	@echo "PowerPoint presentation created: presentation_ppt.pptx"
 
-# Create Slidy HTML presentation
-slidy: dirs
-	@echo "Building Slidy HTML from $(RMD_FILE)"
-	-Rscript -e "rmarkdown::render('$(RMD_FILE)', output_format = 'slidy_presentation', output_dir = '$(OUTPUT_DIR)', output_file = '$(BASE_NAME)')"
-	@echo "Slidy HTML presentation created: $(OUTPUT_DIR)/$(BASE_NAME).html"
 
-# Alias for PDF
-beamer: pdf
+## revealjs
+reveal: Satellite_Instruments_and_Data_presentation_revealjs.html
+Satellite_Instruments_and_Data_presentation_revealjs.html:  presentation.qmd styles.css Makefile
+	@@- cd ./images; ./convert_pdf_to_svg.sh
+	- quarto render presentation.qmd --to revealjs
+	@ echo "Build:   $@"
+	@ echo "Changed: $?"
+	#@ cp -r -v -u -p "./." ${COPYTARGET}
+
+
+## pdf
+qpdf: Satellite_Instruments_and_Data_presentation.pdf
+Satellite_Instruments_and_Data_presentation.pdf: presentation.qmd styles.css Makefile
+	- quarto render presentation.qmd --to pdf --pdf-engine=xelatex
+	@ echo "Build:   $@"
+	@ echo "Changed: $?"
+
+
+
+# # Create Slidy HTML presentation
+# slidy: dirs
+# 	@echo "Building Slidy HTML from $(RMD_FILE)"
+# 	-Rscript -e "rmarkdown::render('$(RMD_FILE)', output_format = 'slidy_presentation', output_dir = '$(OUTPUT_DIR)', output_file = '$(BASE_NAME)')"
+# 	@echo "Slidy HTML presentation created: $(OUTPUT_DIR)/$(BASE_NAME).html"
+
 
 # Create all formats for current RMD file
 all-formats: slides pdf powerpoint
 	@echo "All formats created from $(RMD_FILE) in $(OUTPUT_DIR)/"
+
+
+
+
+
+
 
 # Watch for changes and auto-rebuild (requires fswatch)
 watch:
@@ -82,27 +106,11 @@ serve: slides
 	@echo "Press Ctrl+C to stop the server"
 	cd $(OUTPUT_DIR) && python3 -m http.server 8000
 
-# Install required R packages
-install:
-	@echo "Installing required R packages..."
-	Rscript -e "install.packages(c('rmarkdown', 'knitr', 'ggplot2', 'dplyr', 'tinytex'))"
-	Rscript -e "if(!requireNamespace('tinytex', quietly = TRUE)) tinytex::install_tinytex()"
-	@echo "Required packages installed"
 
-# Clean up generated files for current RMD
-clean:
-	@echo "Cleaning up files for $(RMD_FILE)"
-	rm -f $(OUTPUT_DIR)/$(BASE_NAME).html
-	rm -f $(OUTPUT_DIR)/$(BASE_NAME).pdf
-	rm -f $(OUTPUT_DIR)/$(BASE_NAME).pptx
-	rm -rf $(OUTPUT_DIR)/$(BASE_NAME)_files/
-	rm -rf $(FIG_DIR)/
 
-# Clean all generated files (all presentations)
-clean-all:
-	@echo " Cleaning all generated files"
-	rm -rf $(OUTPUT_DIR)/
-	rm -rf $(FIG_DIR)/
+
+
+
 
 # Show help message
 help:

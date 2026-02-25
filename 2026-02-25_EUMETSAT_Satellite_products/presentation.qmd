@@ -376,6 +376,11 @@ Key variables in LI-2-LFL-x-FD-x.
 </div>
 
 ::: {.notes}
+Events (LEF - Lightning Events Filtered): The finest scale of data. An event is a single triggered pixel where a sudden increase in energy is detected within a 1 ms frame.
+
+Groups (LGR - Lightning Groups): Aggregated adjacent events occurring within the same 1 ms acquisition frame. Group locations are calculated as the radiance-weighted centroid of the events within them.
+
+Flashes (LFL - Lightning Flashes): A collection of groups that are correlated in space (within 16.5 km) and time (within 330 ms)
 :::
 
 ::: footer
