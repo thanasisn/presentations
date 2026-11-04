@@ -1,0 +1,290 @@
+---
+title: "DUSTR · Model Validation Statistics"
+author: "DUSTR"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  slidy_presentation: default
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+    transition: faster
+  powerpoint_presentation:
+    slide_level: 2
+  beamer_presentation:
+    theme: Madrid
+    colortheme: beaver
+    fonttheme: structurebold
+    latex_engine: xelatex
+subtitle: How capable the ML model is?
+---
+
+```{r cfg, include=FALSE}
+# ══════════════════════════════════════════════════════════════════════════════
+# CONFIGURATION — edit these values to point at a different model output
+# ══════════════════════════════════════════════════════════════════════════════
+
+CFG <- list(
+
+  # Root folder that holds all scheme sub-folders
+  plots_root = "/home/athan/DUSTR/01_REPORTS/gpu-2_plots",
+
+  # Data scheme sub-folder name (e.g. "EC_PM_RD_ND_NL", "EC_PM_RD_ND", ...)
+  scheme     = "EC_PM_RD_ND_NL",
+
+  # Stats sub-folder name inside <scheme>/ that contains the model_* directories
+  # (e.g. "B070_models_stats")
+  stats_dir  = "B070_models_stats",
+
+  # ML model name as it appears in the folder (e.g. "XGBoost")
+  model      = "XGBoost",
+
+  # Target variable (e.g. "EARTHCARE_DOD_a355", "EARTHCARE_Total_mass")
+  target     = "EARTHCARE_DOD_a355",
+
+  # Split to present: "Train", "Test", or "Valid"
+  split      = "Valid",
+
+  # GPU / machine prefix used in file names (e.g. "gpu-2")
+  gpu_prefix = "gpu-2",
+
+  # [OPTIONAL] Full path to the stats JSON file.
+  # Leave as NULL to auto-discover it inside the model folder.
+  # Set explicitly if the file lives somewhere unexpected, e.g.:
+  #   json_file = "/full/path/to/earthcare_model_stats_....json"
+  json_file  = NULL
+)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PATH RESOLUTION  — derived automatically from CFG, no manual edits needed
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Stats folder: <plots_root>/<scheme>/<stats_dir>/
+batch_dir <- file.path(CFG$plots_root, CFG$scheme, CFG$stats_dir)
+
+# Model folder: model_<MODEL>_<TARGET>_<HASH>_<SPLIT>
+# The hash is unknown at config time — discover by listing the batch dir
+all_model_dirs <- list.dirs(batch_dir, full.names = FALSE, recursive = FALSE)
+
+folder_pattern <- sprintf("^model_%s_%s_.+_%s$",
+                          CFG$model, CFG$target, CFG$split)
+matched <- grep(folder_pattern, all_model_dirs, value = TRUE)
+
+if (length(matched) == 0)
+  stop(sprintf(
+    "No folder matching model=%s, target=%s, split=%s found in:\n  %s\nAvailable:\n  %s",
+    CFG$model, CFG$target, CFG$split, batch_dir,
+    paste(all_model_dirs, collapse = "\n  ")))
+
+if (length(matched) > 1)
+  warning("Multiple matching folders — using the first:\n  ",
+          paste(matched, collapse = "\n  "))
+
+plot_dir <- file.path(batch_dir, matched[1])
+
+# JSON stats file: lives inside the model folder (same pattern as PNG files)
+# Auto-discover unless CFG$json_file is set explicitly
+if (!is.null(CFG$json_file)) {
+  json_file <- CFG$json_file
+} else {
+  # Find any .json file matching the expected naming pattern inside plot_dir
+  json_candidates <- list.files(
+    plot_dir, pattern = "\\.react\\.internal\\.json$", full.names = TRUE)
+  if (length(json_candidates) == 0)
+    stop("No *.react.internal.json found in:\n  ", plot_dir,
+         "\n  Set CFG$json_file explicitly to override.")
+  if (length(json_candidates) > 1)
+    warning("Multiple JSON files found — using the first:\n  ",
+            paste(json_candidates, collapse = "\n  "))
+  json_file <- json_candidates[1]
+}
+
+# PNG file prefix: <gpu_prefix>_<scheme>_<stats_dir>_NNN.png
+png_prefix <- sprintf("%s_%s_%s", CFG$gpu_prefix, CFG$scheme, CFG$stats_dir)
+
+# Helper: full path for plot index i (zero-padded 3 digits)
+plot_path <- function(i) file.path(plot_dir, sprintf("%s_%03d.png", png_prefix, i))
+
+# ── Fail-safes ─────────────────────────────────────────────────────────────────
+if (!file.exists(json_file))
+  stop("Stats JSON not found:\n  ", json_file)
+
+missing_plots <- Filter(function(i) !file.exists(plot_path(i)), 0:7)
+if (length(missing_plots) > 0)
+  stop("Missing plot(s) for index(es): ", paste(missing_plots, collapse = ", "),
+       "\n  Expected in: ", plot_dir)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(jsonlite)
+library(knitr)
+
+# ── Load & filter metrics ──────────────────────────────────────────────────────
+all_stats <- fromJSON(json_file)
+
+# Keep only rows matching the configured target
+target_stats <- subset(all_stats, target == CFG$target)
+
+if (nrow(target_stats) == 0)
+  stop("Target '", CFG$target, "' not found in JSON. Available: ",
+       paste(unique(all_stats$target), collapse = ", "))
+
+# Pull each split into a named list for easy inline reference
+get_split <- function(sp) {
+  row <- subset(target_stats, split == sp)
+  if (nrow(row) == 0) return(NULL)
+  as.list(row[1, ])
+}
+
+tr <- get_split("Train")
+te <- get_split("Test")
+va <- get_split("Valid")
+
+# Focused split (the one being presented)
+vs <- get_split(CFG$split)
+if (is.null(vs))
+  stop("Split '", CFG$split, "' not found in JSON for target '", CFG$target, "'")
+
+# ── Metric formatting helpers ──────────────────────────────────────────────────
+fmt  <- function(x, d = 3) formatC(round(x, d), format = "f", digits = d)
+fmt4 <- function(x)        formatC(round(x, 4), format = "f", digits = 4)
+pct  <- function(x)        paste0(formatC(round(x * 100, 1), format = "f", digits = 1), " %")
+
+# ── Summary metric table (Train / Test / Valid columns) ────────────────────────
+make_col <- function(s) {
+  if (is.null(s)) return(rep("—", 9))
+  c(s$n_valid,
+    fmt(s$rmse), fmt(s$mae), fmt4(s$bias),
+    fmt(s$r2), fmt(s$r_pearson), fmt(s$r_spearman),
+    pct(s$metric_accuracy_10pct), pct(s$metric_accuracy_20pct))
+}
+
+metric_table <- data.frame(
+  Metric = c("n", "RMSE", "MAE", "Bias", "R²", "r (Pearson)", "r (Spearman)",
+             "Acc ±10 %", "Acc ±20 %"),
+  Train  = make_col(tr),
+  Test   = make_col(te),
+  Valid  = make_col(va),
+  stringsAsFactors = FALSE
+)
+```
+
+## `r paste(CFG$model, "·", CFG$target)` {.build}
+
+**Scheme:** `r CFG$scheme` &nbsp;|&nbsp;
+**Model:** `r CFG$model`
+
+```{r metrics-table}
+kable(metric_table, align = c("l", "r", "r", "r"),
+      col.names = c("Metric", "Train", "Test", "Valid"))
+```
+
+---
+
+## 1 · Observed vs Modelled {.flexbox .vcenter}
+
+```{r scatter, out.width="82%", fig.align="center"}
+include_graphics(plot_path(0))
+```
+
+\scriptsize Hexbin scatter (log\textsubscript{10} count) | R\textsuperscript{2} = `r fmt(vs$r2)` · r = `r fmt(vs$r_pearson)` · RMSE = `r fmt(vs$rmse)` · n = `r vs$n_valid`
+\normalsize
+
+---
+
+## 2 · Bias distribution (KDE) {.flexbox .vcenter}
+
+```{r bias-kde, out.width="78%", fig.align="center"}
+include_graphics(plot_path(1))
+```
+
+\scriptsize Residuals (Pred $-$ Obs). Mean bias = `r fmt4(vs$bias)` · $\sigma$ = `r fmt(vs$metric_resid_std)`
+\normalsize
+
+---
+
+## 3 · Bias by predicted — quantile bins {.flexbox .vcenter}
+
+```{r bias-pred-q, out.width="88%", fig.align="center"}
+include_graphics(plot_path(2))
+```
+
+\scriptsize 10 equal-count decile bins of \textbf{predicted} `r CFG$target`. Bias near zero across deciles; spread grows in the top bin.
+\normalsize
+
+---
+
+## 4 · Bias by observed — quantile bins {.flexbox .vcenter}
+
+```{r bias-obs-q, out.width="88%", fig.align="center"}
+include_graphics(plot_path(3))
+```
+
+\scriptsize 10 equal-count decile bins of \textbf{observed} `r CFG$target`. Slight negative bias in the highest decile — regression-to-the-mean at extreme values.
+\normalsize
+
+---
+
+## 5 · Bias by predicted — linear bins {.flexbox .vcenter}
+
+```{r bias-pred-lin, out.width="88%", fig.align="center"}
+include_graphics(plot_path(4))
+```
+
+\scriptsize Linear-spaced bins reveal data imbalance — bulk of samples at low values. Bias widens in the sparse high-value regime.
+\normalsize
+
+---
+
+## 6 · Bias by observed — linear bins {.flexbox .vcenter}
+
+```{r bias-obs-lin, out.width="88%", fig.align="center"}
+include_graphics(plot_path(5))
+```
+
+\scriptsize Growing negative bias (under-prediction) at high observed values ($<$ 4\,\% of data). Low-to-moderate range well-captured (bulk of samples).
+\normalsize
+
+---
+
+## 7 · Bias by latitude {.flexbox .vcenter}
+
+```{r bias-lat, out.width="92%", fig.align="center"}
+include_graphics(plot_path(6))
+```
+
+\scriptsize Bias stratified by latitude band. Median bias near zero in all bins — no systematic geographic drift.
+\normalsize
+
+---
+
+## 8 · Bias by hour (UTC) {.flexbox .vcenter}
+
+```{r bias-hour, out.width="92%", fig.align="center"}
+include_graphics(plot_path(7))
+```
+
+\scriptsize Bias stratified by overpass hour (UTC). Consistent across all hours — no diurnal artefact.
+\normalsize
+
+---
+
+## Summary {.build}
+
+**`r CFG$split` performance — `r CFG$target`** &nbsp;(n = `r vs$n_valid`)
+
+
+| | |
+|---|---|
+| R² / r | `r fmt(vs$r2)` / `r fmt(vs$r_pearson)` |
+| RMSE / MAE | `r fmt(vs$rmse)` / `r fmt(vs$mae)` |
+| Bias | `r fmt4(vs$bias)` |
+| Acc ±10 % / ±20 % | `r pct(vs$metric_accuracy_10pct)` / `r pct(vs$metric_accuracy_20pct)` |
+
+
+**Key findings:**
+
+- Model explains `r pct(vs$r2)` of `r CFG$target` variance with near-zero global bias
+- Under-prediction grows at high values — sparse samples in the high-value regime
+- No geographic or diurnal systematic errors
+
